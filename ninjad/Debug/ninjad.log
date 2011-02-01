@@ -1,0 +1,17 @@
+﻿Build started 2011-02-01 17:42:22.
+     1>Project "C:\Users\Ace\Documents\Visual Studio 2010\Projects\ninjad\ninjad\ninjad.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\ninjad.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         ninjad.vcxproj -> C:\Users\Ace\Documents\Visual Studio 2010\Projects\ninjad\ninjad\.\build\ninjad.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\ninjad.unsuccessfulbuild".
+         Touching "Debug\ninjad.lastbuildstate".
+     1>Done Building Project "C:\Users\Ace\Documents\Visual Studio 2010\Projects\ninjad\ninjad\ninjad.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.16
