@@ -1,16 +1,15 @@
 #include <iostream>
 #include "SFML\System.hpp"
+#include "SFML\Window.hpp"
 
-using namespace std;
+using namespace sf;
 
-int main()
+int main(int argc, char**argv)
 {
-	sf::Clock asdf;
-	//NINJAAAAA!
-	cout << "Hello Ninjas!\n";
-	cin.get();
-	//Hans din idiot
+	sf::Window wind(sf::VideoMode(800, 600, 32), "ASDF");
+	wind.Display();
 
+	std::cin.get();
 	return 0;
 }
 //ASDF
