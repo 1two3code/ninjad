@@ -1,15 +1,17 @@
 #include <iostream>
-#include "SFML\System.hpp"
-#include "SFML\Window.hpp"
+#include "Game.h"
 
-using namespace sf;
-
-int main(int argc, char**argv)
+int main()
 {
-	sf::Window wind(sf::VideoMode(800, 600, 32), "ASDF");
-	wind.Display();
+    Game* newGame;
+	bool running = true;
 
-	std::cin.get();
-	return 0;
+	while(running)
+	{
+		newGame = new Game();
+		newGame->init(0);
+		running = newGame->run();
+	}
+
+    return EXIT_SUCCESS;
 }
-//ASDF
