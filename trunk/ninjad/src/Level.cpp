@@ -3,12 +3,19 @@
 Level::Level(int j)
 {
 	generateBlocks(j);
+	
 	//Block blk();
 	
 }
 
 Level::~Level()
-{}
+{
+	for(int i = 0; i < nBlocks; i++)
+	{
+		delete block[i];
+	}
+	delete block;
+}
 
 void Level::render(RenderWindow* rnd)
 {
@@ -35,7 +42,6 @@ void Level::generateBlocks(int j)
 	
 	for(int i = 0; i < w; i++)
 	{
-
 		for(int j = 0; j < h; j++)
 		{
 			blockType = findType(map->GetPixel(i, j));
@@ -43,7 +49,7 @@ void Level::generateBlocks(int j)
 			if(tempBlock != NULL)
 			{
 				block[nBlocks] = tempBlock;
-				block[nBlocks]->SetPosition(i*32.0f, j*32.0f);
+				block[nBlocks]->SetPosition(16+i*32.0f, 16+j*32.0f);
 				nBlocks++;
 				tempBlock = NULL;
 

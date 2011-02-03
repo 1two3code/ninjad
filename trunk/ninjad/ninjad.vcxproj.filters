@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Blocks">
       <UniqueIdentifier>{2c76cc89-371c-423e-97d7-79f34a0c97c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Ninjas">
+      <UniqueIdentifier>{77f53528-3caf-46fd-88db-44fbfa8dd17d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Ninjas">
+      <UniqueIdentifier>{2e91329a-422a-4729-bf31-e4ee302a0d68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -39,6 +45,12 @@
     <ClCompile Include="src\StdBlock.cpp">
       <Filter>Source Files\Blocks</Filter>
     </ClCompile>
+    <ClCompile Include="src\NinjaIF.cpp">
+      <Filter>Source Files\Ninjas</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StdNinja.cpp">
+      <Filter>Source Files\Ninjas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -56,5 +68,13 @@
     <ClInclude Include="src\StdBlock.h">
       <Filter>Header Files\Blocks</Filter>
     </ClInclude>
+    <ClInclude Include="src\NinjaIF.h">
+      <Filter>Header Files\Ninjas</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\README.txt">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

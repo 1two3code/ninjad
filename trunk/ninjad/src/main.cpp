@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Game.h"
+#include "ImgHolder.h"
 
 int main()
 {
@@ -13,5 +14,7 @@ int main()
 		running = newGame->run();
 	}
 
+	delete newGame;
+	delete ImgHolder::getInst();
     return EXIT_SUCCESS;
 }
