@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <iostream>
 
 Game::Game()
 {
@@ -11,20 +12,14 @@ Game::~Game()
 
 bool Game::init(int level)
 {
-	ninja = new Sprite();
-	ninja->SetImage(*ImgHolder::getInst()->ninja);
-	ninja->SetSubRect(IntRect(0,0,16,16));
-	ninja->SetPosition(32,32);
-	ninja->FlipX(true);
-	ninja->FlipY(true);
-	ninjago = false;
-	frame = 0;
-
 	//Initiera spel beroende på levelselect
 	mainWnd = new RenderWindow(VideoMode(800, 600, 32), "Ninja'd");
 	mainWnd->Show(false);
-	mainLvl = new Level(2);
+	mainLvl = new Level(0);
+	ninjas = new StdNinja(2);
 	
+
+	temp = 2;
 	return false;
 }
 
@@ -34,6 +29,8 @@ bool Game::run()
 	mainWnd->Show(true);
 	while(running)
 	{
+		sf::Sleep(0.2f);
+		checkCollision();
 		running = update();
 		render();
 	}
@@ -43,6 +40,35 @@ bool Game::run()
 void Game::cleanUp()
 {
 	//To delete everything when game closes
+	delete mainWnd;
+	delete mainLvl;
+	delete ninjas;
+}
+
+void Game::checkCollision()
+{
+	switch(ninjas->getState())
+	{
+	case 0:
+		if(ninjas->GetPosition().x < 32+17)
+			ninjas->setState(3);
+		break;
+	case 1:
+		if(ninjas->GetPosition().y > 128+14)
+			ninjas->setState(0);
+		break;
+	case 2:
+		if(ninjas->GetPosition().x > 128+14)
+			ninjas->setState(1);
+		break;
+	case 3:
+		if(ninjas->GetPosition().y < 32+17)
+			ninjas->setState(2);
+		break;
+	default:
+		break;
+
+	}
 }
 
 bool Game::update()
@@ -57,10 +83,10 @@ bool Game::update()
 		// Window closed
 		if(e.Type == Event::MouseButtonReleased)
 		{
-			if(ninjago)
-				ninjago = false;
-			else
-				ninjago = true;
+			std::cout << temp << std::endl;
+			//ninjas->setState(temp);
+			temp++;
+			temp%=8;
 		}
 
 		if (e.Type == Event::Closed)
@@ -69,7 +95,7 @@ bool Game::update()
 			return false;
 		}
 	}
-	updNinja();
+	ninjas->update();
 	return true;
 }
 
@@ -77,18 +103,6 @@ void Game::render()
 {
 	mainWnd->Clear(Color(255, 255, 255));
 	mainLvl->render(mainWnd);
-	mainWnd->Draw(*ninja);
+	mainWnd->Draw(*ninjas);
 	mainWnd->Display();
-}
-
-void Game::updNinja()
-{
-	if(ninjago)
-	{
-		ninja->SetSubRect(IntRect(frame*16,0,frame*16+15,15));
-		ninja->Move(3, 0);
-
-		frame++;
-		frame %= 4;
-	}
 }

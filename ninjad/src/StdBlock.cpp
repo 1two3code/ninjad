@@ -9,7 +9,7 @@ StdBlock::StdBlock()
 
 	SetImage(*ImgHolder::getInst()->blocks);
 	this->SetSubRect(IntRect(cropX0, cropY0, cropX1, cropY1));
-
+	SetCenter(16,16);
 	//std::cout << this->GetSize().x << std::endl << this->GetSize().y;
 }
 

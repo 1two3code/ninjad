@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 #include "Level.h"
+#include "StdNinja.h"
 #include <SFML\System.hpp>
 #include <SFML\Graphics.hpp>
 
@@ -11,13 +12,11 @@ class Game
 private:
 	RenderWindow* mainWnd;
 	Thread* mainThrd;
-	//Sensei
+	NinjaIF* ninjas;
 	Level* mainLvl;
-	Sprite* ninja;
 
-	bool ninjago;
-	int frame;
-	
+	int temp;
+
 public:
 	Game();
 	~Game();
@@ -25,6 +24,7 @@ public:
 	bool run();
 	void cleanUp();
 
+	void checkCollision();
 	bool update();
 	void render();
 
