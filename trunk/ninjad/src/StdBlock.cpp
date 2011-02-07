@@ -1,5 +1,5 @@
 #include "StdBlock.h"
-#include <iostream>
+//#include <iostream>
 StdBlock::StdBlock()
 {
 	cropX0 = 32;	//Positionerna på Block-kartan med alla blocksprites
