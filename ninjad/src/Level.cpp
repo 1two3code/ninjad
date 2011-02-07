@@ -33,6 +33,7 @@ void Level::generateBlocks(int j)
 	int w = map->GetWidth();
 	int h = map->GetHeight();
 	int blockType = 0;
+	int blockRot = 0;
 
 	nBlocks = 0;
 	maxBlocks = w*h;
@@ -45,7 +46,8 @@ void Level::generateBlocks(int j)
 		for(int j = 0; j < h; j++)
 		{
 			blockType = findType(map->GetPixel(i, j));
-			tempBlock = createBlock(blockType);
+			blockRot = findRotation(map->GetPixel(i, j), blockType);
+			tempBlock = createBlock(blockType, blockRot);
 			if(tempBlock != NULL)
 			{
 				block[nBlocks] = tempBlock;
@@ -53,8 +55,7 @@ void Level::generateBlocks(int j)
 				nBlocks++;
 				tempBlock = NULL;
 
-			}			
-
+			}
 		}
 	}
 
@@ -66,7 +67,7 @@ int Level::findType(Color col)
 
 	for(int i = 0; i < (int)code->GetWidth(); i++)
 	{
-		if(col == code->GetPixel(i, 0))
+		if(col.r == code->GetPixel(i, 0).r && col.g == code->GetPixel(i, 0).g && col.b == code->GetPixel(i, 0).b)
 		{
 			return i;
 		}
@@ -75,7 +76,21 @@ int Level::findType(Color col)
 	return 0;
 }
 
-Block* Level::createBlock(int type)
+int Level::findRotation(Color col, int type)
+{
+	Image* code = ImgHolder::getInst()->colorCode;
+	int rot = 0;
+	for(int i = 0; i < 4; i++)
+	{
+		if(col == code->GetPixel(type, i))
+			return rot;
+		else
+			rot += 90;
+	}
+	return rot;
+}
+
+Block* Level::createBlock(int type, int rot)
 {
 	Block* rtn;
 	
@@ -86,23 +101,27 @@ Block* Level::createBlock(int type)
 		break;
 	case 1:
 		rtn = new StdBlock();
+		rtn->SetRotation((float)rot);
 		break;
 	case 2:
-		rtn = NULL;
-		//Dörrexit
+		rtn = new ExitDoor();
+		rtn->SetRotation((float)rot);
 		break;
 	case 3:
-		rtn = NULL;
-		//Dörröppning
+		rtn = new EntryDoor();
+		rtn->SetRotation((float)rot);
 		break;
 	case 4:
-		rtn = NULL;
+		rtn = new SpringBlock();
+		rtn->SetRotation((float)rot);
 		break;
 	case 5:
-		rtn = NULL;
+		rtn = new JumpBlock();
+		rtn->SetRotation((float)rot);
 		break;
 	case 6:
-		rtn = NULL;
+		rtn = new FallBlock();
+		rtn->SetRotation((float)rot);
 		break;
 	case 7:
 		rtn = NULL;

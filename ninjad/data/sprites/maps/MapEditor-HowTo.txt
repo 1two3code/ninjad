@@ -1,0 +1,8 @@
+Måste sparas i .png-format för alpha-kanalen
+
+Skapa 18x18 pixlar stor bild med totalt transparent bakgrund.
+Rita med angivna färger.
+För att sätta ut sprite med annan rotation än standard;
+Minska alpha-kanalen med 1/4 för att rotera sprite 90*
+
+Note: SFML roterar sprites MOTSOLS. Alltså tvärt om vad man skulle vänta sig

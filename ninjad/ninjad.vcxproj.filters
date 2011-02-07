@@ -51,6 +51,21 @@
     <ClCompile Include="src\StdNinja.cpp">
       <Filter>Source Files\Ninjas</Filter>
     </ClCompile>
+    <ClCompile Include="src\EntryDoor.cpp">
+      <Filter>Source Files\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExitDoor.cpp">
+      <Filter>Source Files\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JumpBlock.cpp">
+      <Filter>Source Files\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpringBlock.cpp">
+      <Filter>Source Files\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallBlock.cpp">
+      <Filter>Source Files\Blocks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -69,6 +84,24 @@
       <Filter>Header Files\Blocks</Filter>
     </ClInclude>
     <ClInclude Include="src\NinjaIF.h">
+      <Filter>Header Files\Ninjas</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EntryDoor.h">
+      <Filter>Header Files\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ExitDoor.h">
+      <Filter>Header Files\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JumpBlock.h">
+      <Filter>Header Files\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SpringBlock.h">
+      <Filter>Header Files\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallBlock.h">
+      <Filter>Header Files\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StdNinja.h">
       <Filter>Header Files\Ninjas</Filter>
     </ClInclude>
   </ItemGroup>
