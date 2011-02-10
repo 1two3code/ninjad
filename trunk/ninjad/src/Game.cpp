@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <iostream>
+using namespace std;
 
 Game::Game()
 {
@@ -17,6 +18,7 @@ bool Game::init(int level)
 	mainWnd->Show(false);
 	mainLvl = new Level(0);
 	ninjas = new StdNinja(2);
+	collision = new Collision();
 	
 
 	temp = 2;
@@ -47,7 +49,7 @@ void Game::cleanUp()
 
 void Game::checkCollision()
 {
-	switch(ninjas->getState())
+	/*switch(ninjas->getState())
 	{
 	case 0:
 		if(ninjas->GetPosition().x < 32+17)
@@ -68,6 +70,44 @@ void Game::checkCollision()
 	default:
 		break;
 
+	}*/
+
+	cout<<"X: "<<ninjas->GetPosition().x<<" Y: "<<ninjas->GetPosition().y<<endl;
+
+	//Låter kollisionsklass sköta detta
+	if(collision->ninja(mainLvl->getBlocks(),this->ninjas,this->mainLvl->getNr()))
+	{
+
+	switch(ninjas->getState())
+	{
+	case 0:
+			ninjas->setState(3);
+		break;
+	case 1:
+			ninjas->setState(0);
+		break;
+	case 2:
+			ninjas->setState(1);
+		break;
+	case 3:
+			ninjas->setState(2);
+		break;
+	case 4:
+			ninjas->setState(3);
+		break;
+	case 5:
+			ninjas->setState(0);
+		break;
+	case 6:
+			ninjas->setState(1);
+		break;
+	case 7:
+			ninjas->setState(2);
+		break;
+	default:
+		break;
+
+	}
 	}
 }
 

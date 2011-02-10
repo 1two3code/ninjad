@@ -78,6 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Block.cpp" />
+    <ClCompile Include="src\Collision.cpp" />
     <ClCompile Include="src\EntryDoor.cpp" />
     <ClCompile Include="src\ExitDoor.cpp" />
     <ClCompile Include="src\FallBlock.cpp" />
@@ -93,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Block.h" />
+    <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\EntryDoor.h" />
     <ClInclude Include="src\ExitDoor.h" />
     <ClInclude Include="src\FallBlock.h" />
