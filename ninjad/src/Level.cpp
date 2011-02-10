@@ -145,3 +145,12 @@ Block* Level::createBlock(int type, int rot)
 	return rtn;
 }
 
+int Level::getNr()
+{
+	return nBlocks;
+}
+
+Block** Level::getBlocks()
+{
+	return this->block;
+}

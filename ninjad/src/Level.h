@@ -25,6 +25,8 @@ public:
 	int findType(Color col);
 	int findRotation(Color col, int type);
 	Block* createBlock(int type, int rot);
+	int getNr(); //En get-funktion i brist på andra idéer
+	Block** getBlocks(); //En get-funktion i brist på andra idéer
 };
 
 #endif

@@ -1,5 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
+#include "Collision.h"
 #include "Level.h"
 #include "StdNinja.h"
 #include <SFML\System.hpp>
@@ -14,6 +15,7 @@ private:
 	Thread* mainThrd;
 	NinjaIF* ninjas;
 	Level* mainLvl;
+	Collision* collision;
 
 	int temp;
 
