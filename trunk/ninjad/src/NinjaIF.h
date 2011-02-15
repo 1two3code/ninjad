@@ -36,6 +36,8 @@ public:
 
 	virtual void update() = 0;
 	virtual void updateSprite() = 0;
+	virtual void testmove() = 0;
+	virtual void retrace() = 0;
 };
 
 #endif
