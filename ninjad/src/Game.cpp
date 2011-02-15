@@ -31,7 +31,8 @@ bool Game::run()
 	mainWnd->Show(true);
 	while(running)
 	{
-		sf::Sleep(0.2f);
+		//sf::Sleep(0.2f);
+		sf:Sleep(0.01f);
 		checkCollision();
 		running = update();
 		render();
@@ -72,7 +73,6 @@ void Game::checkCollision()
 
 	}*/
 
-	cout<<"X: "<<ninjas->GetPosition().x<<" Y: "<<ninjas->GetPosition().y<<endl;
 
 	//Låter kollisionsklass sköta detta
 	if(collision->ninja(mainLvl->getBlocks(),this->ninjas,this->mainLvl->getNr()))

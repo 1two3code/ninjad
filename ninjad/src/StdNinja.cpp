@@ -5,11 +5,11 @@ StdNinja::StdNinja(int s)
 	setAnimFrame(0);
 	setActive(false);
 	setState(s);		//<-- Sätter också mirroredX, dirX och dirY
-	setSpeed(5);
+	setSpeed(8);
 
 	SetImage(*ImgHolder::getInst()->ninja);
 	SetSubRect(IntRect(0,0,31,31));
-	SetPosition(48,48);
+	SetPosition(480,48);
 	//FlipX(true);
 	this->SetCenter(16,16);
 	//this->SetRotation(90);
@@ -29,6 +29,16 @@ void StdNinja::update()
 	f++;
 	f %= 4;
 	setAnimFrame(f);
+}
+
+void StdNinja::testmove()
+{
+	Move((float)getSpeed()*getDirX(), (float)getSpeed()*getDirY());
+}
+
+void StdNinja::retrace()
+{
+	Move(-(float)getSpeed()*getDirX(), -(float)getSpeed()*getDirY());
 }
 
 void StdNinja::updateSprite()
@@ -90,6 +100,10 @@ void StdNinja::updateSprite()
 		SetRotation(90);
 		setDirX(0);
 		setDirY(-1);
+		break;
+	case 8:		//faller neråt, ingen spegling, ingen rotation
+		setDirX(0);
+		setDirY(-3);
 		break;
 	default:
 		break;

@@ -13,6 +13,8 @@ public:
 
 	void update();
 	void updateSprite();
+	void testmove();
+	void retrace();
 };
 
 #endif
