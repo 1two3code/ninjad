@@ -19,7 +19,8 @@ ImgHolder::ImgHolder()
 	{
 		itoa(i, dst, 10);
 		std::string fname = "./data/sprites/maps/map";
-		fname += dst;
+		//fname += dst;
+		fname += "2";
 		fname += ".png";
 		maps[i] = new Image();
 		maps[i]->LoadFromFile(fname);
