@@ -52,6 +52,7 @@ void Game::checkCollision()
 {
 	//Låter kollisionsklass sköta detta.
 	collision->ninja(mainLvl->getBlocks(),this->ninjas,this->mainLvl->getNr());
+	//cin.get();
 }
 
 bool Game::update()
