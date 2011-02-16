@@ -77,6 +77,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\Block.cpp" />
     <ClCompile Include="src\Collision.cpp" />
     <ClCompile Include="src\EntryDoor.cpp" />
@@ -93,6 +94,7 @@
     <ClCompile Include="src\StdNinja.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Animation.h" />
     <ClInclude Include="src\Block.h" />
     <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\EntryDoor.h" />
