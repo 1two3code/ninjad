@@ -10,10 +10,12 @@ class Collision
 {
 private:
 	bool collides;
+	bool foothold;
 public:
 	Collision();
 	~Collision();
-	int ninja(Block** block, NinjaIF* ninja,int nBlocks);
+	void ninja(Block** block, NinjaIF* ninja,int nBlocks);
+	void ninjaHitsWall(NinjaIF* ninja);
 };
 
 #endif

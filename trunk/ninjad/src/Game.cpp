@@ -17,7 +17,7 @@ bool Game::init(int level)
 	mainWnd = new RenderWindow(VideoMode(800, 600, 32), "Ninja'd");
 	mainWnd->Show(false);
 	mainLvl = new Level(0);
-	ninjas = new StdNinja(2);
+	ninjas = new StdNinja(0);
 	collision = new Collision();
 	
 
@@ -50,65 +50,8 @@ void Game::cleanUp()
 
 void Game::checkCollision()
 {
-	/*switch(ninjas->getState())
-	{
-	case 0:
-		if(ninjas->GetPosition().x < 32+17)
-			ninjas->setState(3);
-		break;
-	case 1:
-		if(ninjas->GetPosition().y > 128+14)
-			ninjas->setState(0);
-		break;
-	case 2:
-		if(ninjas->GetPosition().x > 128+14)
-			ninjas->setState(1);
-		break;
-	case 3:
-		if(ninjas->GetPosition().y < 32+17)
-			ninjas->setState(2);
-		break;
-	default:
-		break;
-
-	}*/
-
-
-	//Låter kollisionsklass sköta detta
-	if(collision->ninja(mainLvl->getBlocks(),this->ninjas,this->mainLvl->getNr()))
-	{
-
-	switch(ninjas->getState())
-	{
-	case 0:
-			ninjas->setState(3);
-		break;
-	case 1:
-			ninjas->setState(0);
-		break;
-	case 2:
-			ninjas->setState(1);
-		break;
-	case 3:
-			ninjas->setState(2);
-		break;
-	case 4:
-			ninjas->setState(3);
-		break;
-	case 5:
-			ninjas->setState(0);
-		break;
-	case 6:
-			ninjas->setState(1);
-		break;
-	case 7:
-			ninjas->setState(2);
-		break;
-	default:
-		break;
-
-	}
-	}
+	//Låter kollisionsklass sköta detta.
+	collision->ninja(mainLvl->getBlocks(),this->ninjas,this->mainLvl->getNr());
 }
 
 bool Game::update()
