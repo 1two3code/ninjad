@@ -9,7 +9,7 @@ StdNinja::StdNinja(int s)
 
 	SetImage(*ImgHolder::getInst()->ninja);
 	SetSubRect(IntRect(0,0,31,31));
-	SetPosition(480,48);
+	SetPosition(112,48);
 	//FlipX(true);
 	this->SetCenter(16,16);
 	//this->SetRotation(90);
