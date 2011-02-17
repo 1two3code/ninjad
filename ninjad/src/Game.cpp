@@ -54,6 +54,8 @@ void Game::checkCollision()
 	//Låter kollisionsklass sköta detta.
 	for(int i=0;i<ninjhold->getNr();i++)
 		collision->ninja(mainLvl->getBlocks(),this->ninjhold->getNinjas(i),this->mainLvl->getNr());
+
+	collision->player(mainLvl->getBlocks(), this->player, this->mainLvl->getNr(),mainWnd);
 	//cin.get();
 }
 
