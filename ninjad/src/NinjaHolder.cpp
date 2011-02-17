@@ -35,31 +35,35 @@ NinjaHolder::NinjaHolder(int nr, int type, int state, Block** block, int nrOfBlo
 		{
 			for(int i = 0; i < nrOfNinjas; i++)
 			{
+				cout<<ninjas[i]->getState()<<endl;
 				switch(ninjas[i]->getState())
 				{
 				case 0:
 					ninjas[i]->SetPosition(block[j]->GetPosition().x+16*i, block[j]->GetPosition().y + (block[j]->GetSize().y/2 - ninjas[i]->GetSize().y/2));
 					break;
 				case 1:
-					ninjas[i]->SetPosition(block[j]->GetPosition().y-16*i, block[j]->GetPosition().x + (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2));
+					ninjas[i]->SetPosition(block[j]->GetPosition().x + (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2), block[j]->GetPosition().y-16*i);
 					break;
 				case 2:
 					ninjas[i]->SetPosition(block[j]->GetPosition().x-16*i, block[j]->GetPosition().y - (block[j]->GetSize().y/2 - ninjas[i]->GetSize().y/2));
 					break;
 				case 3:
-					ninjas[i]->SetPosition(block[j]->GetPosition().y+16*i, block[j]->GetPosition().x - (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2));
+					ninjas[i]->SetPosition(block[j]->GetPosition().x - (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2), block[j]->GetPosition().y+16*i);
 					break;
 				case 4:
 					ninjas[i]->SetPosition(block[j]->GetPosition().x+16*i, block[j]->GetPosition().y - (block[j]->GetSize().y/2 - ninjas[i]->GetSize().y/2));
 					break;
 				case 5:
-					ninjas[i]->SetPosition(block[j]->GetPosition().y-16*i, block[j]->GetPosition().x - (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2));
+					ninjas[i]->SetPosition(block[j]->GetPosition().x - (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2), block[j]->GetPosition().y-16*i);
 					break;
 				case 6:
 					ninjas[i]->SetPosition(block[j]->GetPosition().x-16*i, block[j]->GetPosition().y + (block[j]->GetSize().y/2 - ninjas[i]->GetSize().y/2));
 					break;
 				case 7:
-					ninjas[i]->SetPosition(block[j]->GetPosition().y+16*i, block[j]->GetPosition().x + (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2));
+					ninjas[i]->SetPosition(block[j]->GetPosition().x + (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2), block[j]->GetPosition().y+16*i);
+					break;
+				case 8:
+					ninjas[i]->SetPosition(block[j]->GetPosition().x, block[j]->GetPosition().y-16*i);
 					break;
 				default:
 					break;
