@@ -18,7 +18,7 @@ bool Game::init(int level)
 	mainWnd = new RenderWindow(VideoMode(800, 600, 32), "Ninja'd");
 	mainWnd->Show(false);
 	mainLvl = new Level(0);
-	this->ninjhold = new NinjaHolder(2,0,0);
+	this->ninjhold = new NinjaHolder(8,0,0);
 	player = new Player();
 	collision = new Collision();
 
