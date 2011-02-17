@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-
+	input = &InputHandler::getInstance();
 	setAnimFrame(0);
 	setSpeed(8);
 
@@ -29,10 +29,10 @@ void Player::update(RenderWindow* wnd)
 	if(input->isPressLeft(wnd))
 		Move((float)getSpeed()*-1, (float)getSpeed()*0);
 	if(input->isPressJump(wnd))
-		Move((float)getSpeed()*0, (float)getSpeed()*2);
+		Move((float)getSpeed()*0, -(float)getSpeed()*2);
 	if(input->isPressClick(wnd))
 	{}//släng ut block
-	//SetSubRect(IntRect(f*32, 0, f*32+32, 32));
+	SetSubRect(IntRect(f*32, 0, f*32+32, 32));
 	f++;
 	f %= 4;
 	setAnimFrame(f);
@@ -45,7 +45,7 @@ void Player::testmove(RenderWindow* wnd)
 	if(input->isPressLeft(wnd))
 		Move((float)getSpeed()*-1, (float)getSpeed()*0);
 	if(input->isPressJump(wnd))
-		Move((float)getSpeed()*0, (float)getSpeed()*2);
+		Move((float)getSpeed()*0, -(float)getSpeed()*2);
 	if(input->isPressClick(wnd))
 	{}//släng ut block
 }
@@ -57,7 +57,7 @@ void Player::retrace(RenderWindow* wnd)
 	if(input->isPressLeft(wnd))
 		Move(-(float)getSpeed()*-1, -(float)getSpeed()*0);
 	if(input->isPressJump(wnd))
-		Move(-(float)getSpeed()*0, -(float)getSpeed()*2);
+		Move(-(float)getSpeed()*0, (float)getSpeed()*2);
 	if(input->isPressClick(wnd))
 	{}//släng ut block
 }

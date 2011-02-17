@@ -16,6 +16,7 @@ private:
 	RenderWindow* mainWnd;
 	Thread* mainThrd;
 	//NinjaIF** ninjas;
+	Player* player;
 	NinjaHolder* ninjhold;
 	Level* mainLvl;
 	Collision* collision;

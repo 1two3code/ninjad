@@ -19,6 +19,7 @@ bool Game::init(int level)
 	mainWnd->Show(false);
 	mainLvl = new Level(0);
 	this->ninjhold = new NinjaHolder(2,0,0);
+	player = new Player();
 	collision = new Collision();
 
 	temp = 2;
@@ -32,7 +33,7 @@ bool Game::run()
 	while(running)
 	{
 		//sf::Sleep(0.2f);
-		sf::Sleep(0.01f);
+		sf::Sleep(0.1f);
 		checkCollision();
 		running = update();
 		render();
@@ -46,6 +47,7 @@ void Game::cleanUp()
 	delete mainWnd;
 	delete mainLvl;
 	delete ninjhold;
+	delete player;
 }
 
 void Game::checkCollision()
@@ -65,14 +67,14 @@ bool Game::update()
 	{
 		//e.Type == Event::MouseMoved;
 		// Window closed
-		if(e.Type == Event::MouseButtonReleased)
+		/*if(e.Type == Event::MouseButtonReleased)
 		{
 			std::cout << temp << std::endl;
 			//ninjas->setState(temp);
 			temp++;
 			temp%=8;
 		}
-
+		*/
 		if (e.Type == Event::Closed)
 		{
 			mainWnd->Close();
@@ -81,6 +83,8 @@ bool Game::update()
 	}
 	for(int i=0;i<ninjhold->getNr();i++)
 		ninjhold->getNinjas(i)->update();
+	player->update(mainWnd);
+	player->updateSprite(mainWnd);
 
 	return true;
 }
@@ -91,5 +95,6 @@ void Game::render()
 	mainLvl->render(mainWnd);
 	for(int i=0;i<ninjhold->getNr();i++)
 		mainWnd->Draw(*ninjhold->getNinjas(i));
+	mainWnd->Draw(*player);
 	mainWnd->Display();
 }

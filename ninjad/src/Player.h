@@ -2,10 +2,12 @@
 #define PLAYER_H
 #include <SFML/Graphics.hpp>
 #include "ImgHolder.h"
+#include "InputHandler.h"
 
 class Player : public Sprite
 {
 private:
+	InputHandler* input;
 	int animFrame;
 	int speed;
 public:
