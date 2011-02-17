@@ -3,6 +3,8 @@
 #include "Collision.h"
 #include "Level.h"
 #include "NinjaHolder.h"
+#include "Player.h"
+#include "InputHandler.h"
 #include <SFML\System.hpp>
 #include <SFML\Graphics.hpp>
 
@@ -17,6 +19,7 @@ private:
 	NinjaHolder* ninjhold;
 	Level* mainLvl;
 	Collision* collision;
+	InputHandler* input; //what
 
 	int temp;
 

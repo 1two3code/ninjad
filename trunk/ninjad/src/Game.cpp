@@ -13,13 +13,13 @@ Game::~Game()
 
 bool Game::init(int level)
 {
+	input = &InputHandler::getInstance();
 	//Initiera spel beroende på levelselect
 	mainWnd = new RenderWindow(VideoMode(800, 600, 32), "Ninja'd");
 	mainWnd->Show(false);
 	mainLvl = new Level(0);
 	this->ninjhold = new NinjaHolder(2,0,0);
 	collision = new Collision();
-	
 
 	temp = 2;
 	return false;
@@ -32,7 +32,7 @@ bool Game::run()
 	while(running)
 	{
 		//sf::Sleep(0.2f);
-		sf:Sleep(0.01f);
+		sf::Sleep(0.01f);
 		checkCollision();
 		running = update();
 		render();

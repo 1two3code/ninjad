@@ -85,11 +85,13 @@
     <ClCompile Include="src\FallBlock.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\ImgHolder.cpp" />
+    <ClCompile Include="src\InputHandler.cpp" />
     <ClCompile Include="src\JumpBlock.cpp" />
     <ClCompile Include="src\Level.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\NinjaHolder.cpp" />
     <ClCompile Include="src\NinjaIF.cpp" />
+    <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\SpringBlock.cpp" />
     <ClCompile Include="src\StdBlock.cpp" />
     <ClCompile Include="src\StdNinja.cpp" />
@@ -103,10 +105,12 @@
     <ClInclude Include="src\FallBlock.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\ImgHolder.h" />
+    <ClInclude Include="src\InputHandler.h" />
     <ClInclude Include="src\JumpBlock.h" />
     <ClInclude Include="src\Level.h" />
     <ClInclude Include="src\NinjaHolder.h" />
     <ClInclude Include="src\NinjaIF.h" />
+    <ClInclude Include="src\Player.h" />
     <ClInclude Include="src\SpringBlock.h" />
     <ClInclude Include="src\StdBlock.h" />
     <ClInclude Include="src\StdNinja.h" />
