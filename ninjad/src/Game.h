@@ -2,7 +2,7 @@
 #define GAME_H
 #include "Collision.h"
 #include "Level.h"
-#include "StdNinja.h"
+#include "NinjaHolder.h"
 #include <SFML\System.hpp>
 #include <SFML\Graphics.hpp>
 
@@ -13,7 +13,8 @@ class Game
 private:
 	RenderWindow* mainWnd;
 	Thread* mainThrd;
-	NinjaIF* ninjas;
+	//NinjaIF** ninjas;
+	NinjaHolder* ninjhold;
 	Level* mainLvl;
 	Collision* collision;
 

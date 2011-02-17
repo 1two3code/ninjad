@@ -71,3 +71,13 @@ int NinjaIF::getSpeed()
 {
 	return speed;
 }
+
+void NinjaIF::setNr(int nr)
+{
+	this->nr=nr;
+}
+
+int NinjaIF::getNr()
+{
+	return this->nr;
+}
