@@ -88,6 +88,7 @@
     <ClCompile Include="src\JumpBlock.cpp" />
     <ClCompile Include="src\Level.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\NinjaHolder.cpp" />
     <ClCompile Include="src\NinjaIF.cpp" />
     <ClCompile Include="src\SpringBlock.cpp" />
     <ClCompile Include="src\StdBlock.cpp" />
@@ -104,6 +105,7 @@
     <ClInclude Include="src\ImgHolder.h" />
     <ClInclude Include="src\JumpBlock.h" />
     <ClInclude Include="src\Level.h" />
+    <ClInclude Include="src\NinjaHolder.h" />
     <ClInclude Include="src\NinjaIF.h" />
     <ClInclude Include="src\SpringBlock.h" />
     <ClInclude Include="src\StdBlock.h" />

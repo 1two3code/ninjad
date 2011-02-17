@@ -14,6 +14,7 @@ private:
 	int dirX;
 	int dirY;
 	int speed;
+	int nr;
 
 public:
 	NinjaIF();
@@ -33,6 +34,8 @@ public:
 	int getDirY();
 	void setSpeed(int s);
 	int getSpeed();
+	void setNr(int nr);
+	int getNr();
 
 	virtual void update() = 0;
 	virtual void updateSprite() = 0;

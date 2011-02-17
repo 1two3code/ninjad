@@ -1,7 +1,7 @@
-﻿Build started 2011-02-16 21:27:45.
+﻿Build started 2011-02-17 11:36:35.
      1>Project "C:\Users\Erik\Desktop\Spelprojekt\ninjad\ninjad.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "Debug\ninjad.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\ninjad.unsuccessfulbuild".
        ClCompile:
          D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I.\include\ /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt src\Game.cpp
          Game.cpp
@@ -17,6 +17,7 @@
          Debug\JumpBlock.obj
          Debug\Level.obj
          Debug\main.obj
+         Debug\NinjaHolder.obj
          Debug\NinjaIF.obj
          Debug\SpringBlock.obj
          Debug\StdBlock.obj
@@ -98,4 +99,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.19
+Time Elapsed 00:00:01.29
