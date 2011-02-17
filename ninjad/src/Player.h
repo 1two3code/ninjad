@@ -10,6 +10,7 @@ private:
 	InputHandler* input;
 	int animFrame;
 	int speed;
+
 public:
 	Player();
 	~Player();

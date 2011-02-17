@@ -8,10 +8,10 @@ StdNinja::StdNinja(int s)
 	setSpeed(8);
 
 	SetImage(*ImgHolder::getInst()->ninja);
-	SetSubRect(IntRect(0,0,31,31));
+	SetSubRect(IntRect(0,0,16,16));
 	SetPosition(208,112);
 	//FlipX(true);
-	this->SetCenter(16,16);
+	this->SetCenter(8,8);
 	//this->SetRotation(90);
 	
 	//SetCenter(0,0);
@@ -25,7 +25,7 @@ void StdNinja::update()
 {
 	int f = getAnimFrame();
 	Move((float)getSpeed()*getDirX(), (float)getSpeed()*getDirY());
-	SetSubRect(IntRect(f*32, 0, f*32+32, 32));
+	SetSubRect(IntRect(f*16, 0, f*16+16, 16));
 	f++;
 	f %= 4;
 	setAnimFrame(f);

@@ -6,11 +6,13 @@ ImgHolder* ImgHolder::pInstance = NULL;
 ImgHolder::ImgHolder()
 {
 	blocks = new Image();
-	blocks->LoadFromFile("./data/sprites/Blocks.png");
+	blocks->LoadFromFile("./data/sprites/Blocks2.png");
 	ninja = new Image();
-	ninja->LoadFromFile("./data/sprites/ninjanimatea.png");
+	ninja->LoadFromFile("./data/sprites/ninjanimate2a.png");
 	colorCode = new Image();
 	colorCode->LoadFromFile("./data/sprites/colorcode.png");
+	player = new Image();
+	player->LoadFromFile("./data/sprites/ninjanimatea.png");
 
 	nMaps = 1;
 	maps = new Image*[nMaps];

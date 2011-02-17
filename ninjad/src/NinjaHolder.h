@@ -10,10 +10,12 @@ private:
 	int ninjaType;
 	int startState;
 	NinjaIF** ninjas;
+
 public:
 	NinjaHolder();
 	NinjaHolder(int nr, int type, int state);
 	~NinjaHolder();
+
 	void setNr(int nr);
 	int getNr();
 	void setType(int type);
