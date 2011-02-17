@@ -16,6 +16,7 @@ public:
 	Image* ninja;
 	Image** maps;
 	Image* colorCode;
+	Image* player;
 	~ImgHolder();
 	static ImgHolder* getInst();
 

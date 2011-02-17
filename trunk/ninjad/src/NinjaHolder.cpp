@@ -29,6 +29,10 @@ NinjaHolder::NinjaHolder(int nr, int type, int state)
 		else
 			ninjas[i] = new StdNinja(startState);
 	}
+	for(int i = 0; i < nrOfNinjas; i++)
+	{
+		ninjas[i]->SetPosition(208+16*i,112);
+	}
 }
 
 NinjaHolder::~NinjaHolder()

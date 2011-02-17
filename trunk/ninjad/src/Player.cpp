@@ -6,7 +6,7 @@ Player::Player()
 	setAnimFrame(0);
 	setSpeed(8);
 
-	SetImage(*ImgHolder::getInst()->ninja);
+	SetImage(*ImgHolder::getInst()->player);
 	//SetSubRect(IntRect(0,0,31,31));
 	SetPosition(208,112);
 
@@ -14,7 +14,7 @@ Player::Player()
 	//this->SetRotation(90);
 	
 	//SetCenter(0,0);
-	
+	input = &InputHandler::getInstance();
 }
 
 Player::~Player()
