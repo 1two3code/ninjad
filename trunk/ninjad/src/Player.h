@@ -9,15 +9,27 @@ class Player : public Sprite
 private:
 	InputHandler* input;
 	int animFrame;
-	int speed;
+	int speedx;
+	int speedy;
+	int acceleration;
+	bool grounded;
+	bool hitWall;
 
 public:
 	Player();
 	~Player();
 	void setAnimFrame(int f);
 	int getAnimFrame();
-	void setSpeed(int s);
-	int getSpeed();
+	void setSpeedX(int s);
+	int getSpeedX();
+	void setSpeedY(int s);
+	int getSpeedY();
+	void setAccel(int a);
+	int getAccel();
+	void setGrounded(bool g);
+	bool getGrounded();
+	void setHitWall(bool h);
+	bool getHitWall();
 	void update(RenderWindow* wnd);
 	void updateSprite(RenderWindow* wnd);
 	void testmove(RenderWindow* wnd);

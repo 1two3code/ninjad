@@ -1,6 +1,7 @@
 #ifndef COLLISION_H
 #define COLLISION_H
 
+#include"Player.h"
 #include"Level.h"
 #include"NinjaIF.h"
 #include<iostream>
@@ -17,9 +18,10 @@ private:
 public:
 	Collision();
 	~Collision();
-	void ninja(Block** block, NinjaIF* ninja,int nBlocks);
+	void ninja(Block** block, NinjaIF* ninja, int nBlocks);
 	void ninjaHitsWall(NinjaIF* ninja);
 	void ninjaHitsGround(NinjaIF* ninja);
+	void player(Block** block, Player* player, int nBlocks,RenderWindow* wnd);
 };
 
 #endif

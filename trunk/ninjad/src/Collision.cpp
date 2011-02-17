@@ -381,3 +381,42 @@ void Collision::ninjaHitsGround(NinjaIF* ninja)
 
 	}
 }
+
+void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow* wnd)
+{
+	//1. Står sensei på marken?
+	player->setAccel(2);
+	player->setGrounded(false);
+	for(int i=0; i<nBlocks; i++)
+	{
+		if(player->GetPosition().y + (player->GetSize().y/2 + block[i]->GetSize().y/2) == block[i]->GetPosition().y && player->GetPosition().x + player->GetSize().x/2 >= block[i]->GetPosition().x - block[i]->GetSize().x/2 && player->GetPosition().x - player->GetSize().x/2 <= block[i]->GetPosition().x + block[i]->GetSize().x/2 && typeid(*block[i]) == typeid(StdBlock))
+		{
+			player->setAccel(0);
+			player->setSpeedY(0);
+			player->setGrounded(true);
+		}
+	}
+
+	//2. Kolliderar sensei med en vägg?
+	player->setHitWall(false);
+	this->collides=false;
+	player->testmove(wnd);
+	for(int i=0; i<nBlocks && collides==false;i++)
+	{
+		this->collides=true;
+		
+		if(player->GetPosition().x + player->GetSize().x/2 <= block[i]->GetPosition().x - block[i]->GetSize().x/2)//Ninjan är till vänster om blocket
+			collides=false;
+		if(player->GetPosition().x - player->GetSize().x/2 >= block[i]->GetPosition().x + block[i]->GetSize().x/2)//Ninjan är till höger om blocket
+			collides=false;
+		if(player->GetPosition().y + player->GetSize().y/2 <= block[i]->GetPosition().y - block[i]->GetSize().y/2)//Ninjan är ovanför blocket
+			collides=false;
+		if(player->GetPosition().y - player->GetSize().y/2 >= block[i]->GetPosition().y + block[i]->GetSize().y/2)//Ninjan är nedanför blocket
+			collides=false;
+		if(typeid(*block[i]) != typeid(StdBlock)) //Blocket är inte ett StdBlock
+			collides=false;
+	}
+	player->retrace(wnd);
+	if(collides)
+		player->setHitWall(true);
+}
