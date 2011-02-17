@@ -71,6 +71,13 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 				ninja->setDrawn(true);
 		}
 		break;
+	case 8:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->GetPosition().x == block[i]->GetPosition().x && ninja->GetPosition().y + (ninja->GetSize().y/2 - block[i]->GetSize().y/2) == block[i]->GetPosition().y && typeid(*block[i]) == typeid(EntryDoor))
+				ninja->setDrawn(true);
+		}
+		break;
 	default:
 		break;
 	}
@@ -83,61 +90,61 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 	case 0:
 		for(int i=0; i<nBlocks && airborne==true; i++)
 		{
-			if(ninja->GetPosition().x + ninja->GetSize().x/2 >= block[i]->GetPosition().x - block[i]->GetSize().x/2 && ninja->GetPosition().x - ninja->GetSize().x/2 <= block[i]->GetPosition().x + block[i]->GetSize().x/2 && ninja->GetPosition().y + (ninja->GetSize().y/2 + block[i]->GetSize().y/2) == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock))
+			if(ninja->GetPosition().x + ninja->GetSize().x/2 >= block[i]->GetPosition().x - block[i]->GetSize().x/2 && ninja->GetPosition().x - ninja->GetSize().x/2 <= block[i]->GetPosition().x + block[i]->GetSize().x/2 && ninja->GetPosition().y + (ninja->GetSize().y/2 + block[i]->GetSize().y/2) == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				airborne=false;
 		}
 	case 1:
 		for(int i=0; i<nBlocks && airborne==true; i++)
 		{
-			if(ninja->GetPosition().y + ninja->GetSize().y/2 >= block[i]->GetPosition().y - block[i]->GetSize().y/2 && ninja->GetPosition().y - ninja->GetSize().y/2 <= block[i]->GetPosition().y + block[i]->GetSize().y/2 && ninja->GetPosition().x + (ninja->GetSize().x/2 + block[i]->GetSize().x/2) == block[i]->GetPosition().x && typeid(*block[i]) == typeid(StdBlock))
+			if(ninja->GetPosition().y + ninja->GetSize().y/2 >= block[i]->GetPosition().y - block[i]->GetSize().y/2 && ninja->GetPosition().y - ninja->GetSize().y/2 <= block[i]->GetPosition().y + block[i]->GetSize().y/2 && ninja->GetPosition().x + (ninja->GetSize().x/2 + block[i]->GetSize().x/2) == block[i]->GetPosition().x && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				airborne=false;
 		}
 		break;
 	case 2:
 		for(int i=0; i<nBlocks && airborne==true; i++)
 		{
-			if(ninja->GetPosition().x + ninja->GetSize().x/2 >= block[i]->GetPosition().x - block[i]->GetSize().x/2 && ninja->GetPosition().x - ninja->GetSize().x/2 <= block[i]->GetPosition().x + block[i]->GetSize().x/2 && ninja->GetPosition().y - (ninja->GetSize().y/2 + block[i]->GetSize().y/2) == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock))
+			if(ninja->GetPosition().x + ninja->GetSize().x/2 >= block[i]->GetPosition().x - block[i]->GetSize().x/2 && ninja->GetPosition().x - ninja->GetSize().x/2 <= block[i]->GetPosition().x + block[i]->GetSize().x/2 && ninja->GetPosition().y - (ninja->GetSize().y/2 + block[i]->GetSize().y/2) == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				airborne=false;
 		}
 		break;
 	case 3:
 		for(int i=0; i<nBlocks && airborne==true; i++)
 		{
-			if(ninja->GetPosition().y + ninja->GetSize().y/2 >= block[i]->GetPosition().y - block[i]->GetSize().y/2 && ninja->GetPosition().y - ninja->GetSize().y/2 <= block[i]->GetPosition().y + block[i]->GetSize().y/2 && ninja->GetPosition().x - (ninja->GetSize().x/2 + block[i]->GetSize().x/2) == block[i]->GetPosition().x && typeid(*block[i]) == typeid(StdBlock))
+			if(ninja->GetPosition().y + ninja->GetSize().y/2 >= block[i]->GetPosition().y - block[i]->GetSize().y/2 && ninja->GetPosition().y - ninja->GetSize().y/2 <= block[i]->GetPosition().y + block[i]->GetSize().y/2 && ninja->GetPosition().x - (ninja->GetSize().x/2 + block[i]->GetSize().x/2) == block[i]->GetPosition().x && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				airborne=false;
 		}
 		break;
 	case 6:
 		for(int i=0; i<nBlocks && airborne==true; i++)
 		{
-			if(ninja->GetPosition().x + ninja->GetSize().x/2 >= block[i]->GetPosition().x - block[i]->GetSize().x/2 && ninja->GetPosition().x - ninja->GetSize().x/2 <= block[i]->GetPosition().x + block[i]->GetSize().x/2 && ninja->GetPosition().y + (ninja->GetSize().y/2 + block[i]->GetSize().y/2) == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock))
+			if(ninja->GetPosition().x + ninja->GetSize().x/2 >= block[i]->GetPosition().x - block[i]->GetSize().x/2 && ninja->GetPosition().x - ninja->GetSize().x/2 <= block[i]->GetPosition().x + block[i]->GetSize().x/2 && ninja->GetPosition().y + (ninja->GetSize().y/2 + block[i]->GetSize().y/2) == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				airborne=false;
 		}
 	case 7:
 		for(int i=0; i<nBlocks && airborne==true; i++)
 		{
-			if(ninja->GetPosition().y + ninja->GetSize().y/2 >= block[i]->GetPosition().y - block[i]->GetSize().y/2 && ninja->GetPosition().y - ninja->GetSize().y/2 <= block[i]->GetPosition().y + block[i]->GetSize().y/2 && ninja->GetPosition().x + (ninja->GetSize().x/2 + block[i]->GetSize().x/2) == block[i]->GetPosition().x && typeid(*block[i]) == typeid(StdBlock))
+			if(ninja->GetPosition().y + ninja->GetSize().y/2 >= block[i]->GetPosition().y - block[i]->GetSize().y/2 && ninja->GetPosition().y - ninja->GetSize().y/2 <= block[i]->GetPosition().y + block[i]->GetSize().y/2 && ninja->GetPosition().x + (ninja->GetSize().x/2 + block[i]->GetSize().x/2) == block[i]->GetPosition().x && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				airborne=false;
 		}
 		break;
 	case 4:
 		for(int i=0; i<nBlocks && airborne==true; i++)
 		{
-			if(ninja->GetPosition().x + ninja->GetSize().x/2 >= block[i]->GetPosition().x - block[i]->GetSize().x/2 && ninja->GetPosition().x - ninja->GetSize().x/2 <= block[i]->GetPosition().x + block[i]->GetSize().x/2 && ninja->GetPosition().y - (ninja->GetSize().y/2 + block[i]->GetSize().y/2) == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock))
+			if(ninja->GetPosition().x + ninja->GetSize().x/2 >= block[i]->GetPosition().x - block[i]->GetSize().x/2 && ninja->GetPosition().x - ninja->GetSize().x/2 <= block[i]->GetPosition().x + block[i]->GetSize().x/2 && ninja->GetPosition().y - (ninja->GetSize().y/2 + block[i]->GetSize().y/2) == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				airborne=false;
 		}
 		break;
 	case 5:
 		for(int i=0; i<nBlocks && airborne==true; i++)
 		{
-			if(ninja->GetPosition().y + ninja->GetSize().y/2 >= block[i]->GetPosition().y - block[i]->GetSize().y/2 && ninja->GetPosition().y - ninja->GetSize().y/2 <= block[i]->GetPosition().y + block[i]->GetSize().y/2 && ninja->GetPosition().x - (ninja->GetSize().x/2 + block[i]->GetSize().x/2) == block[i]->GetPosition().x && typeid(*block[i]) == typeid(StdBlock))
+			if(ninja->GetPosition().y + ninja->GetSize().y/2 >= block[i]->GetPosition().y - block[i]->GetSize().y/2 && ninja->GetPosition().y - ninja->GetSize().y/2 <= block[i]->GetPosition().y + block[i]->GetSize().y/2 && ninja->GetPosition().x - (ninja->GetSize().x/2 + block[i]->GetSize().x/2) == block[i]->GetPosition().x && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				airborne=false;
 		}
 		break;
 	case 8:
 		for(int i=0; i<nBlocks && airborne==true; i++)
 		{
-			if(ninja->GetPosition().x + ninja->GetSize().x/2 >= block[i]->GetPosition().x - block[i]->GetSize().x/2 && ninja->GetPosition().x - ninja->GetSize().x/2 <= block[i]->GetPosition().x + block[i]->GetSize().x/2 && ninja->GetPosition().y + (ninja->GetSize().y/2 + block[i]->GetSize().y/2) == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock))
+			if(ninja->GetPosition().x + ninja->GetSize().x/2 >= block[i]->GetPosition().x - block[i]->GetSize().x/2 && ninja->GetPosition().x - ninja->GetSize().x/2 <= block[i]->GetPosition().x + block[i]->GetSize().x/2 && ninja->GetPosition().y + (ninja->GetSize().y/2 + block[i]->GetSize().y/2) == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				airborne=false;
 		}
 		break;
@@ -175,7 +182,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			collides=false;
 		if(ninja->GetPosition().y - ninja->GetSize().y/2 >= block[i]->GetPosition().y + block[i]->GetSize().y/2)//Ninjan är nedanför blocket
 			collides=false;
-		if(typeid(*block[i]) != typeid(StdBlock)) //Blocket är inte ett StdBlock
+		if(typeid(*block[i]) != typeid(StdBlock) || ninja->getDrawn() != true) //Blocket är inte ett StdBlock
 			collides=false;
 	}
 	ninja->retrace();
@@ -192,7 +199,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 		case 0:
 			for(int i=0; i<nBlocks ;i++)
 			{
-				if(ninja->GetPosition().x - block[i]->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y + block[i]->GetSize().y/2 + ninja->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock))
+				if(ninja->GetPosition().x - block[i]->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y + block[i]->GetSize().y/2 + ninja->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				{
 					foothold=true;
 				}
@@ -206,7 +213,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 		case 1:
 			for(int i=0; i<nBlocks ;i++)
 			{
-				if(ninja->GetPosition().x + block[i]->GetSize().x/2 + ninja->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y + block[i]->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock))
+				if(ninja->GetPosition().x + block[i]->GetSize().x/2 + ninja->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y + block[i]->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				{
 					foothold=true;
 				}
@@ -220,7 +227,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 		case 2:
 			for(int i=0; i<nBlocks ;i++)
 			{
-				if(ninja->GetPosition().x + block[i]->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y - block[i]->GetSize().y/2 - ninja->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock))
+				if(ninja->GetPosition().x + block[i]->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y - block[i]->GetSize().y/2 - ninja->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				{
 					foothold=true;
 				}
@@ -234,7 +241,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 		case 3:
 			for(int i=0; i<nBlocks ;i++)
 			{
-				if(ninja->GetPosition().x - block[i]->GetSize().x/2 - ninja->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y - block[i]->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock))
+				if(ninja->GetPosition().x - block[i]->GetSize().x/2 - ninja->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y - block[i]->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				{
 					foothold=true;
 				}
@@ -248,7 +255,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 		case 4:
 			for(int i=0; i<nBlocks ;i++)
 			{
-				if(ninja->GetPosition().x - block[i]->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y - block[i]->GetSize().y/2 - ninja->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock))
+				if(ninja->GetPosition().x - block[i]->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y - block[i]->GetSize().y/2 - ninja->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				{
 					foothold=true;
 				}
@@ -262,7 +269,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 		case 5:
 			for(int i=0; i<nBlocks ;i++)
 			{
-				if(ninja->GetPosition().x - block[i]->GetSize().x/2 - ninja->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y + block[i]->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock))
+				if(ninja->GetPosition().x - block[i]->GetSize().x/2 - ninja->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y + block[i]->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				{
 					foothold=true;
 				}
@@ -276,7 +283,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 		case 6:
 			for(int i=0; i<nBlocks ;i++)
 			{
-				if(ninja->GetPosition().x + block[i]->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y + block[i]->GetSize().y/2 + ninja->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock))
+				if(ninja->GetPosition().x + block[i]->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y + block[i]->GetSize().y/2 + ninja->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				{
 					foothold=true;
 				}
@@ -290,7 +297,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 		case 7:
 			for(int i=0; i<nBlocks ;i++)
 			{
-				if(ninja->GetPosition().x + block[i]->GetSize().x/2 + ninja->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y - block[i]->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock))
+				if(ninja->GetPosition().x + block[i]->GetSize().x/2 + ninja->GetSize().x/2 == block[i]->GetPosition().x && ninja->GetPosition().y - block[i]->GetSize().y/2 == block[i]->GetPosition().y && typeid(*block[i]) == typeid(StdBlock) && ninja->getDrawn() == true)
 				{
 					foothold=true;
 				}
