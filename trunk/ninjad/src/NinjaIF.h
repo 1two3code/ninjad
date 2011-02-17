@@ -15,6 +15,7 @@ private:
 	int dirY;
 	int speed;
 	int nr;
+	bool drawn;
 
 public:
 	NinjaIF();
@@ -36,6 +37,8 @@ public:
 	int getSpeed();
 	void setNr(int nr);
 	int getNr();
+	void setDrawn(bool draw);
+	int getDrawn();
 
 	virtual void update() = 0;
 	virtual void updateSprite() = 0;

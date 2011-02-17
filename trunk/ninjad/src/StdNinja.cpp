@@ -6,6 +6,7 @@ StdNinja::StdNinja(int s)
 	setActive(false);
 	setState(s);		//<-- Sätter också mirroredX, dirX och dirY
 	setSpeed(8);
+	setDrawn(false);
 
 	SetImage(*ImgHolder::getInst()->ninja);
 	SetSubRect(IntRect(0,0,16,16));
@@ -103,7 +104,7 @@ void StdNinja::updateSprite()
 		break;
 	case 8:		//faller neråt, ingen spegling, ingen rotation
 		setDirX(0);
-		setDirY(-3);
+		setDirY(1);
 		break;
 	default:
 		break;

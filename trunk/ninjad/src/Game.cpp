@@ -18,7 +18,7 @@ bool Game::init(int level)
 	mainWnd = new RenderWindow(VideoMode(800, 600, 32), "Ninja'd");
 	mainWnd->Show(false);
 	mainLvl = new Level(0);
-	this->ninjhold = new NinjaHolder(8,0,0);
+	this->ninjhold = new NinjaHolder(5,0,0,mainLvl->getBlocks(),this->mainLvl->getNr());
 	player = new Player();
 	collision = new Collision();
 
@@ -32,7 +32,6 @@ bool Game::run()
 	mainWnd->Show(true);
 	while(running)
 	{
-		//sf::Sleep(0.2f);
 		sf::Sleep(0.1f);
 		checkCollision();
 		running = update();
@@ -55,6 +54,7 @@ void Game::checkCollision()
 	//Låter kollisionsklass sköta detta.
 	for(int i=0;i<ninjhold->getNr();i++)
 		collision->ninja(mainLvl->getBlocks(),this->ninjhold->getNinjas(i),this->mainLvl->getNr());
+	//cin.get();
 }
 
 bool Game::update()
@@ -94,7 +94,8 @@ void Game::render()
 	mainWnd->Clear(Color(255, 255, 255));
 	mainLvl->render(mainWnd);
 	for(int i=0;i<ninjhold->getNr();i++)
-		mainWnd->Draw(*ninjhold->getNinjas(i));
+		if(ninjhold->getNinjas(i)->getDrawn()==true)
+			mainWnd->Draw(*ninjhold->getNinjas(i));
 	mainWnd->Draw(*player);
 	mainWnd->Display();
 }

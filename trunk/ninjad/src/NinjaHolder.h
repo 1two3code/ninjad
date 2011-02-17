@@ -1,7 +1,11 @@
 #ifndef NINJAHOLDER_H
 #define NINJAHOLDER_H
 
+#include"Level.h"
 #include"StdNinja.h"
+#include<typeinfo>
+#include<iostream>
+using namespace std;
 
 class NinjaHolder
 {
@@ -13,7 +17,7 @@ private:
 
 public:
 	NinjaHolder();
-	NinjaHolder(int nr, int type, int state);
+	NinjaHolder(int nr, int type, int state, Block** block, int nrOfBlocks);
 	~NinjaHolder();
 
 	void setNr(int nr);

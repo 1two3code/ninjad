@@ -81,3 +81,13 @@ int NinjaIF::getNr()
 {
 	return this->nr;
 }
+
+void NinjaIF::setDrawn(bool draw)
+{
+	this->drawn=draw;
+}
+
+int NinjaIF::getDrawn()
+{
+	return this->drawn;
+}

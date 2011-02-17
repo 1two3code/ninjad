@@ -15,7 +15,7 @@ NinjaHolder::NinjaHolder()
 	}
 }
 
-NinjaHolder::NinjaHolder(int nr, int type, int state)
+NinjaHolder::NinjaHolder(int nr, int type, int state, Block** block, int nrOfBlocks)
 {
 	this->nrOfNinjas=nr;
 	this->ninjaType=type;
@@ -29,9 +29,43 @@ NinjaHolder::NinjaHolder(int nr, int type, int state)
 		else
 			ninjas[i] = new StdNinja(startState);
 	}
-	for(int i = 0; i < nrOfNinjas; i++)
+	for(int j=0; j<nrOfBlocks; j++)
 	{
-		ninjas[i]->SetPosition(208+16*i,112);
+		if(typeid(*block[j]) == typeid(EntryDoor))
+		{
+			for(int i = 0; i < nrOfNinjas; i++)
+			{
+				switch(ninjas[i]->getState())
+				{
+				case 0:
+					ninjas[i]->SetPosition(block[j]->GetPosition().x+16*i, block[j]->GetPosition().y + (block[j]->GetSize().y/2 - ninjas[i]->GetSize().y/2));
+					break;
+				case 1:
+					ninjas[i]->SetPosition(block[j]->GetPosition().y-16*i, block[j]->GetPosition().x + (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2));
+					break;
+				case 2:
+					ninjas[i]->SetPosition(block[j]->GetPosition().x-16*i, block[j]->GetPosition().y - (block[j]->GetSize().y/2 - ninjas[i]->GetSize().y/2));
+					break;
+				case 3:
+					ninjas[i]->SetPosition(block[j]->GetPosition().y+16*i, block[j]->GetPosition().x - (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2));
+					break;
+				case 4:
+					ninjas[i]->SetPosition(block[j]->GetPosition().x+16*i, block[j]->GetPosition().y - (block[j]->GetSize().y/2 - ninjas[i]->GetSize().y/2));
+					break;
+				case 5:
+					ninjas[i]->SetPosition(block[j]->GetPosition().y-16*i, block[j]->GetPosition().x - (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2));
+					break;
+				case 6:
+					ninjas[i]->SetPosition(block[j]->GetPosition().x-16*i, block[j]->GetPosition().y + (block[j]->GetSize().y/2 - ninjas[i]->GetSize().y/2));
+					break;
+				case 7:
+					ninjas[i]->SetPosition(block[j]->GetPosition().y+16*i, block[j]->GetPosition().x + (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2));
+					break;
+				default:
+					break;
+				}
+			}
+		}
 	}
 }
 
