@@ -6,7 +6,7 @@
 #define INPUTHANDLER_H
 #include <SFML\System.hpp>
 #include <SFML\Graphics.hpp>
-#include "Game.h"
+using namespace sf;
 
 class InputHandler
 {
