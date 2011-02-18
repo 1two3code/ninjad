@@ -5,8 +5,10 @@ StdNinja::StdNinja(int s)
 	setAnimFrame(0);
 	setActive(false);
 	setState(s);		//<-- Sätter också mirroredX, dirX och dirY
-	setSpeed(8);
+	setSpeed(2);
 	setDrawn(false);
+	setAnimTimer(0);
+	setComplete(false);
 
 	SetImage(*ImgHolder::getInst()->ninja);
 	SetSubRect(IntRect(0,0,16,16));
@@ -25,11 +27,18 @@ StdNinja::~StdNinja()
 void StdNinja::update()
 {
 	int f = getAnimFrame();
+	int t = getAnimTimer();
 	Move((float)getSpeed()*getDirX(), (float)getSpeed()*getDirY());
-	SetSubRect(IntRect(f*16, 0, f*16+16, 16));
-	f++;
-	f %= 4;
-	setAnimFrame(f);
+	if(t==0)
+	{
+		SetSubRect(IntRect(f*16, 0, f*16+16, 16));
+		f++;
+		f %= 4;
+		setAnimFrame(f);
+	}
+	t++;
+	t %= 2;
+	setAnimTimer(t);
 }
 
 void StdNinja::testmove()
