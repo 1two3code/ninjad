@@ -14,6 +14,8 @@ private:
 	int acceleration;
 	bool grounded;
 	bool hitWall;
+	int animTimer;
+	bool hitHead;
 
 public:
 	Player();
@@ -30,6 +32,8 @@ public:
 	bool getGrounded();
 	void setHitWall(bool h);
 	bool getHitWall();
+	void setHitHead(bool head);
+	bool getHitHead();
 	void update(RenderWindow* wnd);
 	void updateSprite(RenderWindow* wnd);
 	void testmove(RenderWindow* wnd);

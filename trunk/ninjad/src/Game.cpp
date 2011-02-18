@@ -18,7 +18,7 @@ bool Game::init(int level)
 	mainWnd = new RenderWindow(VideoMode(800, 600, 32), "Ninja'd");
 	mainWnd->Show(false);
 	mainLvl = new Level(0);
-	this->ninjhold = new NinjaHolder(50,0,8,mainLvl->getBlocks(),this->mainLvl->getNr());
+	this->ninjhold = new NinjaHolder(50,0,7,mainLvl->getBlocks(),this->mainLvl->getNr());
 	player = new Player();
 	collision = new Collision();
 
@@ -32,7 +32,7 @@ bool Game::run()
 	mainWnd->Show(true);
 	while(running)
 	{
-		sf::Sleep(0.1f);
+		sf::Sleep(0.025f);
 		checkCollision();
 		running = update();
 		render();

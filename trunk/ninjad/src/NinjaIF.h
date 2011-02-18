@@ -16,6 +16,8 @@ private:
 	int speed;
 	int nr;
 	bool drawn;
+	int animTimer;
+	bool complete;
 
 public:
 	NinjaIF();
@@ -39,6 +41,10 @@ public:
 	int getNr();
 	void setDrawn(bool draw);
 	int getDrawn();
+	void setAnimTimer(int t);
+	int getAnimTimer();
+	void setComplete(bool c);
+	bool getComplete();
 
 	virtual void update() = 0;
 	virtual void updateSprite() = 0;

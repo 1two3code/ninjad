@@ -91,3 +91,23 @@ int NinjaIF::getDrawn()
 {
 	return this->drawn;
 }
+
+void NinjaIF::setAnimTimer(int t)
+{
+	this->animTimer=t;
+}
+
+int NinjaIF::getAnimTimer()
+{
+	return this->animTimer;
+}
+
+void NinjaIF::setComplete(bool c)
+{
+	this->complete=c;
+}
+
+bool NinjaIF::getComplete()
+{
+	return complete;
+}

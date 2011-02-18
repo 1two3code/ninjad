@@ -9,6 +9,8 @@ Player::Player()
 	setAccel(0);
 	setGrounded(true);
 	setHitWall(false);
+	animTimer=0;
+	setHitHead(false);
 
 	SetImage(*ImgHolder::getInst()->player);
 	//SetSubRect(IntRect(0,0,31,31));
@@ -32,7 +34,7 @@ void Player::update(RenderWindow* wnd)
 		Move((float)getSpeedX()*1, (float)getSpeedY()*0);
 	if(input->isPressLeft(wnd) && hitWall==false)
 		Move((float)getSpeedX()*-1, (float)getSpeedY()*0);
-	if(input->isPressJump(wnd) && this->getGrounded()==true)
+	if(input->isPressJump(wnd) && this->getGrounded()==true && hitHead==false)
 	{
 		setSpeedY(-16);
 		setAccel(2);
@@ -43,10 +45,15 @@ void Player::update(RenderWindow* wnd)
 
 	if(input->isPressClick(wnd))
 	{}//släng ut block
-	SetSubRect(IntRect(f*32, 0, f*32+32, 32));
-	f++;
-	f %= 4;
-	setAnimFrame(f);
+	if(animTimer==0)
+	{
+		SetSubRect(IntRect(f*32, 0, f*32+32, 32));
+		f++;
+		f %= 4;
+		setAnimFrame(f);
+	}
+	animTimer++;
+	animTimer %= 2;
 }
 
 void Player::testmove(RenderWindow* wnd)
@@ -55,8 +62,6 @@ void Player::testmove(RenderWindow* wnd)
 		Move((float)getSpeedX()*1, (float)getSpeedY()*0);
 	if(input->isPressLeft(wnd))
 		Move((float)getSpeedX()*-1, (float)getSpeedY()*0);
-	if(input->isPressJump(wnd))
-		Move((float)getSpeedX()*0, -(float)getSpeedY()*2);
 	if(input->isPressClick(wnd))
 	{}//släng ut block
 }
@@ -67,8 +72,6 @@ void Player::retrace(RenderWindow* wnd)
 		Move(-(float)getSpeedX()*1, -(float)getSpeedY()*0);
 	if(input->isPressLeft(wnd))
 		Move(-(float)getSpeedX()*-1, -(float)getSpeedY()*0);
-	if(input->isPressJump(wnd))
-		Move(-(float)getSpeedX()*0, (float)getSpeedY()*2);
 	if(input->isPressClick(wnd))
 	{}//släng ut block
 }
@@ -143,4 +146,14 @@ void Player::setHitWall(bool h)
 bool Player::getHitWall()
 {
 	return this->hitWall;
+}
+
+void Player::setHitHead(bool head)
+{
+	this->hitHead=head;
+}
+
+bool Player::getHitHead()
+{
+	return this->hitHead;
 }
