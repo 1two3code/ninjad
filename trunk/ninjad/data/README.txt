@@ -1,6 +1,27 @@
-Att göra:
--- Fixa Ninja-klassen samt eventuellt hinna med Kollisionshantering med StdBlock
--- Sätta multiple Threads, en för Update och en för Render
+Menyer
+(Keybindings)
+HUD - Hur många block + Hur många ninjor inne osvosv.
+Blockutsättning
+Musstyrningen
+Animationer
+Specialblock
+
+(Ljudeffekter)
 
 
--- Mapeditor som hanterar både vilket sorts block samt dess position, rotation, spegelvänd (t/f)
+
+Menyn- 
+	- Level select. Vilka banor som kan spelas hämtas från .cfg
+	- (Eventuellt Keybindings)
+	- Exitknapp
+
+HUD-
+	- Ev.Tid
+	- Antal block på spelaren
+	- Ninjor ute / inne
+	- Level
+	- Spelhastighet, knappar
+	- Ljud av/på + (ev. volym)
+	- Pauseknapp
+	- Resetknapp
+	- Quitknapp
