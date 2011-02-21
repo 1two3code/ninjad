@@ -1,5 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
+#include "ImgHolder.h"
 #include "Collision.h"
 #include "Level.h"
 #include "NinjaHolder.h"
@@ -16,6 +17,7 @@ private:
 	RenderWindow* mainWnd;
 	Thread* mainThrd;
 	//NinjaIF** ninjas;
+	Sprite* background;
 	Player* player;
 	NinjaHolder* ninjhold;
 	Level* mainLvl;

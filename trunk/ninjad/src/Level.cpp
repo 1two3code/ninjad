@@ -20,7 +20,11 @@ Level::~Level()
 void Level::render(RenderWindow* rnd)
 {
 	for(int i= 0; i < nBlocks; i++)
-		rnd->Draw(*block[i]);
+	{
+		if(block[i]->GetPosition().x > 96 && block[i]->GetPosition().x < 608 && block[i]->GetPosition().y > 160 && block[i]->GetPosition().y < 672)
+		//if(block[i]->GetPosition().x > 512)
+			rnd->Draw(*block[i]);
+	}
 }
 
 void Level::generateBlocks(int j)
@@ -51,7 +55,7 @@ void Level::generateBlocks(int j)
 			if(tempBlock != NULL)
 			{
 				block[nBlocks] = tempBlock;
-				block[nBlocks]->SetPosition(16+i*32.0f, 16+j*32.0f);
+				block[nBlocks]->SetPosition(64+16+i*32.0f, 128+16+j*32.0f);
 				nBlocks++;
 				tempBlock = NULL;
 
