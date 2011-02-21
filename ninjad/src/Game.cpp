@@ -20,7 +20,7 @@ bool Game::init(int level)
 	background = new Sprite();
 	background->SetImage(*ImgHolder::getInst()->background);
 	mainLvl = new Level(0);
-	this->ninjhold = new NinjaHolder(50,0,7,mainLvl->getBlocks(),this->mainLvl->getNr());
+	this->ninjhold = new NinjaHolder(50,0,6,mainLvl->getBlocks(),this->mainLvl->getNr());
 	player = new Player();
 	collision = new Collision();
 

@@ -14,7 +14,7 @@ Player::Player()
 
 	SetImage(*ImgHolder::getInst()->player);
 	//SetSubRect(IntRect(0,0,31,31));
-	SetPosition(208,528);
+	SetPosition(208,656);
 
 	this->SetCenter(16,16);
 	//this->SetRotation(90);
