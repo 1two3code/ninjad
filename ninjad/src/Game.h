@@ -1,5 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
+#include "HUDisplay.h"
 #include "ImgHolder.h"
 #include "Collision.h"
 #include "Level.h"
@@ -9,22 +10,21 @@
 #include <SFML\System.hpp>
 #include <SFML\Graphics.hpp>
 
+
 using namespace sf;
 
 class Game
 {
 private:
 	RenderWindow* mainWnd;
-	Thread* mainThrd;
-	//NinjaIF** ninjas;
 	Sprite* background;
+	HUDisplay* hud;
 	Player* player;
 	NinjaHolder* ninjhold;
 	Level* mainLvl;
 	Collision* collision;
 	InputHandler* input; //what
 
-	int temp;
 
 public:
 	Game();

@@ -13,6 +13,8 @@ private:
 
 public:
 	Image* background;
+	Image* hud;
+	Image* buttons;
 	Image* blocks;
 	Image* ninja;
 	Image** maps;
