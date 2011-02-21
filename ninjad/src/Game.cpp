@@ -15,8 +15,10 @@ bool Game::init(int level)
 {
 	input = &InputHandler::getInstance();
 	//Initiera spel beroende på levelselect
-	mainWnd = new RenderWindow(VideoMode(800, 600, 32), "Ninja'd");
+	mainWnd = new RenderWindow(VideoMode(1024, 768, 32), "Ninja'd");
 	mainWnd->Show(false);
+	background = new Sprite();
+	background->SetImage(*ImgHolder::getInst()->background);
 	mainLvl = new Level(0);
 	this->ninjhold = new NinjaHolder(50,0,7,mainLvl->getBlocks(),this->mainLvl->getNr());
 	player = new Player();
@@ -93,7 +95,9 @@ bool Game::update()
 
 void Game::render()
 {
+	
 	mainWnd->Clear(Color(255, 255, 255));
+	mainWnd->Draw(*background);
 	mainLvl->render(mainWnd);
 	for(int i=0;i<ninjhold->getNr();i++)
 		if(ninjhold->getNinjas(i)->getDrawn()==true)

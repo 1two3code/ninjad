@@ -12,6 +12,7 @@ private:
 	int nMaps;
 
 public:
+	Image* background;
 	Image* blocks;
 	Image* ninja;
 	Image** maps;

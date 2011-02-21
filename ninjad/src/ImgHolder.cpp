@@ -5,6 +5,8 @@ ImgHolder* ImgHolder::pInstance = NULL;
 
 ImgHolder::ImgHolder()
 {
+	background = new Image();
+	background->LoadFromFile("./data/sprites/background.png");
 	blocks = new Image();
 	blocks->LoadFromFile("./data/sprites/Blocks2.png");
 	ninja = new Image();
@@ -22,11 +24,10 @@ ImgHolder::ImgHolder()
 		itoa(i, dst, 10);
 		std::string fname = "./data/sprites/maps/map";
 		//fname += dst;
-		fname += "4";
+		fname += "5";
 		fname += ".png";
 		maps[i] = new Image();
 		maps[i]->LoadFromFile(fname);
-		//std::cout << fname << std::endl;
 	}
 	
 }
