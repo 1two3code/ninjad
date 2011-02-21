@@ -7,8 +7,12 @@ ImgHolder::ImgHolder()
 {
 	background = new Image();
 	background->LoadFromFile("./data/sprites/background.png");
+	hud = new Image();
+	hud->LoadFromFile("./data/sprites/HUD.png");
+	buttons = new Image();
+	buttons->LoadFromFile("./data/sprites/buttons.png");
 	blocks = new Image();
-	blocks->LoadFromFile("./data/sprites/Blocks2.png");
+	blocks->LoadFromFile("./data/sprites/Blocks3.png");
 	ninja = new Image();
 	ninja->LoadFromFile("./data/sprites/ninjanimate2a.png");
 	colorCode = new Image();
@@ -34,6 +38,9 @@ ImgHolder::ImgHolder()
 
 ImgHolder::~ImgHolder()
 {
+	delete background;
+	delete hud;
+	delete buttons;
 	delete blocks;
 	delete ninja;
 	delete colorCode;

@@ -84,6 +84,7 @@
     <ClCompile Include="src\ExitDoor.cpp" />
     <ClCompile Include="src\FallBlock.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\HUDisplay.cpp" />
     <ClCompile Include="src\ImgHolder.cpp" />
     <ClCompile Include="src\InputHandler.cpp" />
     <ClCompile Include="src\JumpBlock.cpp" />
@@ -104,6 +105,7 @@
     <ClInclude Include="src\ExitDoor.h" />
     <ClInclude Include="src\FallBlock.h" />
     <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\HUDisplay.h" />
     <ClInclude Include="src\ImgHolder.h" />
     <ClInclude Include="src\InputHandler.h" />
     <ClInclude Include="src\JumpBlock.h" />

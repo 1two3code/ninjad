@@ -19,12 +19,12 @@ bool Game::init(int level)
 	mainWnd->Show(false);
 	background = new Sprite();
 	background->SetImage(*ImgHolder::getInst()->background);
+	hud = new HUDisplay();
 	mainLvl = new Level(0);
 	this->ninjhold = new NinjaHolder(50,0,6,mainLvl->getBlocks(),this->mainLvl->getNr());
 	player = new Player();
 	collision = new Collision();
 
-	temp = 2;
 	return false;
 }
 
@@ -63,22 +63,38 @@ void Game::checkCollision()
 
 bool Game::update()
 {
+	//Update HUD
 	//Update Sensei
 	//Update Level
 	//Update Ninjas
 	Event e;
+	
 	while (mainWnd->GetEvent(e))
 	{
 		//e.Type == Event::MouseMoved;
 		// Window closed
-		/*if(e.Type == Event::MouseButtonReleased)
+		if(e.Type == Event::MouseButtonPressed)
 		{
-			std::cout << temp << std::endl;
-			//ninjas->setState(temp);
-			temp++;
-			temp%=8;
+			if (!(InputHandler::getInstance().getMousePosX(mainWnd) > 96 && InputHandler::getInstance().getMousePosX(mainWnd) < 608 
+				&& InputHandler::getInstance().getMousePosY(mainWnd) > 160 && InputHandler::getInstance().getMousePosY(mainWnd) < 672))			//Om musen är inom HUD
+			{
+				hud->HUDClicked(mainWnd);
+			}
 		}
-		*/
+		if(e.Type == Event::MouseButtonReleased)
+		{
+			if(!(InputHandler::getInstance().getMousePosX(mainWnd) > 96 && InputHandler::getInstance().getMousePosX(mainWnd) < 608 
+				&& InputHandler::getInstance().getMousePosY(mainWnd) > 160 && InputHandler::getInstance().getMousePosY(mainWnd) < 672))			//Om musen är inom HUD
+			{
+				hud->HUDReleased(mainWnd);
+
+			}
+			else																			//Om musen är inom spelplanen. Sätt ut block ^^
+			{
+				
+			}
+		}
+		
 		if (e.Type == Event::Closed)
 		{
 			mainWnd->Close();
@@ -98,6 +114,7 @@ void Game::render()
 	
 	mainWnd->Clear(Color(255, 255, 255));
 	mainWnd->Draw(*background);
+	hud->render(mainWnd);
 	mainLvl->render(mainWnd);
 	for(int i=0;i<ninjhold->getNr();i++)
 		if(ninjhold->getNinjas(i)->getDrawn()==true)
