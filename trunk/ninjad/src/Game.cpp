@@ -21,7 +21,7 @@ bool Game::init(int level)
 	background->SetImage(*ImgHolder::getInst()->background);
 	hud = new HUDisplay();
 	mainLvl = new Level(0);
-	this->ninjhold = new NinjaHolder(50,0,6,mainLvl->getBlocks(),this->mainLvl->getNr());
+	this->ninjhold = new NinjaHolder(20,0,6,mainLvl->getBlocks(),this->mainLvl->getNr());
 	player = new Player();
 	collision = new Collision();
 
@@ -34,6 +34,7 @@ bool Game::run()
 	mainWnd->Show(true);
 	while(running)
 	{
+		
 		sf::Sleep(0.025f);
 		checkCollision();
 		running = update();
@@ -106,11 +107,14 @@ bool Game::update()
 	player->update(mainWnd);
 	player->updateSprite(mainWnd);
 
+	hud->update();				//Ska skicka levelID, Ninjor max, ninjor inne, antal block <- levelID osv borde vara ints i main.cpp
+
 	return true;
 }
 
 void Game::render()
 {
+
 	
 	mainWnd->Clear(Color(255, 255, 255));
 	mainWnd->Draw(*background);

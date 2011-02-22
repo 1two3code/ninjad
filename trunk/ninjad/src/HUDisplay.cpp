@@ -3,6 +3,7 @@
 
 HUDisplay::HUDisplay()
 {
+	clk = new Clock();
 	bz = 72;
 	HUDbg = new Sprite();
 	HUDbg->SetImage(*ImgHolder::getInst()->hud);
@@ -27,12 +28,67 @@ HUDisplay::HUDisplay()
 	soundButton->SetSubRect(IntRect(bz*3,0,bz*4,bz));
 	soundButton->SetPosition(684+bz*3, 634);
 	//684, 634
+
+	font = new Font();
+	font->LoadFromFile("data/JustTheWayYouAre.ttf");
+	
+	levelText = new String();
+	levelText->SetFont(*font);
+	levelText->SetPosition(875, 60);
+	levelText->SetColor(Color(0, 0, 0));
+
+	minNinjaText = new String();
+	minNinjaText->SetFont(*font);
+	minNinjaText->SetPosition(150, 690);
+	minNinjaText->SetColor(Color(0, 0, 0));
+
+	maxNinjaText = new String();
+	maxNinjaText->SetFont(*font);
+	maxNinjaText->SetPosition(220, 690);
+	maxNinjaText->SetColor(Color(0, 0, 0));
+
+	timeText = new String();
+	timeText->SetFont(*font);
+	timeText->SetPosition(470, 690);
+	timeText->SetColor(Color(0, 0, 0));
+
+	playerBlockText = new String();
+	playerBlockText->SetFont(*font);
+	playerBlockText->SetPosition(780, 260);
+	playerBlockText->SetColor(Color(0, 0, 0));
+
+	springBlockText = new String();
+	springBlockText->SetFont(*font);
+	springBlockText->SetPosition(930,260);
+	springBlockText->SetColor(Color(0, 0, 0));
+
+	jumpBlockText = new String();
+	jumpBlockText->SetFont(*font);
+	jumpBlockText->SetPosition(780, 360);
+	jumpBlockText->SetColor(Color(0, 0, 0));
+
+	fallBlockText = new String();
+	fallBlockText->SetFont(*font);
+	fallBlockText->SetPosition(930,360);
+	fallBlockText->SetColor(Color(0, 0, 0));
+
+	
+
 }
 
 
 HUDisplay::~HUDisplay()
 {
 	delete HUDbg;
+	delete font;
+	delete levelText;
+	delete maxNinjaText;
+	delete minNinjaText;
+	delete timeText;
+	delete playerBlockText;
+	delete jumpBlockText;
+	delete springBlockText;
+	delete fallBlockText;
 }
 
 void HUDisplay::HUDClicked(RenderWindow* rndwnd)
@@ -72,6 +128,21 @@ void HUDisplay::HUDReleased(RenderWindow* rndwnd)
 	//Hantera händelser somehow
 }
 
+void HUDisplay::update(/*level, n1, n2, Allt i stort sätt*/)
+{
+	char asdf[5];
+	itoa((int)clk->GetElapsedTime(), asdf, 10);
+
+	levelText->SetText(asdf);
+	minNinjaText->SetText(asdf);
+	maxNinjaText->SetText(asdf);
+	timeText->SetText(asdf);
+	playerBlockText->SetText(asdf);
+	springBlockText->SetText(asdf);
+	jumpBlockText->SetText(asdf);
+	fallBlockText->SetText(asdf);
+}
+
 void HUDisplay::render(RenderWindow* rndwnd)
 {
 	rndwnd->Draw(*HUDbg);
@@ -79,4 +150,14 @@ void HUDisplay::render(RenderWindow* rndwnd)
 	rndwnd->Draw(*resetButton);
 	rndwnd->Draw(*pauseButton);
 	rndwnd->Draw(*soundButton);
+
+	rndwnd->Draw(*levelText);
+	rndwnd->Draw(*minNinjaText);
+	rndwnd->Draw(*maxNinjaText);
+	rndwnd->Draw(*timeText);
+	rndwnd->Draw(*playerBlockText);
+	rndwnd->Draw(*springBlockText);
+	rndwnd->Draw(*fallBlockText);
+	rndwnd->Draw(*jumpBlockText);
+
 }

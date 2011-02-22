@@ -16,17 +16,25 @@ private:
 	Sprite* resetButton;
 	Sprite* soundButton;
 
-	int bz;		//ButtonSize
-	//Knapparna
-	//Time
-	//Antal ninjor
-	//Antal block
-	//Levelnummer
+	Font* font;
+	String* levelText;
+	String* minNinjaText;
+	String* maxNinjaText;
+	String* timeText;
+	String* playerBlockText;
+	String* springBlockText;
+	String* fallBlockText;
+	String* jumpBlockText;
+
+	int bz;
+	Clock* clk;
+	
 
 public:
 	HUDisplay();
 	~HUDisplay();
 
+	void update();
 	void render(RenderWindow* rndwnd);
 	void HUDClicked(RenderWindow* rndwnd);
 	void HUDReleased(RenderWindow* rndwnd);
