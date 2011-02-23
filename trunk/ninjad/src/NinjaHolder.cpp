@@ -15,12 +15,12 @@ NinjaHolder::NinjaHolder()
 	}
 }
 
-NinjaHolder::NinjaHolder(int nr, int type, int state, Block** block, int nrOfBlocks)
+NinjaHolder::NinjaHolder(int nr, int type, int state, Block* entryDoor)
 {
-	this->nrOfNinjas=nr;
-	this->ninjaType=type;
-	this->startState=state;
-	this->ninjas = new NinjaIF*[nrOfNinjas];
+	nrOfNinjas = nr;
+	ninjaType=type;
+	startState=state;
+	ninjas = new NinjaIF*[nrOfNinjas];
 	for(int i=0;i<nrOfNinjas;i++)
 	{
 		//Om vi vill ha olika ninja-typer
@@ -29,48 +29,69 @@ NinjaHolder::NinjaHolder(int nr, int type, int state, Block** block, int nrOfBlo
 		else
 			ninjas[i] = new StdNinja(startState);
 	}
-	for(int j=0; j<nrOfBlocks; j++)
+
+	/*
+		Har påbörjat att försöka placera ut Ninjorna efter blockets(dörrens) rotationsvektorer VecFace och VecHead
+		Ninjorna ska placeras med jämt mellanrum i rad motsatt VecFace och vandra i VecFace-riktning
+		Ninjorna måste också flyttas i förhållande till VecHead så de hamnar på marken i korrekt höjd oavsett vilken vägg de står på
+		Skickar med entryDoor som pekare till konstruktorn istället för att leta upp dörren med Block** block och nrOfBlocks.
+	*/
+	//int edvfx = entryDoor->getVecFace().x;
+	//int edvfy = entryDoor->getVecFace().y;
+
+	//int edvhx = entryDoor->getVecHead().x;
+	//int edvhy = entryDoor->getVecHead().y;
+
+	//for(int i = 0; i < nrOfNinjas; i++)
+	//{
+	//	ninjas[i]->SetPosition(entryDoor->GetPosition().x-16*i*edvfx, entryDoor->GetPosition().y + -1*edvhy*(entryDoor->GetSize().y/2 - ninjas[i]->GetSize().y/2));
+
+	//	std::cout << entryDoor->getVecFace().x << endl << entryDoor->getVecFace().y << endl;
+	//	std::cout << entryDoor->GetSize().x << endl << entryDoor->GetSize().y << endl;
+	//	std::cout << entryDoor->GetPosition().x<< endl << entryDoor->GetPosition().y << endl << endl;
+	//	//ninjas[i]->SetPosition(entryDoor->GetPosition().x + entryDoor->getVecFace().x*i*16 ,entryDoor->GetPosition().y + entryDoor->getVecFace().y*i*16);
+	//}
+	////entryDoor->
+
+
+	for(int i = 0; i < nrOfNinjas; i++)
 	{
-		if(typeid(*block[j]) == typeid(EntryDoor))
+		////cout<<ninjas[i]->getState()<<endl;
+		switch(ninjas[i]->getState())
 		{
-			for(int i = 0; i < nrOfNinjas; i++)
-			{
-				//cout<<ninjas[i]->getState()<<endl;
-				switch(ninjas[i]->getState())
-				{
-				case 0:
-					ninjas[i]->SetPosition(block[j]->GetPosition().x+16*i, block[j]->GetPosition().y + (block[j]->GetSize().y/2 - ninjas[i]->GetSize().y/2));
-					break;
-				case 1:
-					ninjas[i]->SetPosition(block[j]->GetPosition().x + (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2), block[j]->GetPosition().y-16*i);
-					break;
-				case 2:
-					ninjas[i]->SetPosition(block[j]->GetPosition().x-16*i, block[j]->GetPosition().y - (block[j]->GetSize().y/2 - ninjas[i]->GetSize().y/2));
-					break;
-				case 3:
-					ninjas[i]->SetPosition(block[j]->GetPosition().x - (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2), block[j]->GetPosition().y+16*i);
-					break;
-				case 4:
-					ninjas[i]->SetPosition(block[j]->GetPosition().x+16*i, block[j]->GetPosition().y - (block[j]->GetSize().y/2 - ninjas[i]->GetSize().y/2));
-					break;
-				case 5:
-					ninjas[i]->SetPosition(block[j]->GetPosition().x - (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2), block[j]->GetPosition().y-16*i);
-					break;
-				case 6:
-					ninjas[i]->SetPosition(block[j]->GetPosition().x-16*i, block[j]->GetPosition().y + (block[j]->GetSize().y/2 - ninjas[i]->GetSize().y/2));
-					break;
-				case 7:
-					ninjas[i]->SetPosition(block[j]->GetPosition().x + (block[j]->GetSize().x/2 - ninjas[i]->GetSize().x/2), block[j]->GetPosition().y+16*i);
-					break;
-				case 8:
-					ninjas[i]->SetPosition(block[j]->GetPosition().x, block[j]->GetPosition().y-16*i);
-					break;
-				default:
-					break;
-				}
-			}
+		case 0:
+			ninjas[i]->SetPosition(entryDoor->GetPosition().x+16*i, entryDoor->GetPosition().y + (entryDoor->GetSize().y/2 - ninjas[i]->GetSize().y/2));
+			break;
+		case 1:
+			ninjas[i]->SetPosition(entryDoor->GetPosition().x + (entryDoor->GetSize().x/2 - ninjas[i]->GetSize().x/2), entryDoor->GetPosition().y-16*i);
+			break;
+		case 2:
+			ninjas[i]->SetPosition(entryDoor->GetPosition().x-16*i, entryDoor->GetPosition().y - (entryDoor->GetSize().y/2 - ninjas[i]->GetSize().y/2));
+			break;
+		case 3:
+			ninjas[i]->SetPosition(entryDoor->GetPosition().x - (entryDoor->GetSize().x/2 - ninjas[i]->GetSize().x/2), entryDoor->GetPosition().y+16*i);
+			break;
+		case 4:
+			ninjas[i]->SetPosition(entryDoor->GetPosition().x+16*i, entryDoor->GetPosition().y - (entryDoor->GetSize().y/2 - ninjas[i]->GetSize().y/2));
+			break;
+		case 5:
+			ninjas[i]->SetPosition(entryDoor->GetPosition().x - (entryDoor->GetSize().x/2 - ninjas[i]->GetSize().x/2), entryDoor->GetPosition().y-16*i);
+			break;
+		case 6:
+			ninjas[i]->SetPosition(entryDoor->GetPosition().x-16*i, entryDoor->GetPosition().y + (entryDoor->GetSize().y/2 - ninjas[i]->GetSize().y/2));
+			break;
+		case 7:
+			ninjas[i]->SetPosition(entryDoor->GetPosition().x + (entryDoor->GetSize().x/2 - ninjas[i]->GetSize().x/2), entryDoor->GetPosition().y+16*i);
+			break;
+		case 8:
+			ninjas[i]->SetPosition(entryDoor->GetPosition().x, entryDoor->GetPosition().y-16*i);
+			break;
+		default:
+			break;
 		}
 	}
+
+
 }
 
 NinjaHolder::~NinjaHolder()

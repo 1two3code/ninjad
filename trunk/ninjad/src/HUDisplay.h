@@ -34,7 +34,7 @@ public:
 	HUDisplay();
 	~HUDisplay();
 
-	void update();
+	void update(int level, int min, int max);
 	void render(RenderWindow* rndwnd);
 	void HUDClicked(RenderWindow* rndwnd);
 	void HUDReleased(RenderWindow* rndwnd);

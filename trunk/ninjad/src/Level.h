@@ -17,6 +17,9 @@ private:
 	int maxBlocks;
 	Block** block;
 
+	Block* entryDoor;
+	int nNinjas;
+
 public:
 	Level(int j);
 	~Level();
@@ -27,6 +30,10 @@ public:
 	Block* createBlock(int type, int rot);
 	int getNr(); //En get-funktion i brist på andra idéer
 	Block** getBlocks(); //En get-funktion i brist på andra idéer
+
+	Block* getEntryDoor();
+
+	int getNrOfNinjas();
 };
 
 #endif

@@ -8,25 +8,27 @@ HUDisplay::HUDisplay()
 	HUDbg = new Sprite();
 	HUDbg->SetImage(*ImgHolder::getInst()->hud);
 
-	quitButton = new Sprite();
-	quitButton->SetImage(*ImgHolder::getInst()->buttons);
-	quitButton->SetSubRect(IntRect(0,0,bz*1,bz));
-	quitButton->SetPosition(684, 634);
 
 	resetButton = new Sprite();
 	resetButton->SetImage(*ImgHolder::getInst()->buttons);
 	resetButton->SetSubRect(IntRect(bz*1,0,bz*2,bz));
-	resetButton->SetPosition(684+bz*1, 634);
+	resetButton->SetPosition(684, 634);
+	
+	soundButton = new Sprite();
+	soundButton->SetImage(*ImgHolder::getInst()->buttons);
+	soundButton->SetSubRect(IntRect(bz*3,0,bz*4,bz));
+	soundButton->SetPosition(684+bz*1, 634);
 
 	pauseButton = new Sprite();
 	pauseButton->SetImage(*ImgHolder::getInst()->buttons);
 	pauseButton->SetSubRect(IntRect(bz*2,0,bz*3,bz));
 	pauseButton->SetPosition(684+bz*2, 634);
 
-	soundButton = new Sprite();
-	soundButton->SetImage(*ImgHolder::getInst()->buttons);
-	soundButton->SetSubRect(IntRect(bz*3,0,bz*4,bz));
-	soundButton->SetPosition(684+bz*3, 634);
+	quitButton = new Sprite();
+	quitButton->SetImage(*ImgHolder::getInst()->buttons);
+	quitButton->SetSubRect(IntRect(0,0,bz*1,bz));
+	quitButton->SetPosition(684+bz*3, 634);
+
 	//684, 634
 
 	font = new Font();
@@ -34,8 +36,9 @@ HUDisplay::HUDisplay()
 	
 	levelText = new String();
 	levelText->SetFont(*font);
-	levelText->SetPosition(875, 60);
+	levelText->SetPosition(875, 40);
 	levelText->SetColor(Color(0, 0, 0));
+	levelText->SetSize(64.0f);
 
 	minNinjaText = new String();
 	minNinjaText->SetFont(*font);
@@ -128,19 +131,24 @@ void HUDisplay::HUDReleased(RenderWindow* rndwnd)
 	//Hantera händelser somehow
 }
 
-void HUDisplay::update(/*level, n1, n2, Allt i stort sätt*/)
+void HUDisplay::update(int level, int min, int max)
 {
 	char asdf[5];
-	itoa((int)clk->GetElapsedTime(), asdf, 10);
 
+	itoa(level, asdf, 10);	
 	levelText->SetText(asdf);
+	itoa(min, asdf, 10);	
 	minNinjaText->SetText(asdf);
+	itoa(max, asdf, 10);	
 	maxNinjaText->SetText(asdf);
+
+	itoa((int)clk->GetElapsedTime(), asdf, 10);	
 	timeText->SetText(asdf);
-	playerBlockText->SetText(asdf);
-	springBlockText->SetText(asdf);
-	jumpBlockText->SetText(asdf);
-	fallBlockText->SetText(asdf);
+
+	playerBlockText->SetText("0");
+	springBlockText->SetText("0");
+	jumpBlockText->SetText("0");
+	fallBlockText->SetText("0");
 }
 
 void HUDisplay::render(RenderWindow* rndwnd)

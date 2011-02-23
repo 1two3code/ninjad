@@ -10,7 +10,7 @@ int main()
 	while(running)
 	{
 		newGame = new Game();
-		newGame->init(0);
+		newGame->init(5);
 		running = newGame->run();
 	}
 
