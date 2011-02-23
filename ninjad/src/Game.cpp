@@ -14,14 +14,17 @@ Game::~Game()
 bool Game::init(int level)
 {
 	input = &InputHandler::getInstance();
-	//Initiera spel beroende på levelselect
 	mainWnd = new RenderWindow(VideoMode(1024, 768, 32), "Ninja'd");
 	mainWnd->Show(false);
+
 	background = new Sprite();
 	background->SetImage(*ImgHolder::getInst()->background);
+
 	hud = new HUDisplay();
-	mainLvl = new Level(0);
-	this->ninjhold = new NinjaHolder(20,0,6,mainLvl->getBlocks(),this->mainLvl->getNr());
+
+	currLevel = level;
+	mainLvl = new Level(currLevel);
+	this->ninjhold = new NinjaHolder(20, 0, 6, mainLvl->getEntryDoor()); //mainLvl->getNrOfNinjas()
 	player = new Player();
 	collision = new Collision();
 
@@ -107,14 +110,13 @@ bool Game::update()
 	player->update(mainWnd);
 	player->updateSprite(mainWnd);
 
-	hud->update();				//Ska skicka levelID, Ninjor max, ninjor inne, antal block <- levelID osv borde vara ints i main.cpp
+	hud->update(currLevel, 0, mainLvl->getNrOfNinjas());				//Ska skicka levelID, Ninjor max, ninjor inne, antal block <- levelID osv borde vara ints i main.cpp
 
 	return true;
 }
 
 void Game::render()
 {
-
 	
 	mainWnd->Clear(Color(255, 255, 255));
 	mainWnd->Draw(*background);

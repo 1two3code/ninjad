@@ -2,6 +2,7 @@
 #include <iostream>
 Level::Level(int j)
 {
+	nNinjas = 20;
 	generateBlocks(j);
 	
 	//Block blk();
@@ -54,6 +55,8 @@ void Level::generateBlocks(int j)
 			tempBlock = createBlock(blockType, blockRot);
 			if(tempBlock != NULL)
 			{
+				if(blockType == 3)
+					entryDoor = tempBlock;
 				block[nBlocks] = tempBlock;
 				block[nBlocks]->SetPosition(64+16+i*32.0f, 128+16+j*32.0f);
 				nBlocks++;
@@ -157,4 +160,14 @@ int Level::getNr()
 Block** Level::getBlocks()
 {
 	return this->block;
+}
+
+Block* Level::getEntryDoor()
+{
+	return entryDoor;
+}
+
+int Level::getNrOfNinjas()
+{
+	return nNinjas;
 }

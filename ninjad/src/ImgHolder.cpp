@@ -20,15 +20,15 @@ ImgHolder::ImgHolder()
 	player = new Image();
 	player->LoadFromFile("./data/sprites/ninjanimatea.png");
 
-	nMaps = 1;
+	nMaps = 10;
 	maps = new Image*[nMaps];
 	char dst[2];
 	for(int i = 0; i < nMaps; i++)
 	{
 		itoa(i, dst, 10);
 		std::string fname = "./data/sprites/maps/map";
-		//fname += dst;
-		fname += "5";
+		fname += dst;
+		//fname += "5";
 		fname += ".png";
 		maps[i] = new Image();
 		maps[i]->LoadFromFile(fname);

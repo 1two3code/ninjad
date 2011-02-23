@@ -25,6 +25,8 @@ private:
 	Collision* collision;
 	InputHandler* input; //what
 
+	unsigned short currLevel;
+
 
 public:
 	Game();

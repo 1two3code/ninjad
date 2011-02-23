@@ -17,7 +17,7 @@ private:
 
 public:
 	NinjaHolder();
-	NinjaHolder(int nr, int type, int state, Block** block, int nrOfBlocks);
+	NinjaHolder(int nr, int type, int state, Block* entryDoor);
 	~NinjaHolder();
 
 	void setNr(int nr);
