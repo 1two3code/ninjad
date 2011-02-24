@@ -18,7 +18,14 @@ private:
 	Block** block;
 
 	Block* entryDoor;
-	int nNinjas;
+
+	unsigned short nLevel;
+	unsigned short nNinjas;
+	unsigned short nPBlocks;
+	unsigned short nJBlocks;
+	unsigned short nSBlocks;
+	unsigned short nFBlocks;
+
 
 public:
 	Level(int j);
@@ -33,7 +40,12 @@ public:
 
 	Block* getEntryDoor();
 
-	int getNrOfNinjas();
+	unsigned short getNLevel();
+	unsigned short getNNinjas();
+	unsigned short getNPBlocks();
+	unsigned short getNJBlocks();
+	unsigned short getNSBlocks();
+	unsigned short getNFBlocks();
 };
 
 #endif

@@ -2,9 +2,16 @@
 #include <iostream>
 Level::Level(int j)
 {
-	nNinjas = 20;
+	nLevel = j;
+	nNinjas = 0;
+	nNinjas = 0;
+	nPBlocks = 0;
+	nJBlocks = 0;
+	nSBlocks = 0;
+	nFBlocks = 0;
 	generateBlocks(j);
 	
+	//Parsa mapfil mapj.cfg
 	//Block blk();
 	
 }
@@ -36,7 +43,7 @@ void Level::generateBlocks(int j)
 		map = ImgHolder::getInst()->maps[0];
 
 	int w = map->GetWidth();
-	int h = map->GetHeight();
+	int h = map->GetHeight()-1;
 	int blockType = 0;
 	int blockRot = 0;
 
@@ -65,6 +72,13 @@ void Level::generateBlocks(int j)
 			}
 		}
 	}
+
+
+	nNinjas = map->GetPixel(0, 18).r;
+	nPBlocks = map->GetPixel(1, 18).r;
+	nJBlocks = map->GetPixel(2, 18).r;
+	nSBlocks = map->GetPixel(3, 18).r;
+	nFBlocks = map->GetPixel(4, 18).r;
 
 }
 
@@ -108,27 +122,27 @@ Block* Level::createBlock(int type, int rot)
 		break;
 	case 1:
 		rtn = new StdBlock();
-		rtn->SetRotation((float)rot);
+		rtn->SetRotation(rot);
 		break;
 	case 2:
 		rtn = new ExitDoor();
-		rtn->SetRotation((float)rot);
+		rtn->SetRotation(rot);
 		break;
 	case 3:
 		rtn = new EntryDoor();
-		rtn->SetRotation((float)rot);
+		rtn->SetRotation(rot);
 		break;
 	case 4:
 		rtn = new SpringBlock();
-		rtn->SetRotation((float)rot);
+		rtn->SetRotation(rot);
 		break;
 	case 5:
 		rtn = new JumpBlock();
-		rtn->SetRotation((float)rot);
+		rtn->SetRotation(rot);
 		break;
 	case 6:
 		rtn = new FallBlock();
-		rtn->SetRotation((float)rot);
+		rtn->SetRotation(rot);
 		break;
 	case 7:
 		rtn = NULL;
@@ -167,7 +181,27 @@ Block* Level::getEntryDoor()
 	return entryDoor;
 }
 
-int Level::getNrOfNinjas()
+unsigned short Level::getNLevel()
+{
+	return nLevel;
+}
+unsigned short Level::getNNinjas()
 {
 	return nNinjas;
+}
+unsigned short Level::getNPBlocks()
+{
+	return nPBlocks;
+}
+unsigned short Level::getNJBlocks()
+{
+	return nJBlocks;
+}
+unsigned short Level::getNSBlocks()
+{
+	return nSBlocks;
+}
+unsigned short Level::getNFBlocks()
+{
+	return nFBlocks;
 }

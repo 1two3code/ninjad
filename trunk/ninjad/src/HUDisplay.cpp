@@ -3,8 +3,10 @@
 
 HUDisplay::HUDisplay()
 {
+	ip = &InputHandler::getInstance();
 	clk = new Clock();
 	bz = 72;
+
 	HUDbg = new Sprite();
 	HUDbg->SetImage(*ImgHolder::getInst()->hud);
 
@@ -13,6 +15,7 @@ HUDisplay::HUDisplay()
 	resetButton->SetImage(*ImgHolder::getInst()->buttons);
 	resetButton->SetSubRect(IntRect(bz*1,0,bz*2,bz));
 	resetButton->SetPosition(684, 634);
+	//resetButton->SetScale(2,2);
 	
 	soundButton = new Sprite();
 	soundButton->SetImage(*ImgHolder::getInst()->buttons);
@@ -74,9 +77,6 @@ HUDisplay::HUDisplay()
 	fallBlockText->SetFont(*font);
 	fallBlockText->SetPosition(930,360);
 	fallBlockText->SetColor(Color(0, 0, 0));
-
-	
-
 }
 
 
@@ -96,7 +96,6 @@ HUDisplay::~HUDisplay()
 
 void HUDisplay::HUDClicked(RenderWindow* rndwnd)
 {
-	InputHandler* ip = &InputHandler::getInstance();
 
 	if(ip->getMousePosX(rndwnd) > quitButton->GetPosition().x && ip->getMousePosX(rndwnd) < quitButton->GetPosition().x+quitButton->GetSize().y
 		&& ip->getMousePosY(rndwnd) > quitButton->GetPosition().y && ip->getMousePosY(rndwnd) < quitButton->GetPosition().y+quitButton->GetSize().y)
@@ -120,35 +119,63 @@ void HUDisplay::HUDClicked(RenderWindow* rndwnd)
 	}
 }
 
-void HUDisplay::HUDReleased(RenderWindow* rndwnd)
+int HUDisplay::HUDReleased(RenderWindow* rndwnd)
 {
 	quitButton->SetSubRect(IntRect(0, 0, bz, bz));
 	resetButton->SetSubRect(IntRect(1*bz, 0, bz*2, bz));
 	pauseButton->SetSubRect(IntRect(2*bz, 0, bz*3, bz));
 	soundButton->SetSubRect(IntRect(3*bz, 0, bz*4, bz));
 
-	//Titta om innanför någon av knapparnas trianglar.
-	//Hantera händelser somehow
+	unsigned short mpx = ip->getMousePosX(rndwnd);
+	unsigned short mpy = ip->getMousePosY(rndwnd);
+
+	if(mpx > quitButton->GetPosition().x && mpx < quitButton->GetPosition().x+quitButton->GetSize().y
+		&& mpy > quitButton->GetPosition().y && mpy < quitButton->GetPosition().y+quitButton->GetSize().y)
+	{
+		return 1;
+	}
+	else if(mpx > resetButton->GetPosition().x && mpx < resetButton->GetPosition().x+resetButton->GetSize().y
+		&& mpy > resetButton->GetPosition().y && mpy < resetButton->GetPosition().y+resetButton->GetSize().y)
+	{
+		return 2;
+	}
+	else if(mpx > pauseButton->GetPosition().x && mpx < pauseButton->GetPosition().x+pauseButton->GetSize().y
+		&& mpy > pauseButton->GetPosition().y && mpy < pauseButton->GetPosition().y+pauseButton->GetSize().y)
+	{		
+		return 3;
+	}
+	else if(mpx > soundButton->GetPosition().x && mpx < soundButton->GetPosition().x+soundButton->GetSize().y
+		&& mpy > soundButton->GetPosition().y && mpy < soundButton->GetPosition().y+soundButton->GetSize().y)
+	{
+		return 4;
+	}
+
+	return 0;
 }
 
-void HUDisplay::update(int level, int min, int max)
+void HUDisplay::update(Level* lvl, Player* ply)
 {
-	char asdf[5];
+	char temp[5];
 
-	itoa(level, asdf, 10);	
-	levelText->SetText(asdf);
-	itoa(min, asdf, 10);	
-	minNinjaText->SetText(asdf);
-	itoa(max, asdf, 10);	
-	maxNinjaText->SetText(asdf);
+	itoa(lvl->getNLevel(), temp, 10);	
+	levelText->SetText(temp);
+	itoa(0, temp, 10);	
+	minNinjaText->SetText(temp);
+	itoa(lvl->getNNinjas(), temp, 10);	
+	maxNinjaText->SetText(temp);
 
-	itoa((int)clk->GetElapsedTime(), asdf, 10);	
-	timeText->SetText(asdf);
+	itoa((int)clk->GetElapsedTime(), temp, 10);	
+	timeText->SetText(temp);
 
-	playerBlockText->SetText("0");
-	springBlockText->SetText("0");
-	jumpBlockText->SetText("0");
-	fallBlockText->SetText("0");
+
+	itoa(lvl->getNPBlocks(), temp, 10);
+	playerBlockText->SetText(temp);
+	itoa(lvl->getNJBlocks(), temp, 10);
+	springBlockText->SetText(temp);
+	itoa(lvl->getNSBlocks(), temp, 10);
+	jumpBlockText->SetText(temp);
+	itoa(lvl->getNFBlocks(), temp, 10);
+	fallBlockText->SetText(temp);
 }
 
 void HUDisplay::render(RenderWindow* rndwnd)
