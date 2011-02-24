@@ -11,6 +11,7 @@ Player::Player()
 	setHitWall(false);
 	animTimer=0;
 	setHitHead(false);
+	setNextToWall(false);
 
 	SetImage(*ImgHolder::getInst()->player);
 	//SetSubRect(IntRect(0,0,31,31));
@@ -31,9 +32,17 @@ void Player::update(RenderWindow* wnd)
 {
 	int f = getAnimFrame();
 	if(input->isPressRight(wnd) && hitWall==false)
-		Move((float)getSpeedX()*1, (float)getSpeedY()*0);
+	{
+		if(nextToWall == false)
+			Move((float)getSpeedX()*1, (float)getSpeedY()*0);
+		nextToWall=false;
+	}
 	if(input->isPressLeft(wnd) && hitWall==false)
-		Move((float)getSpeedX()*-1, (float)getSpeedY()*0);
+	{
+		if(nextToWall == false)
+			Move((float)getSpeedX()*-1, (float)getSpeedY()*0);
+		nextToWall=false;
+	}
 	if(input->isPressJump(wnd) && this->getGrounded()==true && hitHead==false)
 	{
 		setSpeedY(-16);
@@ -156,4 +165,9 @@ void Player::setHitHead(bool head)
 bool Player::getHitHead()
 {
 	return this->hitHead;
+}
+
+void Player::setNextToWall(bool ntw)
+{
+	this->nextToWall = ntw;
 }

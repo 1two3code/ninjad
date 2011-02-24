@@ -16,6 +16,7 @@ private:
 	bool hitWall;
 	int animTimer;
 	bool hitHead;
+	bool nextToWall;
 
 public:
 	Player();
@@ -38,6 +39,7 @@ public:
 	void updateSprite(RenderWindow* wnd);
 	void testmove(RenderWindow* wnd);
 	void retrace(RenderWindow* wnd);
+	void setNextToWall(bool ntw);
 };
 
 #endif
