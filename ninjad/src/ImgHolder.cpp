@@ -20,18 +20,27 @@ ImgHolder::ImgHolder()
 	player = new Image();
 	player->LoadFromFile("./data/sprites/ninjanimatea.png");
 
-	nMaps = 10;
+	//menuBackground = new Image();
+	//menuBackground->LoadFromFile("./data/sprites/menu/background.png");
+	menuButton = new Image();
+	menuButton->LoadFromFile("./data/sprites/menu/button.png");
+	locked = new Image();
+	locked->LoadFromFile("./data/sprites/menu/locked.png");
+	locked->SetSmooth(false);
+
+	nMaps = 25;
 	maps = new Image*[nMaps];
-	char dst[2];
+	char dst[3];
 	for(int i = 0; i < nMaps; i++)
 	{
 		itoa(i, dst, 10);
-		std::string fname = "./data/sprites/maps/map";
+		std::string fname = "./data/maps/map";
 		fname += dst;
-		//fname += "5";
 		fname += ".png";
 		maps[i] = new Image();
 		maps[i]->LoadFromFile(fname);
+				
+		maps[i]->SetSmooth(false);
 	}
 	
 }
@@ -44,6 +53,11 @@ ImgHolder::~ImgHolder()
 	delete blocks;
 	delete ninja;
 	delete colorCode;
+	delete player;
+
+	//delete menuBackground;
+	delete menuButton;
+	delete locked;
 
 	for(int i = 0; i < nMaps; i++)
 		delete maps[i];

@@ -38,6 +38,7 @@ public:
 	void checkCollision();
 	bool update();
 	void render();
+	bool eventHandler(Event e);
 
 	void updNinja();
 
