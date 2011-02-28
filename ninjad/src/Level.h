@@ -37,7 +37,7 @@ public:
 	Block* createBlock(int type, int rot);
 	int getNr(); //En get-funktion i brist på andra idéer
 	Block** getBlocks(); //En get-funktion i brist på andra idéer
-
+	int addBlock(int type, int posX, int posY, int rot); // tar också bort block, returns 1 for add, -1 for remove nad 0 for no change
 	Block* getEntryDoor();
 
 	unsigned short getNLevel();

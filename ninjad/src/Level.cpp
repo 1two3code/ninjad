@@ -205,3 +205,51 @@ unsigned short Level::getNFBlocks()
 {
 	return nFBlocks;
 }
+
+int Level::addBlock(int type, int posX, int posY, int rot) //type används inte än
+{
+
+	Block* tempBlock;
+	int x = posX / 32;
+	int y = posY / 32;
+	bool remove=false;
+	int re=0;
+	
+
+			tempBlock = createBlock(type, rot);
+
+			if(tempBlock != NULL)
+			{
+				if(type == 3)
+					entryDoor = tempBlock;
+				block[nBlocks] = tempBlock;
+				block[nBlocks]->SetPosition(16+x*32.0f, 16+y*32.0f); //lägger till nytt block
+				for(int i=0;i<nBlocks;i++)
+				{
+
+						if(tempBlock->GetPosition()==block[i]->GetPosition()) //ifall redan finns block där du klickar och om det är av samma typ
+						{														// som det du försöker sätta ut, ta bort det blocket
+							if(typeid(*tempBlock)==typeid(*block[i]))
+								{
+									block[i]=block[nBlocks-1];
+									nBlocks--;
+									remove=true;
+									re=-1;
+									nPBlocks++;
+								}
+						}
+				}
+					if(remove==false)
+					{
+						if(nPBlocks>0){
+						nBlocks++;
+						re=1;
+						nPBlocks--;
+						}
+					}
+				tempBlock = NULL;
+				delete tempBlock;
+
+			}
+			return re;
+}
