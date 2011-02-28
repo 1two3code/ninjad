@@ -17,6 +17,7 @@ private:
 	int animTimer;
 	bool hitHead;
 	bool nextToWall;
+	int blocks;
 
 public:
 	Player();

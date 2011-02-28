@@ -141,10 +141,13 @@ bool Game::eventHandler(Event e)
 		}
 		else																			//Om musen är inom spelplanen. Sätt ut block ^^
 		{
-
+			mainLvl->addBlock(1,input->getMousePosX(mainWnd), input->getMousePosY(mainWnd), 0);
 		}
-	}
-
+	}        //FISH, hur låser man musen på ett bra sätt egentligen, det här är inte bra
+	/*if(e.Type == Event::MouseMoved && InputHandler::getInstance().getMousePosX(mainWnd) > 96 && InputHandler::getInstance().getMousePosX(mainWnd) < 608 
+			&& InputHandler::getInstance().getMousePosY(mainWnd) > 160 && InputHandler::getInstance().getMousePosY(mainWnd) < 672)
+			mainWnd->SetCursorPosition(155,551 );
+			*/
 	if (e.Type == Event::Closed)
 	{
 		mainWnd->Close();
