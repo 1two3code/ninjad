@@ -10,7 +10,7 @@ class Animation
 private:
 	std::string fileName;
 	sf::Image img;
-	int frameDelay;
+	//int frameDelay;
 	int frames;
 	int curFrame;
 	int sX, sY;
@@ -27,6 +27,7 @@ public:
 	void Load(std::string, int, int, int);
 	
 	sf::Sprite sprite;
+	int frameDelay;
 };
 
 #endif

@@ -1,0 +1,4 @@
+Retur - Visar nuvarande fördröjning på animationen
+Page Up - minskar fördröjningen
+Page Down - ökar fördröjningen
+Space - ladda in ny animation
