@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ninjad", "ninjad\ninjad.vcxproj", "{5A30EF80-B800-4A6E-A2A9-84058DD2C826}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AnimationEditior", "AnimationEditior\AnimationEditior.vcxproj", "{695B54FB-C982-4132-9633-041151084186}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,6 +15,10 @@ Global
 		{5A30EF80-B800-4A6E-A2A9-84058DD2C826}.Debug|Win32.Build.0 = Debug|Win32
 		{5A30EF80-B800-4A6E-A2A9-84058DD2C826}.Release|Win32.ActiveCfg = Release|Win32
 		{5A30EF80-B800-4A6E-A2A9-84058DD2C826}.Release|Win32.Build.0 = Release|Win32
+		{695B54FB-C982-4132-9633-041151084186}.Debug|Win32.ActiveCfg = Debug|Win32
+		{695B54FB-C982-4132-9633-041151084186}.Debug|Win32.Build.0 = Debug|Win32
+		{695B54FB-C982-4132-9633-041151084186}.Release|Win32.ActiveCfg = Release|Win32
+		{695B54FB-C982-4132-9633-041151084186}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

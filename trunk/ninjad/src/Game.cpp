@@ -62,7 +62,7 @@ bool Game::run()
 	mainWnd->Show(true);
 	while(running)
 	{
-		sf::Sleep(0.025f);
+		sf::Sleep(0.017f);
 		checkCollision();
 		running = update();
 		render();
