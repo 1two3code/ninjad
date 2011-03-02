@@ -7,14 +7,18 @@ ImgHolder::ImgHolder()
 {
 	background = new Image();
 	background->LoadFromFile("./data/sprites/background.png");
+	background->SetSmooth(false);
 	hud = new Image();
 	hud->LoadFromFile("./data/sprites/HUD.png");
 	buttons = new Image();
+	buttons->SetSmooth(false);
 	buttons->LoadFromFile("./data/sprites/buttons.png");
 	blocks = new Image();
 	blocks->LoadFromFile("./data/sprites/Blocks3.png");
+	blocks->SetSmooth(false);
 	ninja = new Image();
 	ninja->LoadFromFile("./data/sprites/ninjanimate2a.png");
+	ninja->SetSmooth(false);
 	colorCode = new Image();
 	colorCode->LoadFromFile("./data/sprites/colorcode.png");
 	player = new Image();
