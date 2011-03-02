@@ -141,13 +141,23 @@ bool Game::eventHandler(Event e)
 		}
 		else																			//Om musen är inom spelplanen. Sätt ut block ^^
 		{
-			mainLvl->addBlock(1,input->getMousePosX(mainWnd), input->getMousePosY(mainWnd), 0);
+			//float angle;	kan användas om vi ska ha en sprite som pekar där du siktar med musen
+			//angle = 57.3065f * atan2(mousePos.y - player->GetPosition().y, mousePos.x - player->GetPosition().x);
+			//player->SetRotation(360-angle);
+
+			sf::Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
+			
+			float x = mousePos.x - player->GetPosition().x;
+			float y = mousePos.y - player->GetPosition().y; 
+			float magnitude = sqrt((x*x)+(y*y));
+			x /= magnitude;
+			y /= magnitude;
+
+
+			mainLvl->addBlock(1,player->GetPosition().x+(32*x), player->GetPosition().y+(32*y), 0);
+			
 		}
-	}        //FISH, hur låser man musen på ett bra sätt egentligen, det här är inte bra
-	/*if(e.Type == Event::MouseMoved && InputHandler::getInstance().getMousePosX(mainWnd) > 96 && InputHandler::getInstance().getMousePosX(mainWnd) < 608 
-			&& InputHandler::getInstance().getMousePosY(mainWnd) > 160 && InputHandler::getInstance().getMousePosY(mainWnd) < 672)
-			mainWnd->SetCursorPosition(155,551 );
-			*/
+	}
 	if (e.Type == Event::Closed)
 	{
 		mainWnd->Close();
