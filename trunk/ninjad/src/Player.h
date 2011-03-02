@@ -18,6 +18,7 @@ private:
 	bool hitHead;
 	bool nextToWall;
 	int blocks;
+	Sprite* hand;
 
 public:
 	Player();
@@ -41,6 +42,7 @@ public:
 	void testmove(RenderWindow* wnd);
 	void retrace(RenderWindow* wnd);
 	void setNextToWall(bool ntw);
+	Sprite* getHand();
 };
 
 #endif

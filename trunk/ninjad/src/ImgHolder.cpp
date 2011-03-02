@@ -19,6 +19,8 @@ ImgHolder::ImgHolder()
 	colorCode->LoadFromFile("./data/sprites/colorcode.png");
 	player = new Image();
 	player->LoadFromFile("./data/sprites/ninjanimatea.png");
+	hand = new Image();
+	hand->LoadFromFile("./data/sprites/hand.png");
 
 	//menuBackground = new Image();
 	//menuBackground->LoadFromFile("./data/sprites/menu/background.png");
@@ -54,6 +56,7 @@ ImgHolder::~ImgHolder()
 	delete ninja;
 	delete colorCode;
 	delete player;
+	delete hand;
 
 	//delete menuBackground;
 	delete menuButton;
