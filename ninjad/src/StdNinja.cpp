@@ -115,6 +115,10 @@ void StdNinja::updateSprite()
 		setDirX(0);
 		setDirY(1);
 		break;
+	case 9:		//flyger uppåt
+		setDirX(0);
+		setDirY(-1);
+		break;
 	default:
 		break;
 
