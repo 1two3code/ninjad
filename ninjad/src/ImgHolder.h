@@ -20,11 +20,10 @@ public:
 	Image** maps;
 	Image* colorCode;
 	Image* player;
-
 	//Image* menuBackground;
 	Image* menuButton;
 	Image* locked;
-
+	Image* hand;
 	~ImgHolder();
 	static ImgHolder* getInst();
 

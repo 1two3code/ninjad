@@ -1,16 +1,17 @@
-﻿Build started 2011-03-02 12:39:32.
+﻿Build started 2011-03-02 13:47:50.
      1>Project "C:\Users\Erik\Desktop\Proojekt\ninjad\ninjad.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\ninjad.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I.\include\ /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt src\Game.cpp
          Game.cpp
-     1>c:\users\erik\desktop\proojekt\ninjad\src\game.cpp(145): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\erik\desktop\proojekt\ninjad\src\game.cpp(145): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\erik\desktop\proojekt\ninjad\src\game.cpp(155): warning C4244: 'argument' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\erik\desktop\proojekt\ninjad\src\game.cpp(155): warning C4244: 'argument' : conversion from 'const float' to 'int', possible loss of data
-     1>c:\users\erik\desktop\proojekt\ninjad\src\game.cpp(144): warning C4101: 'angle' : unreferenced local variable
-     1>c:\users\erik\desktop\proojekt\ninjad\src\game.cpp(179): warning C4805: '==' : unsafe mix of type 'int' and type 'bool' in operation
+     1>c:\users\erik\desktop\proojekt\ninjad\src\game.cpp(148): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\erik\desktop\proojekt\ninjad\src\game.cpp(148): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\erik\desktop\proojekt\ninjad\src\game.cpp(157): warning C4244: 'argument' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\erik\desktop\proojekt\ninjad\src\game.cpp(157): warning C4244: 'argument' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\erik\desktop\proojekt\ninjad\src\game.cpp(171): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\erik\desktop\proojekt\ninjad\src\game.cpp(171): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\erik\desktop\proojekt\ninjad\src\game.cpp(192): warning C4805: '==' : unsafe mix of type 'int' and type 'bool' in operation
        Link:
          C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\build\ninjad.exe" /NOLOGO /LIBPATH:.\lib\ "sfml-graphics-s-d.lib" "sfml-window-s-d.lib" "sfml-system-s-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\ninjad.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Erik\Desktop\Proojekt\ninjad\build\ninjad.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\build\ninjad.lib" /MACHINE:X86 Debug\Animation.obj
          Debug\Block.obj
@@ -114,4 +115,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.37
+Time Elapsed 00:00:03.39

@@ -2,6 +2,9 @@
 
 Player::Player()
 {
+	hand = new Sprite();
+	hand->SetImage(*ImgHolder::getInst()->hand);
+
 	input = &InputHandler::getInstance();
 	setAnimFrame(0);
 	setSpeedX(8);
@@ -14,6 +17,7 @@ Player::Player()
 	setNextToWall(false);
 
 	SetImage(*ImgHolder::getInst()->player);
+
 	//SetSubRect(IntRect(0,0,31,31));
 	SetPosition(208,656);
 
@@ -30,6 +34,7 @@ Player::~Player()
 
 void Player::update(RenderWindow* wnd)
 {
+	hand->SetPosition(Player::GetPosition().x,Player::GetPosition().y);
 	int f = getAnimFrame();
 	if(input->isPressRight(wnd) && hitWall==false)
 	{
@@ -170,4 +175,9 @@ bool Player::getHitHead()
 void Player::setNextToWall(bool ntw)
 {
 	this->nextToWall = ntw;
+}
+
+Sprite* Player::getHand()
+{
+	return hand;
 }

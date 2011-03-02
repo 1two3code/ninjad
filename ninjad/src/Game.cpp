@@ -100,6 +100,7 @@ bool Game::update()
 
 	player->update(mainWnd);
 	player->updateSprite(mainWnd);
+	
 
 	hud->update(mainLvl, player);				//Ska skicka levelID, Ninjor max, ninjor inne, antal block <- levelID osv borde vara ints i main.cpp
 
@@ -121,6 +122,7 @@ bool Game::eventHandler(Event e)
 		if(!(InputHandler::getInstance().getMousePosX(mainWnd) > 96 && InputHandler::getInstance().getMousePosX(mainWnd) < 608 
 			&& InputHandler::getInstance().getMousePosY(mainWnd) > 160 && InputHandler::getInstance().getMousePosY(mainWnd) < 672))			//Om musen är inom HUD
 		{
+
 			switch(hud->HUDReleased(mainWnd))
 			{
 			case 0:
@@ -141,9 +143,7 @@ bool Game::eventHandler(Event e)
 		}
 		else																			//Om musen är inom spelplanen. Sätt ut block ^^
 		{
-			//float angle;	kan användas om vi ska ha en sprite som pekar där du siktar med musen
-			//angle = 57.3065f * atan2(mousePos.y - player->GetPosition().y, mousePos.x - player->GetPosition().x);
-			//player->SetRotation(360-angle);
+			
 
 			sf::Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
 			
@@ -157,6 +157,21 @@ bool Game::eventHandler(Event e)
 			mainLvl->addBlock(1,player->GetPosition().x+(32*x), player->GetPosition().y+(32*y), 0);
 			
 		}
+	}
+	if (e.Type == Event::MouseMoved)
+	{
+		if((InputHandler::getInstance().getMousePosX(mainWnd) > 96 && InputHandler::getInstance().getMousePosX(mainWnd) < 608 
+			&& InputHandler::getInstance().getMousePosY(mainWnd) > 160 && InputHandler::getInstance().getMousePosY(mainWnd) < 672))
+		{
+			mainWnd->ShowMouseCursor(false);
+		}
+		else
+			mainWnd->ShowMouseCursor(true);
+
+		sf::Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
+		float angle;	//kan användas om vi ska ha en sprite som pekar där du siktar med musen
+		angle = 57.3065f * atan2(mousePos.y - player->GetPosition().y, mousePos.x - player->GetPosition().x);
+		player->getHand()->SetRotation(360-angle);
 	}
 	if (e.Type == Event::Closed)
 	{
@@ -177,5 +192,6 @@ void Game::render()
 		if(ninjhold->getNinjas(i)->getDrawn()==true)
 			mainWnd->Draw(*ninjhold->getNinjas(i));
 	mainWnd->Draw(*player);
+	mainWnd->Draw(*player->getHand());
 	mainWnd->Display();
 }
