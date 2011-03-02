@@ -21,6 +21,7 @@ public:
 	void ninja(Block** block, NinjaIF* ninja, int nBlocks);
 	void ninjaHitsWall(NinjaIF* ninja);
 	void ninjaHitsGround(NinjaIF* ninja);
+	void ninjaHitsHead(NinjaIF* ninja);
 	void player(Block** block, Player* player, int nBlocks,RenderWindow* wnd);
 };
 
