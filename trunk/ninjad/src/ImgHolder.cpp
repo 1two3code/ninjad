@@ -16,10 +16,10 @@ ImgHolder::ImgHolder()
 	arrows = new Image();
 	arrows->LoadFromFile("./data/sprites/hud/arrows.png");
 	blocks = new Image();
-	blocks->LoadFromFile("./data/sprites/game/Blocks3.png");
+	blocks->LoadFromFile("./data/sprites/game/Blocks.png");
 	blocks->SetSmooth(false);
 	ninja = new Image();
-	ninja->LoadFromFile("./data/sprites/game/ninjanimate2a.png");
+	ninja->LoadFromFile("./data/sprites/game/ninja.png");
 	ninja->SetSmooth(false);
 	colorCode = new Image();
 	colorCode->LoadFromFile("./data/sprites/game/colorcode.png");
@@ -29,6 +29,8 @@ ImgHolder::ImgHolder()
 	hand->LoadFromFile("./data/sprites/game/hand.png");
 	pauseScreen = new Image();
 	pauseScreen->LoadFromFile("./data/sprites/game//pauseScreen.png");
+	icon = new Image();
+	icon->LoadFromFile("./data/misc/icon.png");
 
 	splashScreen = new Image();
 	splashScreen->LoadFromFile("./data/sprites/menu/Splashscreen.png");
@@ -69,6 +71,7 @@ ImgHolder::~ImgHolder()
 	delete player;
 	delete hand;
 	delete pauseScreen;
+	delete icon;
 
 	//delete menuBackground;
 	delete splashScreen;

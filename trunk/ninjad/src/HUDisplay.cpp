@@ -49,7 +49,7 @@ HUDisplay::HUDisplay()
 	//684, 634
 
 	font = new Font();
-	font->LoadFromFile("data/JustTheWayYouAre.ttf");
+	font->LoadFromFile("./data/misc/JustTheWayYouAre.ttf");
 	
 	levelText = new String();
 	levelText->SetFont(*font);

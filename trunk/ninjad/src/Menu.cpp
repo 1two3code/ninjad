@@ -5,6 +5,7 @@ Menu::Menu()
 	menuWnd = new RenderWindow(VideoMode(1024, 768, 32), "Ninja'd", Style::Close, WindowSettings());
 	//menuWnd->UseVerticalSync(true);
 	menuWnd->SetFramerateLimit(30);
+	menuWnd->SetIcon(16, 16, ImgHolder::getInst()->icon->GetPixelsPtr());
 
 	background = new Sprite();
 	background->SetImage(*ImgHolder::getInst()->background);

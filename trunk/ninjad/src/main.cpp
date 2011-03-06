@@ -1,3 +1,4 @@
+#include <Windows.h>
 #include <iostream>
 #include "Menu.h"
 #include "Game.h"
@@ -5,13 +6,14 @@
 
 int main()
 {
+	FreeConsole();			//<- kommentera bort för att få ut consolen
 	Menu* menu;
 	menu = new Menu();
 
     Game* newGame;
 	newGame = new Game();
 
-	ImgHolder::getInst();
+	ImgHolder::getInst();		//Bara för att initera ImgHolder
 
 	bool running = true;
 	bool quit = false;

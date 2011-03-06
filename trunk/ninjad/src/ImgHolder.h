@@ -22,6 +22,7 @@ public:
 	Image* colorCode;
 	Image* player;
 	Image* pauseScreen;
+	Image* icon;
 
 	//Image* menuBackground;
 	Image* splashScreen;
