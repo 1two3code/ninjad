@@ -1,10 +1,14 @@
 #include "HUDisplay.h"
+#include <string>
 #include <iostream>
 
 HUDisplay::HUDisplay()
 {
 	ip = &InputHandler::getInstance();
-	clk = new Clock();
+	clock = new Clock();
+	clockMinutes = 0;
+	clockSeconds = 0;
+
 	bz = 72;
 
 	HUDbg = new Sprite();
@@ -31,6 +35,16 @@ HUDisplay::HUDisplay()
 	quitButton->SetImage(*ImgHolder::getInst()->buttons);
 	quitButton->SetSubRect(IntRect(0,0,bz*1,bz));
 	quitButton->SetPosition(684+bz*3, 634);
+
+	speedUpButton = new Sprite();
+	speedUpButton->SetImage(*ImgHolder::getInst()->arrows);
+	speedUpButton->SetSubRect(IntRect(0,0,62,45));
+	speedUpButton->SetPosition(940, 520);
+
+	speedDownButton = new Sprite();
+	speedDownButton->SetImage(*ImgHolder::getInst()->arrows);
+	speedDownButton->SetSubRect(IntRect(62,0,124,45));
+	speedDownButton->SetPosition(940, 565);
 
 	//684, 634
 
@@ -83,6 +97,13 @@ HUDisplay::HUDisplay()
 HUDisplay::~HUDisplay()
 {
 	delete HUDbg;
+	delete resetButton;
+	delete soundButton;
+	delete pauseButton;
+	delete quitButton;
+	delete speedUpButton;
+	delete speedDownButton;
+
 	delete font;
 	delete levelText;
 	delete maxNinjaText;
@@ -97,25 +118,38 @@ HUDisplay::~HUDisplay()
 void HUDisplay::HUDClicked(RenderWindow* rndwnd)
 {
 
-	if(ip->getMousePosX(rndwnd) > quitButton->GetPosition().x && ip->getMousePosX(rndwnd) < quitButton->GetPosition().x+quitButton->GetSize().y
-		&& ip->getMousePosY(rndwnd) > quitButton->GetPosition().y && ip->getMousePosY(rndwnd) < quitButton->GetPosition().y+quitButton->GetSize().y)
+	unsigned short mpx = ip->getMousePosX(rndwnd);
+	unsigned short mpy = ip->getMousePosY(rndwnd);
+
+	if(mpx > quitButton->GetPosition().x && mpx < quitButton->GetPosition().x+quitButton->GetSize().y
+		&& mpy > quitButton->GetPosition().y && mpy < quitButton->GetPosition().y+quitButton->GetSize().y)
 	{
 		quitButton->SetSubRect(IntRect(0,bz, bz, bz*2));
 	}
-	else if(ip->getMousePosX(rndwnd) > resetButton->GetPosition().x && ip->getMousePosX(rndwnd) < resetButton->GetPosition().x+resetButton->GetSize().y
-		&& ip->getMousePosY(rndwnd) > resetButton->GetPosition().y && ip->getMousePosY(rndwnd) < resetButton->GetPosition().y+resetButton->GetSize().y)
+	else if(mpx > resetButton->GetPosition().x && mpx < resetButton->GetPosition().x+resetButton->GetSize().y
+		&& mpy > resetButton->GetPosition().y && mpy < resetButton->GetPosition().y+resetButton->GetSize().y)
 	{
 		resetButton->SetSubRect(IntRect(1*bz,bz, bz*2, bz*2));
 	}
-	else if(ip->getMousePosX(rndwnd) > pauseButton->GetPosition().x && ip->getMousePosX(rndwnd) < pauseButton->GetPosition().x+pauseButton->GetSize().y
-		&& ip->getMousePosY(rndwnd) > pauseButton->GetPosition().y && ip->getMousePosY(rndwnd) < pauseButton->GetPosition().y+pauseButton->GetSize().y)
+	else if(mpx > pauseButton->GetPosition().x && mpx < pauseButton->GetPosition().x+pauseButton->GetSize().y
+		&& mpy > pauseButton->GetPosition().y && mpy < pauseButton->GetPosition().y+pauseButton->GetSize().y)
 	{
 		pauseButton->SetSubRect(IntRect(2*bz,bz, 3*bz, bz*2));
 	}
-	else if(ip->getMousePosX(rndwnd) > soundButton->GetPosition().x && ip->getMousePosX(rndwnd) < soundButton->GetPosition().x+soundButton->GetSize().y
-		&& ip->getMousePosY(rndwnd) > soundButton->GetPosition().y && ip->getMousePosY(rndwnd) < soundButton->GetPosition().y+soundButton->GetSize().y)
+	else if(mpx > soundButton->GetPosition().x && mpx < soundButton->GetPosition().x+soundButton->GetSize().y
+		&& mpy > soundButton->GetPosition().y && mpy < soundButton->GetPosition().y+soundButton->GetSize().y)
 	{
 		soundButton->SetSubRect(IntRect(3*bz,bz, 4*bz, bz*2));
+	}
+	else if(mpx > speedUpButton->GetPosition().x && mpx < speedUpButton->GetPosition().x+speedUpButton->GetSize().y
+		&& mpy > speedUpButton->GetPosition().y && mpy < speedUpButton->GetPosition().y+speedUpButton->GetSize().y)
+	{
+		speedUpButton->SetSubRect(IntRect(0, 45, 62, 90));
+	}
+	else if(mpx > speedDownButton->GetPosition().x && mpx < speedDownButton->GetPosition().x+speedDownButton->GetSize().y
+		&& mpy > speedDownButton->GetPosition().y && mpy < speedDownButton->GetPosition().y+speedDownButton->GetSize().y)
+	{
+		speedDownButton->SetSubRect(IntRect(62, 45, 124, 90));
 	}
 }
 
@@ -125,6 +159,8 @@ int HUDisplay::HUDReleased(RenderWindow* rndwnd)
 	resetButton->SetSubRect(IntRect(1*bz, 0, bz*2, bz));
 	pauseButton->SetSubRect(IntRect(2*bz, 0, bz*3, bz));
 	soundButton->SetSubRect(IntRect(3*bz, 0, bz*4, bz));
+	speedUpButton->SetSubRect(IntRect(0, 0, 62, 45));
+	speedDownButton->SetSubRect(IntRect(62,0,124,45));	
 
 	unsigned short mpx = ip->getMousePosX(rndwnd);
 	unsigned short mpy = ip->getMousePosY(rndwnd);
@@ -149,13 +185,24 @@ int HUDisplay::HUDReleased(RenderWindow* rndwnd)
 	{
 		return 4;
 	}
+	else if(mpx > speedUpButton->GetPosition().x && mpx < speedUpButton->GetPosition().x+speedUpButton->GetSize().y
+		&& mpy > speedUpButton->GetPosition().y && mpy < speedUpButton->GetPosition().y+speedUpButton->GetSize().y)
+	{
+		return 5;
+	}
+	else if(mpx > speedDownButton->GetPosition().x && mpx < speedDownButton->GetPosition().x+speedDownButton->GetSize().y
+		&& mpy > speedDownButton->GetPosition().y && mpy < speedDownButton->GetPosition().y+speedDownButton->GetSize().y)
+	{
+		return 6;
+	}
 
 	return 0;
 }
 
 void HUDisplay::update(Level* lvl, Player* ply)
 {
-	char temp[5];
+	char temp[8];
+	std::string sTemp;
 
 	itoa(lvl->getNLevel(), temp, 10);	
 	levelText->SetText(temp);
@@ -164,8 +211,17 @@ void HUDisplay::update(Level* lvl, Player* ply)
 	itoa(lvl->getNNinjas(), temp, 10);	
 	maxNinjaText->SetText(temp);
 
-	itoa((int)clk->GetElapsedTime(), temp, 10);	
-	timeText->SetText(temp);
+	unsigned short time;
+	time = clock->GetElapsedTime();
+	clockSeconds = time%60;
+	clockMinutes = time/60;
+	
+	itoa(clockMinutes, &temp[0], 10);
+	sTemp = temp;
+	sTemp += ":";
+	itoa(clockSeconds, &temp[0], 10);
+	sTemp += temp;
+	timeText->SetText(sTemp);
 
 
 	itoa(lvl->getNPBlocks(), temp, 10);
@@ -185,6 +241,8 @@ void HUDisplay::render(RenderWindow* rndwnd)
 	rndwnd->Draw(*resetButton);
 	rndwnd->Draw(*pauseButton);
 	rndwnd->Draw(*soundButton);
+	rndwnd->Draw(*speedUpButton);
+	rndwnd->Draw(*speedDownButton);
 
 	rndwnd->Draw(*levelText);
 	rndwnd->Draw(*minNinjaText);

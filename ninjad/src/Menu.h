@@ -16,12 +16,15 @@ private:
 
 	Sprite** levelButtons;
 	Sprite* mapPreview;
+	Sprite* numbers;
+	Sprite* quitButton;
+
+	int buttonPointed;
+	int buttonClicked;
 
 	Vector2i btnFrame;
 
 	InputHandler* input;
-
-
 	unsigned short unlocked;		//Temporär för att testa vilka som är locked och inte
 
 protected:

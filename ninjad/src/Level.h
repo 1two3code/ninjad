@@ -26,6 +26,8 @@ private:
 	unsigned short nSBlocks;
 	unsigned short nFBlocks;
 
+	Vector2i startPos;
+
 
 public:
 	Level(int j);
@@ -46,6 +48,8 @@ public:
 	unsigned short getNJBlocks();
 	unsigned short getNSBlocks();
 	unsigned short getNFBlocks();
+
+	Vector2i getStartPos();
 };
 
 #endif

@@ -14,24 +14,29 @@ int main()
 	ImgHolder::getInst();
 
 	bool running = true;
+	bool quit = false;
 	int menuChoice = 0;
 	
-	//menu->splash();
+	menu->splashScreen();
 
 	while(running)
 	{
 		menuChoice = menu->levelSelect();
+		quit = false;
 		if(menuChoice == -1)
 		{
 			running = false;
 		}
 		else
 		{
-			menu->Show(false);			
-			newGame = new Game();
-			newGame->init(menuChoice);
-			newGame->run();
-			delete newGame;
+			while(!quit)
+			{
+				menu->Show(false);			
+				newGame = new Game();
+				newGame->init(menuChoice);
+				quit = newGame->run();
+				delete newGame;
+			}
 		}
 	}
 

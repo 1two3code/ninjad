@@ -3,12 +3,15 @@
 
 
 InputHandler::InputHandler()
-{
-	
+{	
 	/*right = sf::Key::D;
 	left = sf::Key::A;
 	jump = sf::Key::Space;
 	click = sf::Mouse::Left;*/
+
+	keyRight = 100;
+	keyLeft = 97;
+	keyJump = 277;
 }
 
 InputHandler::~InputHandler()
@@ -24,17 +27,22 @@ InputHandler& InputHandler::getInstance()
 
 bool InputHandler::isPressRight(RenderWindow* wnd)
 {
-	return wnd->GetInput().IsKeyDown(sf::Key::D);
+	return wnd->GetInput().IsKeyDown((sf::Key::Code)keyRight);
 }
 
 bool InputHandler::isPressLeft(RenderWindow* wnd)
 {
-	return wnd->GetInput().IsKeyDown(sf::Key::A);
+	return wnd->GetInput().IsKeyDown((sf::Key::Code)keyLeft);
 }
 
 bool InputHandler::isPressJump(RenderWindow* wnd)
 {
-	return wnd->GetInput().IsKeyDown(sf::Key::Space);
+	return wnd->GetInput().IsKeyDown((sf::Key::Code)keyJump);
+}
+
+bool InputHandler::isPressEscape(RenderWindow* wnd)
+{
+	return wnd->GetInput().IsKeyDown(sf::Key::Escape);
 }
 
 bool InputHandler::isPressClick(RenderWindow* wnd)

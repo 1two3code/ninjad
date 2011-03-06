@@ -14,16 +14,20 @@ private:
 	static InputHandler input;
 	InputHandler();
 	~InputHandler();
-/*	sf::Key::Code right;
-	sf::Key::Code left;
-	sf::Key::Code jump;
-	sf::Mouse::Button click;*/
+
+	//La till dessa  för eventuell keybinding-config
+	unsigned short keyRight;
+	unsigned short keyLeft;
+	unsigned short keyJump;
+
 public:
 	static InputHandler& getInstance();
 	bool isPressRight(RenderWindow* wnd);
 	bool isPressLeft(RenderWindow* wnd);
 	bool isPressJump(RenderWindow* wnd);
+	bool isPressEscape(RenderWindow* wnd);
 	bool isPressClick(RenderWindow* wnd);
+
 	int getMousePosX(RenderWindow* wnd);
 	int getMousePosY(RenderWindow* wnd);
 };

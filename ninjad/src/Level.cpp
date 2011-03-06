@@ -9,9 +9,9 @@ Level::Level(int j)
 	nJBlocks = 0;
 	nSBlocks = 0;
 	nFBlocks = 0;
+	startPos = Vector2i(0,0);
 	generateBlocks(j);
 	
-	//Parsa mapfil mapj.cfg
 	//Block blk();
 	
 }
@@ -79,7 +79,7 @@ void Level::generateBlocks(int j)
 	nJBlocks = map->GetPixel(2, 18).r;
 	nSBlocks = map->GetPixel(3, 18).r;
 	nFBlocks = map->GetPixel(4, 18).r;
-
+	startPos = Vector2i(map->GetPixel(17,18).r*32, map->GetPixel(17,18).g*32);
 }
 
 int Level::findType(Color col)
@@ -252,4 +252,10 @@ int Level::addBlock(int type, int posX, int posY, int rot) //type används inte ä
 
 			}
 			return re;
+}
+
+
+Vector2i Level::getStartPos()
+{
+	return startPos;
 }

@@ -6,30 +6,37 @@ ImgHolder* ImgHolder::pInstance = NULL;
 ImgHolder::ImgHolder()
 {
 	background = new Image();
-	background->LoadFromFile("./data/sprites/background.png");
+	background->LoadFromFile("./data/sprites/game/background.png");
 	background->SetSmooth(false);
 	hud = new Image();
-	hud->LoadFromFile("./data/sprites/HUD.png");
+	hud->LoadFromFile("./data/sprites/hud/HUD.png");
 	buttons = new Image();
 	buttons->SetSmooth(false);
-	buttons->LoadFromFile("./data/sprites/buttons.png");
+	buttons->LoadFromFile("./data/sprites/hud/buttons.png");
+	arrows = new Image();
+	arrows->LoadFromFile("./data/sprites/hud/arrows.png");
 	blocks = new Image();
-	blocks->LoadFromFile("./data/sprites/Blocks3.png");
+	blocks->LoadFromFile("./data/sprites/game/Blocks3.png");
 	blocks->SetSmooth(false);
 	ninja = new Image();
-	ninja->LoadFromFile("./data/sprites/ninjanimate2a.png");
+	ninja->LoadFromFile("./data/sprites/game/ninjanimate2a.png");
 	ninja->SetSmooth(false);
 	colorCode = new Image();
-	colorCode->LoadFromFile("./data/sprites/colorcode.png");
+	colorCode->LoadFromFile("./data/sprites/game/colorcode.png");
 	player = new Image();
-	player->LoadFromFile("./data/sprites/ninjanimatea.png");
+	player->LoadFromFile("./data/sprites/game/player.png");
 	hand = new Image();
-	hand->LoadFromFile("./data/sprites/hand.png");
+	hand->LoadFromFile("./data/sprites/game/hand.png");
+	pauseScreen = new Image();
+	pauseScreen->LoadFromFile("./data/sprites/game//pauseScreen.png");
 
-	//menuBackground = new Image();
-	//menuBackground->LoadFromFile("./data/sprites/menu/background.png");
+	splashScreen = new Image();
+	splashScreen->LoadFromFile("./data/sprites/menu/Splashscreen.png");
 	menuButton = new Image();
 	menuButton->LoadFromFile("./data/sprites/menu/button.png");
+	menuNumbers = new Image();
+	menuNumbers->LoadFromFile("./data/sprites/menu/numbers.png");
+	menuNumbers->SetSmooth(false);
 	locked = new Image();
 	locked->LoadFromFile("./data/sprites/menu/locked.png");
 	locked->SetSmooth(false);
@@ -61,9 +68,12 @@ ImgHolder::~ImgHolder()
 	delete colorCode;
 	delete player;
 	delete hand;
+	delete pauseScreen;
 
 	//delete menuBackground;
+	delete splashScreen;
 	delete menuButton;
+	delete menuNumbers;
 	delete locked;
 
 	for(int i = 0; i < nMaps; i++)
