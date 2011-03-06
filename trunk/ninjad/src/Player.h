@@ -21,7 +21,7 @@ private:
 	Sprite* hand;
 
 public:
-	Player();
+	Player(Vector2i pos);
 	~Player();
 	void setAnimFrame(int f);
 	int getAnimFrame();

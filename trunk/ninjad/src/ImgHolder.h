@@ -15,13 +15,18 @@ public:
 	Image* background;
 	Image* hud;
 	Image* buttons;
+	Image* arrows;
 	Image* blocks;
 	Image* ninja;
 	Image** maps;
 	Image* colorCode;
 	Image* player;
+	Image* pauseScreen;
+
 	//Image* menuBackground;
+	Image* splashScreen;
 	Image* menuButton;
+	Image* menuNumbers;
 	Image* locked;
 	Image* hand;
 	~ImgHolder();

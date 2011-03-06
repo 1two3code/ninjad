@@ -1,10 +1,10 @@
 #include "player.h"
 
-Player::Player()
+Player::Player(Vector2i pos)
 {
 	hand = new Sprite();
 	hand->SetImage(*ImgHolder::getInst()->hand);
-
+	
 	input = &InputHandler::getInstance();
 	setAnimFrame(0);
 	setSpeedX(8);
@@ -19,7 +19,7 @@ Player::Player()
 	SetImage(*ImgHolder::getInst()->player);
 
 	//SetSubRect(IntRect(0,0,31,31));
-	SetPosition(208,656);
+	SetPosition(80+pos.x,144+pos.y); //5x17
 
 	this->SetCenter(16,16);
 	//this->SetRotation(90);

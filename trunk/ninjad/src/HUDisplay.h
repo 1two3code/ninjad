@@ -19,6 +19,8 @@ private:
 	Sprite* pauseButton;
 	Sprite* resetButton;
 	Sprite* soundButton;
+	Sprite* speedUpButton;
+	Sprite* speedDownButton;
 
 	Font* font;
 	String* levelText;
@@ -30,9 +32,10 @@ private:
 	String* fallBlockText;
 	String* jumpBlockText;
 
-	int bz;
-	Clock* clk;
-	
+	int bz;		//Temporary variable for Buttonsize.
+	Clock* clock;
+	int clockMinutes;
+	int clockSeconds;	
 
 public:
 	HUDisplay();

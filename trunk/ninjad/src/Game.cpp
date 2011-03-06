@@ -12,6 +12,11 @@ Game::Game()
 	hud = NULL;
 	player = NULL;
 	collision = NULL;
+	pauseScreen = NULL;
+
+	FPS = 0;
+	paused = false;
+	reset = false;
 
 }
 
@@ -29,6 +34,8 @@ Game::~Game()
 		delete background;
 	if(hud)
 		delete hud;
+	if(pauseScreen)
+		delete pauseScreen;
 	//if(player)
 		//delete player;
 	if(collision)
@@ -41,16 +48,22 @@ bool Game::init(int level)
 	input = &InputHandler::getInstance();
 	mainWnd = new RenderWindow(VideoMode(1024, 768, 32), "Ninja'd", Style::Close, WindowSettings());
 	mainWnd->Show(false);
+	FPS = 30;
+	mainWnd->SetFramerateLimit(FPS);
 
 	background = new Sprite();
 	background->SetImage(*ImgHolder::getInst()->background);
+
+	pauseScreen = new Sprite();
+	pauseScreen->SetImage(*ImgHolder::getInst()->pauseScreen);
+	pauseScreen->SetPosition(96, 160);
 
 	hud = new HUDisplay();
 
 	currLevel = level;
 	mainLvl = new Level(currLevel);
 	this->ninjhold = new NinjaHolder(mainLvl->getNNinjas(), 0, 6, mainLvl->getEntryDoor()); //mainLvl->getNrOfNinjas()
-	player = new Player();
+	player = new Player(mainLvl->getStartPos());
 	collision = new Collision();
 
 	return false;
@@ -62,18 +75,23 @@ bool Game::run()
 	mainWnd->Show(true);
 	while(running)
 	{
-		sf::Sleep(0.017f);
+		float framerate = 1.0f/ mainWnd->GetFrameTime();
+		cout << framerate << endl;
+		
 		checkCollision();
 		running = update();
 		render();
+		
 	}
 
-	return false;
+	if(reset)
+		return false;
+	else
+		return true;
 }
 
 void Game::cleanUp()
 {
-	//To delete everything when game closes
 
 }
 
@@ -84,7 +102,6 @@ void Game::checkCollision()
 		collision->ninja(mainLvl->getBlocks(), ninjhold->getNinjas(i), mainLvl->getNr());
 
 	collision->player(mainLvl->getBlocks(), player, mainLvl->getNr(),mainWnd);
-	//cin.get();
 }
 
 bool Game::update()
@@ -95,14 +112,17 @@ bool Game::update()
 	while (mainWnd->GetEvent(e) && run)
 		run = eventHandler(e);				//Flyttade ner hela den här superscoopen till en egen funktion istället. Fresh.
 
-	for(int i=0;i<ninjhold->getNr();i++)
-		ninjhold->getNinjas(i)->update();
 
-	player->update(mainWnd);
-	player->updateSprite(mainWnd);
-	
+	if(!paused)
+	{
+		for(int i=0;i<ninjhold->getNr();i++)
+			ninjhold->getNinjas(i)->update();
 
-	hud->update(mainLvl, player);				//Ska skicka levelID, Ninjor max, ninjor inne, antal block <- levelID osv borde vara ints i main.cpp
+		player->update(mainWnd);
+		player->updateSprite(mainWnd);
+
+		hud->update(mainLvl, player);				//Ska skicka levelID, Ninjor max, ninjor inne, antal block <- levelID osv borde vara ints i main.cpp
+	}
 
 	return run;
 }
@@ -122,7 +142,7 @@ bool Game::eventHandler(Event e)
 		if(!(InputHandler::getInstance().getMousePosX(mainWnd) > 96 && InputHandler::getInstance().getMousePosX(mainWnd) < 608 
 			&& InputHandler::getInstance().getMousePosY(mainWnd) > 160 && InputHandler::getInstance().getMousePosY(mainWnd) < 672))			//Om musen är inom HUD
 		{
-
+			int lvl;
 			switch(hud->HUDReleased(mainWnd))
 			{
 			case 0:
@@ -131,28 +151,38 @@ bool Game::eventHandler(Event e)
 				e.Type = Event::Closed;
 				break;
 			case 2:
-				cout << "Reset..." << endl;
+				reset = true;
+				e.Type = Event::Closed;
 				break;
 			case 3:
-				cout << "Pause..." << endl;
+				if(paused)
+					paused = false;
+				else
+					paused = true;
 				break;
 			case 4:
 				cout << "Sound..." << endl;
 				break;
+			case 5:
+				if(FPS < 100)
+					mainWnd->SetFramerateLimit(++FPS);		//Fulhack, använder framerate för att öka spelhastigheten :)
+				break;
+			case 6:
+				if(FPS > 30)
+					mainWnd->SetFramerateLimit(--FPS);
+				break;
 			}	
 		}
-		else																			//Om musen är inom spelplanen. Sätt ut block ^^
-		{
-			
+		else
+		{			
 
-			sf::Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
+			Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
 			
 			float x = mousePos.x - player->GetPosition().x;
 			float y = mousePos.y - player->GetPosition().y; 
 			float magnitude = sqrt((x*x)+(y*y));
 			x /= magnitude;
 			y /= magnitude;
-
 
 			mainLvl->addBlock(1,player->GetPosition().x+(32*x), player->GetPosition().y+(32*y), 0);
 			
@@ -193,5 +223,8 @@ void Game::render()
 			mainWnd->Draw(*ninjhold->getNinjas(i));
 	mainWnd->Draw(*player);
 	mainWnd->Draw(*player->getHand());
+
+	if(paused)
+		mainWnd->Draw(*pauseScreen);
 	mainWnd->Display();
 }

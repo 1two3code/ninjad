@@ -23,9 +23,13 @@ private:
 	NinjaHolder* ninjhold;
 	Level* mainLvl;
 	Collision* collision;
-	InputHandler* input; //what
-
+	InputHandler* input;
+	Sprite* pauseScreen;
+	
 	unsigned short currLevel;
+	unsigned short FPS;
+	bool paused;
+	bool reset;
 
 
 public:
