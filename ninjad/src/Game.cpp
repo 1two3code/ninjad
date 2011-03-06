@@ -50,6 +50,7 @@ bool Game::init(int level)
 	mainWnd->Show(false);
 	FPS = 30;
 	mainWnd->SetFramerateLimit(FPS);
+	mainWnd->SetIcon(16, 16, ImgHolder::getInst()->icon->GetPixelsPtr());
 
 	background = new Sprite();
 	background->SetImage(*ImgHolder::getInst()->background);
@@ -76,8 +77,7 @@ bool Game::run()
 	while(running)
 	{
 		float framerate = 1.0f/ mainWnd->GetFrameTime();
-		cout << framerate << endl;
-		
+		//cout << framerate << endl;		
 		checkCollision();
 		running = update();
 		render();
@@ -164,11 +164,11 @@ bool Game::eventHandler(Event e)
 				cout << "Sound..." << endl;
 				break;
 			case 5:
-				if(FPS < 100)
+				if(FPS < 100 && !paused)
 					mainWnd->SetFramerateLimit(++FPS);		//Fulhack, använder framerate för att öka spelhastigheten :)
 				break;
 			case 6:
-				if(FPS > 30)
+				if(FPS > 30 && !paused)
 					mainWnd->SetFramerateLimit(--FPS);
 				break;
 			}	
