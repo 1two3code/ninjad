@@ -18,6 +18,9 @@ private:
 	Sprite* mapPreview;
 	Sprite* numbers;
 	Sprite* quitButton;
+	Sprite* htpButton;		//How to play knapp
+	Sprite* howToPlayScreen;
+	bool howToPlay;
 
 	int buttonPointed;
 	int buttonClicked;
@@ -26,6 +29,8 @@ private:
 
 	InputHandler* input;
 	unsigned short unlocked;		//Temporär för att testa vilka som är locked och inte
+
+	bool switchBool(bool tf);
 
 protected:
 public:

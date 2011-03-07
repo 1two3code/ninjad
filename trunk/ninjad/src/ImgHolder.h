@@ -24,6 +24,8 @@ public:
 	Image* pauseScreen;
 	Image* icon;
 
+	Image* howToPlay;
+
 	//Image* menuBackground;
 	Image* splashScreen;
 	Image* menuButton;
