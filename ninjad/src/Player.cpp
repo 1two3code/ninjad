@@ -10,11 +10,11 @@ Player::Player(Vector2i pos)
 	setSpeedX(8);
 	setSpeedY(0);
 	setAccel(0);
-	setGrounded(true);
-	setHitWall(false);
 	animTimer=0;
-	setHitHead(false);
-	setNextToWall(false);
+	this->setBugMode(false);
+	this->setGrounded(true);
+	nextToWall=false;
+	direction=false;
 
 	SetImage(*ImgHolder::getInst()->player);
 
@@ -36,27 +36,25 @@ void Player::update(RenderWindow* wnd)
 {
 	hand->SetPosition(Player::GetPosition().x,Player::GetPosition().y);
 	int f = getAnimFrame();
-	if(input->isPressRight(wnd) && hitWall==false)
+	if(input->isPressRight(wnd) && !input->isPressLeft(wnd))
 	{
-		if(nextToWall == false)
 			Move((float)getSpeedX()*1, (float)getSpeedY()*0);
-		nextToWall=false;
+			direction=true;
 	}
-	if(input->isPressLeft(wnd) && hitWall==false)
+	if(input->isPressLeft(wnd) && !input->isPressRight(wnd))
 	{
-		if(nextToWall == false)
 			Move((float)getSpeedX()*-1, (float)getSpeedY()*0);
-		nextToWall=false;
+			direction=false;
 	}
-	if(input->isPressJump(wnd) && this->getGrounded()==true && hitHead==false)
+	Move((float)0, (float)getSpeedY());
+	if(input->isPressJump(wnd) && grounded)
 	{
-		setSpeedY(-16);
-		setAccel(2);
+		setSpeedY(-12);
+		setAccel(1);
+		this->bugmode=true;
 		setGrounded(false);
 	}
 	setSpeedY(getSpeedY()+getAccel());
-	Move((float)0, (float)getSpeedY());
-
 	if(input->isPressClick(wnd))
 	{}//släng ut block
 	if(animTimer==0)
@@ -68,23 +66,34 @@ void Player::update(RenderWindow* wnd)
 	}
 	animTimer++;
 	animTimer %= 2;
+	//if(bugmode) cin.get();
 }
 
 void Player::testmove(RenderWindow* wnd)
 {
-	if(input->isPressRight(wnd))
+	if(input->isPressRight(wnd) && !input->isPressLeft(wnd) )
 		Move((float)getSpeedX()*1, (float)getSpeedY()*0);
-	if(input->isPressLeft(wnd))
+	if(input->isPressLeft(wnd) && !input->isPressRight(wnd))
 		Move((float)getSpeedX()*-1, (float)getSpeedY()*0);
 	if(input->isPressClick(wnd))
 	{}//släng ut block
 }
 
+void Player::testmoveY(RenderWindow* wnd)
+{
+	Move(0, (float)getSpeedY());
+}
+
+void Player::retraceY(RenderWindow* wnd)
+{
+	Move(0, -(float)getSpeedY());
+}
+
 void Player::retrace(RenderWindow* wnd)
 {
-	if(input->isPressRight(wnd))
+	if(input->isPressRight(wnd)&& !input->isPressLeft(wnd))
 		Move(-(float)getSpeedX()*1, -(float)getSpeedY()*0);
-	if(input->isPressLeft(wnd))
+	if(input->isPressLeft(wnd) && !input->isPressRight(wnd))
 		Move(-(float)getSpeedX()*-1, -(float)getSpeedY()*0);
 	if(input->isPressClick(wnd))
 	{}//släng ut block
@@ -92,9 +101,9 @@ void Player::retrace(RenderWindow* wnd)
 
 void Player::updateSprite(RenderWindow* wnd)
 {
-	if(input->isPressRight(wnd))
+	if(input->isPressRight(wnd) && !input->isPressLeft(wnd))
 		FlipX(true);
-	if(input->isPressLeft(wnd))
+	if(input->isPressLeft(wnd) && !input->isPressRight(wnd))
 		FlipX(false);
 	if(input->isPressJump(wnd))
 	{}	//jump animation
@@ -142,42 +151,32 @@ void Player::setAccel(int a)
 	this->acceleration = a;
 }
 
-void Player::setGrounded(bool g)
+Sprite* Player::getHand()
 {
-	this->grounded=g;
+	return hand;
+}
+
+void Player::setBugMode(bool mode)
+{
+	this->bugmode=mode;
+}
+
+void Player::setGrounded(bool value)
+{
+	this->grounded=value;
+}
+
+void Player::setNextToWall(bool wall)
+{
+	this->nextToWall=wall;
+}
+
+bool Player::getDirection()
+{
+	return direction;
 }
 
 bool Player::getGrounded()
 {
 	return this->grounded;
-}
-
-void Player::setHitWall(bool h)
-{
-	this->hitWall=h;
-}
-
-bool Player::getHitWall()
-{
-	return this->hitWall;
-}
-
-void Player::setHitHead(bool head)
-{
-	this->hitHead=head;
-}
-
-bool Player::getHitHead()
-{
-	return this->hitHead;
-}
-
-void Player::setNextToWall(bool ntw)
-{
-	this->nextToWall = ntw;
-}
-
-Sprite* Player::getHand()
-{
-	return hand;
 }

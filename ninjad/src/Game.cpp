@@ -112,7 +112,6 @@ bool Game::update()
 	while (mainWnd->GetEvent(e) && run)
 		run = eventHandler(e);				//Flyttade ner hela den här superscoopen till en egen funktion istället. Fresh.
 
-
 	if(!paused)
 	{
 		for(int i=0;i<ninjhold->getNr();i++)
