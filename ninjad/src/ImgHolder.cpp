@@ -39,6 +39,8 @@ ImgHolder::ImgHolder()
 	menuNumbers = new Image();
 	menuNumbers->LoadFromFile("./data/sprites/menu/numbers.png");
 	menuNumbers->SetSmooth(false);
+	howToPlay = new Image();
+	howToPlay->LoadFromFile("./data/sprites/menu/howtoplay.png");
 	locked = new Image();
 	locked->LoadFromFile("./data/sprites/menu/locked.png");
 	locked->SetSmooth(false);
@@ -72,6 +74,7 @@ ImgHolder::~ImgHolder()
 	delete hand;
 	delete pauseScreen;
 	delete icon;
+	delete howToPlay;
 
 	//delete menuBackground;
 	delete splashScreen;

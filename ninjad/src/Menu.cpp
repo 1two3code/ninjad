@@ -29,6 +29,17 @@ Menu::Menu()
 	quitButton->SetSubRect(IntRect(0, 0, 72, 72));
 	quitButton->SetPosition(684+72*3, 634);
 
+	htpButton = new Sprite();
+	htpButton->SetImage(*ImgHolder::getInst()->buttons);
+	htpButton->SetSubRect(IntRect(72, 0, 144, 72));
+	htpButton->SetPosition(684+72*2, 634);
+
+	howToPlayScreen = new Sprite();
+	howToPlayScreen->SetImage(*ImgHolder::getInst()->howToPlay);
+	howToPlayScreen->SetPosition(112, 80);
+	howToPlay = false;
+
+
 	levelButtons = new Sprite*[25];
 	Sprite* temp;
 
@@ -94,10 +105,14 @@ void Menu::render()
 	menuWnd->Draw(*background);	
 	menuWnd->Draw(*mapPreview);
 	menuWnd->Draw(*quitButton);
+	menuWnd->Draw(*htpButton);
 
 	for(int i = 0; i < 25; i ++)
 		menuWnd->Draw(*levelButtons[i]);
 	menuWnd->Draw(*numbers);
+	if(howToPlay)
+		menuWnd->Draw(*howToPlayScreen);
+
 	menuWnd->Display();
 }
 
@@ -139,17 +154,22 @@ int Menu::eventHandler(Event e)
 			levelButtons[temp]->SetSubRect(IntRect(0, 144, 72, 216));
 			buttonClicked = temp;
 		}
+		else if(temp == -2)
+			htpButton->SetSubRect(IntRect(72,72,144,144));
 	}
 	if(e.Type == Event::MouseButtonReleased)
 	{
 		btn = checkMousePos();
 		if(btn > -1 && btn < unlocked && btn == buttonClicked)
 			return btn;
+		else if(btn == -2)
+			howToPlay = switchBool(howToPlay);
 		else if(btn == -1)
 			return -1;
 	
 		quitButton->SetSubRect(IntRect(0, 0, 72, 72));
-		buttonClicked = -1;	//No button is currently 
+		htpButton->SetSubRect(IntRect(72, 0, 144, 72));
+		buttonClicked = -1;	
 		return -25;
 		
 	}
@@ -177,6 +197,12 @@ int Menu::checkMousePos()
 		&& mpy > quitButton->GetPosition().y && mpy < quitButton->GetPosition().y+quitButton->GetSize().y)
 	{
 		return -1;	
+
+	}
+	else if(mpx > htpButton->GetPosition().x && mpx < htpButton->GetPosition().x+htpButton->GetSize().y
+		&& mpy > htpButton->GetPosition().y && mpy < htpButton->GetPosition().y+htpButton->GetSize().y)
+	{
+		return -2;	
 
 	}
 
@@ -219,4 +245,13 @@ void Menu::splashScreen()
 				splash = false;
 		}
 	}
+}
+
+
+bool Menu::switchBool(bool tf)
+{
+	if(tf)
+		return false;
+	else
+		return true;
 }
