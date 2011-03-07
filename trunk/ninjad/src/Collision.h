@@ -15,6 +15,8 @@ private:
 	bool foothold;
 	bool airborne;
 	int savedstate;
+	bool firstTime;
+	int savedSpeed;
 public:
 	Collision();
 	~Collision();

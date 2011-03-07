@@ -3,6 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include "ImgHolder.h"
 #include "InputHandler.h"
+#include <iostream>
+using namespace std;
 
 class Player : public Sprite
 {
@@ -12,13 +14,13 @@ private:
 	int speedx;
 	int speedy;
 	int acceleration;
-	bool grounded;
-	bool hitWall;
 	int animTimer;
-	bool hitHead;
-	bool nextToWall;
 	int blocks;
 	Sprite* hand;
+	bool bugmode;
+	bool grounded;
+	bool nextToWall;
+	bool direction; //false=left true=right
 
 public:
 	Player(Vector2i pos);
@@ -41,7 +43,11 @@ public:
 	void updateSprite(RenderWindow* wnd);
 	void testmove(RenderWindow* wnd);
 	void retrace(RenderWindow* wnd);
+	void testmoveY(RenderWindow* wnd);
+	void retraceY(RenderWindow* wnd);
 	void setNextToWall(bool ntw);
+	void setBugMode(bool mode);
+	bool getDirection();
 	Sprite* getHand();
 };
 

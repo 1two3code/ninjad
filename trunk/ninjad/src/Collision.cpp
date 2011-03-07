@@ -624,64 +624,149 @@ void Collision::ninjaHitsHead(NinjaIF* ninja)
 
 void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow* wnd)
 {
-	//1. Står sensei på marken?
-	player->setAccel(2);
-	player->setGrounded(false);
-	for(int i=0; i<nBlocks; i++)
+	this->firstTime=true;
+	this->savedSpeed=0;
+	//cout<<"X: "<<player->GetPosition().x<<" Y: "<<player->GetPosition().y<<" Sx: "<<player->getSpeedX()<<" Sy: "<<player->getSpeedY()<<endl;
+	//Golv/tak-test
+	bool wallcollide=false;
+	this->collides=true;
+	while(collides && player->getSpeedY() != 0)
 	{
-		if(player->GetPosition().y + (player->GetSize().y/2 + block[i]->GetSize().y/2) == block[i]->GetPosition().y && player->GetPosition().x + player->GetSize().x/2 >= block[i]->GetPosition().x - block[i]->GetSize().x/2 && player->GetPosition().x - player->GetSize().x/2 <= block[i]->GetPosition().x + block[i]->GetSize().x/2 && typeid(*block[i]) == typeid(StdBlock))
+
+
+		this->collides=false;
+		player->testmove(wnd);
+		player->testmoveY(wnd);
+		for(int i=0;i<nBlocks;i++)
 		{
-			player->setAccel(0);
-			player->setSpeedY(0);
-			player->setGrounded(true);
+			if(player->GetPosition().x > block[i]->GetPosition().x - (player->GetSize().x/2 + block[i]->GetSize().x/2) && player->GetPosition().x < block[i]->GetPosition().x + (player->GetSize().x/2 + block[i]->GetSize().x/2) && typeid(*block[i]) == typeid(StdBlock) ) //Kolliderar i x-led
+			{
+				if(player->GetPosition().y > block[i]->GetPosition().y - (player->GetSize().y/2 + block[i]->GetSize().y/2) && player->GetPosition().y < block[i]->GetPosition().y + (player->GetSize().y/2 + block[i]->GetSize().y/2)) //Kolliderar i y-led
+					this->collides=true;
+			}
+		}
+		player->retrace(wnd);
+		player->retraceY(wnd);
+
+		if(collides && player->getSpeedX() > 0)
+		{
+			player->setSpeedX(player->getSpeedX()-1);
+			wallcollide=true;
+		}
+
+		else if(collides && player->getSpeedX() < 0)
+		{
+			player->setSpeedX(player->getSpeedX()+1);
+			wallcollide=true;
+		}
+
+		if(collides && player->getSpeedY() > 0)
+		{
+			if(firstTime)
+			{
+				savedSpeed=player->getSpeedY();
+				firstTime=false;
+			}
+			player->setSpeedY(player->getSpeedY()-1);
+		}
+	
+		else if(collides && player->getSpeedY() < 0)
+		{
+			if(firstTime)
+			{
+				savedSpeed=player->getSpeedY();
+				firstTime=false;
+			}
+			player->setSpeedY(player->getSpeedY()+1);
+		}
+
+		/*if(player->getSpeedY()==0) //Försöker få player att inte få speedY=0 så fort den kolliderar.
+		{
+			this->collides=false;
+			player->testmove(wnd);
+			player->testmoveY(wnd);
+			for(int i=0;i<nBlocks;i++)
+			{
+				if(player->GetPosition().x > block[i]->GetPosition().x - (player->GetSize().x/2 + block[i]->GetSize().x/2) && player->GetPosition().x < block[i]->GetPosition().x + (player->GetSize().x/2 + block[i]->GetSize().x/2) && typeid(*block[i]) == typeid(StdBlock) ) //Kolliderar i x-led
+				{
+					if(player->GetPosition().y > block[i]->GetPosition().y - (player->GetSize().y/2 + block[i]->GetSize().y/2) && player->GetPosition().y < block[i]->GetPosition().y + (player->GetSize().y/2 + block[i]->GetSize().y/2)) //Kolliderar i y-led
+						this->collides=true;
+				}
+			}
+			player->retrace(wnd);
+			player->retraceY(wnd);
+		
+			if(collides)
+			{
+				player->setSpeedY(savedSpeed);
+			}
+		}*/
+		
+	}
+
+	//Ground-check
+	collides=false;
+	for(int i=0;i<nBlocks;i++)
+	{
+		if(player->GetPosition().y == block[i]->GetPosition().y - (player->GetSize().y/2 + block[i]->GetSize().y/2) && player->GetPosition().x > block[i]->GetPosition().x - (player->GetSize().x/2 + block[i]->GetSize().x/2) && player->GetPosition().x < block[i]->GetPosition().x + (player->GetSize().x/2 + block[i]->GetSize().x/2) && typeid(*block[i]) == typeid(StdBlock))
+		{
+			collides=true;
 		}
 	}
 
-	//2. Kolliderar sensei med en vägg?
-	bool precollides=false;
-	player->setHitWall(false);
-
-	this->collides=false;
-	for(int i=0; i<nBlocks && collides==false;i++)
+	if(!collides)
 	{
-		this->collides=true;
-		
-		if(player->GetPosition().x + player->GetSize().x/2 <= block[i]->GetPosition().x - block[i]->GetSize().x/2)//Ninjan är till vänster om blocket
-			collides=false;
-		if(player->GetPosition().x - player->GetSize().x/2 >= block[i]->GetPosition().x + block[i]->GetSize().x/2)//Ninjan är till höger om blocket
-			collides=false;
-		if(player->GetPosition().y + player->GetSize().y/2 <= block[i]->GetPosition().y - block[i]->GetSize().y/2)//Ninjan är ovanför blocket
-			collides=false;
-		if(player->GetPosition().y - player->GetSize().y/2 >= block[i]->GetPosition().y + block[i]->GetSize().y/2)//Ninjan är nedanför blocket
-			collides=false;
-		if(typeid(*block[i]) != typeid(StdBlock)) //Blocket är inte ett StdBlock
-			collides=false;
+		player->setAccel(1);
+		player->setGrounded(false);
 	}
-	if(collides)
-		precollides=true;
-
-	this->collides=false;
-	player->testmove(wnd);
-	for(int i=0; i<nBlocks && collides==false;i++)
+	else
 	{
-		this->collides=true;
-		
-		if(player->GetPosition().x + player->GetSize().x/2 <= block[i]->GetPosition().x - block[i]->GetSize().x/2)//Ninjan är till vänster om blocket
-			collides=false;
-		if(player->GetPosition().x - player->GetSize().x/2 >= block[i]->GetPosition().x + block[i]->GetSize().x/2)//Ninjan är till höger om blocket
-			collides=false;
-		if(player->GetPosition().y + player->GetSize().y/2 <= block[i]->GetPosition().y - block[i]->GetSize().y/2)//Ninjan är ovanför blocket
-			collides=false;
-		if(player->GetPosition().y - player->GetSize().y/2 >= block[i]->GetPosition().y + block[i]->GetSize().y/2)//Ninjan är nedanför blocket
-			collides=false;
-		if(typeid(*block[i]) != typeid(StdBlock)) //Blocket är inte ett StdBlock
-			collides=false;
-	}
-	player->retrace(wnd);
-	if(collides && !precollides)
-	{
-		player->setHitWall(true);
-		player->setNextToWall(true);
+		player->setAccel(0);
+		player->setGrounded(true);
 	}
 
+	//Roofcheck
+	collides=false;
+	for(int i=0;i<nBlocks;i++)
+	{
+		if(player->GetPosition().y == block[i]->GetPosition().y + (player->GetSize().y/2 + block[i]->GetSize().y/2) && player->GetPosition().x > block[i]->GetPosition().x - (player->GetSize().x/2 + block[i]->GetSize().x/2) && player->GetPosition().x < block[i]->GetPosition().x + (player->GetSize().x/2 + block[i]->GetSize().x/2) && typeid(*block[i]) == typeid(StdBlock))
+		{
+			collides=true;
+		}
+	}
+
+	if(collides && player->getGrounded())
+	{
+		player->setAccel(0);
+		player->setSpeedY(0);
+		//player->setGrounded(true);
+	}
+
+	//Wall-check
+
+	collides=false;
+	for(int i=0;i<nBlocks;i++)
+	{
+		if(player->GetPosition().x == block[i]->GetPosition().x - (player->GetSize().x/2 + block[i]->GetSize().x/2) && player->GetPosition().y > block[i]->GetPosition().y - (player->GetSize().y/2 + block[i]->GetSize().y/2) && player->GetPosition().y < block[i]->GetPosition().y + (player->GetSize().y/2 + block[i]->GetSize().y/2) && typeid(*block[i]) == typeid(StdBlock) && player->getDirection() == true)
+		{
+			wallcollide=true;
+			collides=true;
+		}
+		else if(player->GetPosition().x == block[i]->GetPosition().x + (player->GetSize().x/2 + block[i]->GetSize().x/2) && player->GetPosition().y > block[i]->GetPosition().y - (player->GetSize().y/2 + block[i]->GetSize().y/2) && player->GetPosition().y < block[i]->GetPosition().y + (player->GetSize().y/2 + block[i]->GetSize().y/2) && typeid(*block[i]) == typeid(StdBlock) && player->getDirection() == false)
+		{
+			wallcollide=true;
+			collides=true;
+		}
+	}
+
+	if(!collides)
+	{
+		player->setSpeedX(8);
+	}
+	else
+	{
+		player->setSpeedX(0);
+	}
+
+	//cout<<"X: "<<player->GetPosition().x<<" Y: "<<player->GetPosition().y<<" Sx: "<<player->getSpeedX()<<" Sy: "<<player->getSpeedY()<<endl;
 }

@@ -56,7 +56,7 @@ NinjaHolder::NinjaHolder(int nr, int type, int state, Block* entryDoor)
 
 	for(int i = 0; i < nrOfNinjas; i++)
 	{
-		////cout<<ninjas[i]->getState()<<endl;
+		//cout<<ninjas[i]->getState()<<endl;
 		switch(ninjas[i]->getState())
 		{
 		case 0:
