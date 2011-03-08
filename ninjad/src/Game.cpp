@@ -98,13 +98,20 @@ int Game::run()
 	//return -1 = quit bak till menyn, -2 = reset till samma bana igen,  -3 = next level
 	if(levelComplete)
 	{
+		cout << "-3";
 		showLevelComplete();
 		return -3;
 	}
 	else if(reset)
-		return -2;
+	{
+		cout << "reset";
+		return -2;		
+	}
 	else
+	{
+		cout << "-1 ";
 		return -1;
+	}
 }
 
 void Game::cleanUp()
@@ -284,11 +291,12 @@ bool Game::isNextLevel()
 {
 
 	ninjasIn = getCompleteNinjas();
-	if(!levelComplete && ninjasIn == mainLvl->getNNinjas())
-		levelComplete = true;
 
-	if(levelComplete && collision->isPlayerAtExit(player, mainLvl->getExitDoor()))
+	if(ninjasIn == mainLvl->getNNinjas() && collision->isPlayerAtExit(player, mainLvl->getExitDoor()))
+	{
+		levelComplete = true;
 		return true;
+	}
 
 	return false;
 }
