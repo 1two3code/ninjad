@@ -176,14 +176,30 @@ bool Game::eventHandler(Event e)
 		{			
 
 			Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
-			
+			bool add=true;
 			float x = mousePos.x - player->GetPosition().x;
 			float y = mousePos.y - player->GetPosition().y; 
 			float magnitude = sqrt((x*x)+(y*y));
 			x /= magnitude;
 			y /= magnitude;
 
-			mainLvl->addBlock(1,player->GetPosition().x+(32*x), player->GetPosition().y+(32*y), 0);
+
+			if(player->getAccel()<=0)
+			{
+				for(int i=0;i<ninjhold->getNr() && add==true;i++){
+					add=false;
+					if(ninjhold->getNinjas(i)->GetPosition().x + ninjhold->getNinjas(i)->GetSize().x/2 <= player->GetPosition().x+(32*x)-player->GetSize().x/2)
+						add=true;
+					if(ninjhold->getNinjas(i)->GetPosition().x - ninjhold->getNinjas(i)->GetSize().x/2 >= player->GetPosition().x+(32*x)+player->GetSize().x/2)
+						add=true;
+					if(ninjhold->getNinjas(i)->GetPosition().y + ninjhold->getNinjas(i)->GetSize().y/2 <= player->GetPosition().y+(32*y)-player->GetSize().y/2)				
+						add=	true;
+					if((ninjhold->getNinjas(i)->GetPosition().y - ninjhold->getNinjas(i)->GetSize().y/2 >= player->GetPosition().y+(32*y)+player->GetSize().y/2)	)		
+						add= true;
+				}
+				if(add)
+					mainLvl->addBlock(1,player->GetPosition().x+(32*x), player->GetPosition().y+(32*y), 0);
+			}
 			
 		}
 	}

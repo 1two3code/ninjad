@@ -213,6 +213,7 @@ int Level::addBlock(int type, int posX, int posY, int rot) //type används inte ä
 	int x = posX / 32;
 	int y = posY / 32;
 	bool remove=false;
+	bool occupied=false;
 	int re=0;
 	
 
@@ -237,9 +238,13 @@ int Level::addBlock(int type, int posX, int posY, int rot) //type används inte ä
 									re=-1;
 									nPBlocks++;
 								}
+							else
+							{
+								occupied=true;
+							}
 						}
 				}
-					if(remove==false)
+					if(remove==false&& occupied==false)
 					{
 						if(nPBlocks>0){
 						nBlocks++;
