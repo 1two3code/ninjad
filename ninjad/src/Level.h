@@ -19,6 +19,7 @@ private:
 	Block** block;
 
 	Block* entryDoor;
+	Block* exitDoor;
 
 	unsigned short nLevel;
 	unsigned short nNinjas;
@@ -42,6 +43,7 @@ public:
 	Block** getBlocks(); //En get-funktion i brist på andra idéer
 	int addBlock(int type, int posX, int posY, int rot,Player* player,NinjaHolder* ninjhold); // tar också bort block, returns 1 for add, -1 for remove nad 0 for no change
 	Block* getEntryDoor();
+	Block* getExitDoor();
 
 	unsigned short getNLevel();
 	unsigned short getNNinjas();

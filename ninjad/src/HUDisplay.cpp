@@ -199,14 +199,14 @@ int HUDisplay::HUDReleased(RenderWindow* rndwnd)
 	return 0;
 }
 
-void HUDisplay::update(Level* lvl, Player* ply)
+void HUDisplay::update(Level* lvl, Player* ply, unsigned short nIn)
 {
 	char temp[8];
 	std::string sTemp;
 
-	itoa(lvl->getNLevel(), temp, 10);	
+	itoa(lvl->getNLevel()+1, temp, 10);	
 	levelText->SetText(temp);
-	itoa(0, temp, 10);	
+	itoa(nIn, temp, 10);	
 	minNinjaText->SetText(temp);
 	itoa(lvl->getNNinjas(), temp, 10);	
 	maxNinjaText->SetText(temp);

@@ -49,7 +49,7 @@ void Player::update(RenderWindow* wnd)
 	Move((float)0, (float)getSpeedY());
 	if(input->isPressJump(wnd) && grounded)
 	{
-		setSpeedY(-12);
+		setSpeedY(-9);
 		setAccel(1);
 		this->bugmode=true;
 		setGrounded(false);

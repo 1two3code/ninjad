@@ -62,6 +62,8 @@ void Level::generateBlocks(int j)
 			tempBlock = createBlock(blockType, blockRot);
 			if(tempBlock != NULL)
 			{
+				if(blockType == 2)
+					exitDoor = tempBlock;
 				if(blockType == 3)
 					entryDoor = tempBlock;
 				block[nBlocks] = tempBlock;
@@ -179,6 +181,10 @@ Block** Level::getBlocks()
 Block* Level::getEntryDoor()
 {
 	return entryDoor;
+}
+Block* Level::getExitDoor()
+{
+	return exitDoor;
 }
 
 unsigned short Level::getNLevel()

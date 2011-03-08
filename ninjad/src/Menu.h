@@ -47,6 +47,8 @@ public:
 	int checkMousePos();
 
 	void Show(bool tf);
+
+	void setUnlockedLevels(unsigned short levels);
 };
 
 #endif

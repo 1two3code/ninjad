@@ -25,26 +25,31 @@ private:
 	Collision* collision;
 	InputHandler* input;
 	Sprite* pauseScreen;
+	Sprite* completeScreen;
 	
 	unsigned short currLevel;
+	unsigned short ninjasIn;
 	unsigned short FPS;
 	bool paused;
 	bool reset;
-
-
-public:
-	Game();
-	~Game();
-	bool init(int level);
-	bool run();
-	void cleanUp();
+	bool levelComplete;
 
 	void checkCollision();
 	bool update();
 	void render();
 	bool eventHandler(Event e);
+	unsigned short getCompleteNinjas();
 
-	void updNinja();
+	bool isNextLevel();
+	void showLevelComplete();
+
+public:
+	Game();
+	~Game();
+	bool init(int level);
+	int run();
+	void cleanUp();
+
 
 };
 
