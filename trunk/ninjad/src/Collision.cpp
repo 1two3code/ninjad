@@ -770,3 +770,15 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 
 	//cout<<"X: "<<player->GetPosition().x<<" Y: "<<player->GetPosition().y<<" Sx: "<<player->getSpeedX()<<" Sy: "<<player->getSpeedY()<<endl;
 }
+
+
+
+
+bool Collision::isPlayerAtExit(Player* p, Block* d)
+{
+	if(p->GetPosition().x == d->GetPosition().x && p->GetPosition().y + (p->GetSize().y/2 - d->GetSize().y/2) == d->GetPosition().y )
+	{
+		return true;
+	}
+	return false;
+}

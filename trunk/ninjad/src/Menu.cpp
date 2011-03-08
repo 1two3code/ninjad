@@ -255,3 +255,8 @@ bool Menu::switchBool(bool tf)
 	else
 		return true;
 }
+
+void Menu::setUnlockedLevels(unsigned short levels)
+{
+	unlocked = levels;
+}

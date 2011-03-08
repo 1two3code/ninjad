@@ -13,10 +13,13 @@ Game::Game()
 	player = NULL;
 	collision = NULL;
 	pauseScreen = NULL;
+	completeScreen = NULL;
 
 	FPS = 0;
+	ninjasIn = 0;
 	paused = false;
 	reset = false;
+	levelComplete = false;
 
 }
 
@@ -36,6 +39,8 @@ Game::~Game()
 		delete hud;
 	if(pauseScreen)
 		delete pauseScreen;
+	if(completeScreen)
+		delete completeScreen;
 	//if(player)
 		//delete player;
 	if(collision)
@@ -59,18 +64,24 @@ bool Game::init(int level)
 	pauseScreen->SetImage(*ImgHolder::getInst()->pauseScreen);
 	pauseScreen->SetPosition(96, 160);
 
+	completeScreen = new Sprite();
+	completeScreen->SetImage(*ImgHolder::getInst()->howToPlay); //Måste ändras senare ^^
+	completeScreen->SetPosition(112, 80);
+
 	hud = new HUDisplay();
 
 	currLevel = level;
 	mainLvl = new Level(currLevel);
-	this->ninjhold = new NinjaHolder(mainLvl->getNNinjas(), 0, 6, mainLvl->getEntryDoor()); //mainLvl->getNrOfNinjas()
+	ninjhold = new NinjaHolder(mainLvl->getNNinjas(), 0, 6, mainLvl->getEntryDoor()); //mainLvl->getNrOfNinjas()
 	player = new Player(mainLvl->getStartPos());
 	collision = new Collision();
 
+	ninjasIn = 0;
+	levelComplete = false;
 	return false;
 }
 
-bool Game::run()
+int Game::run()
 {
 	bool running = true;
 	mainWnd->Show(true);
@@ -84,10 +95,16 @@ bool Game::run()
 		
 	}
 
-	if(reset)
-		return false;
+	//return -1 = quit bak till menyn, -2 = reset till samma bana igen,  -3 = next level
+	if(levelComplete)
+	{
+		showLevelComplete();
+		return -3;
+	}
+	else if(reset)
+		return -2;
 	else
-		return true;
+		return -1;
 }
 
 void Game::cleanUp()
@@ -101,7 +118,7 @@ void Game::checkCollision()
 	for(int i=0;i<ninjhold->getNr();i++)
 		collision->ninja(mainLvl->getBlocks(), ninjhold->getNinjas(i), mainLvl->getNr());
 
-	collision->player(mainLvl->getBlocks(), player, mainLvl->getNr(),mainWnd);
+	collision->player(mainLvl->getBlocks(), player, mainLvl->getNr(), mainWnd);
 }
 
 bool Game::update()
@@ -112,6 +129,9 @@ bool Game::update()
 	while (mainWnd->GetEvent(e) && run)
 		run = eventHandler(e);				//Flyttade ner hela den här superscoopen till en egen funktion istället. Fresh.
 
+	if(!run)
+		return false;
+
 	if(!paused)
 	{
 		for(int i=0;i<ninjhold->getNr();i++)
@@ -120,7 +140,9 @@ bool Game::update()
 		player->update(mainWnd);
 		player->updateSprite(mainWnd);
 
-		hud->update(mainLvl, player);				//Ska skicka levelID, Ninjor max, ninjor inne, antal block <- levelID osv borde vara ints i main.cpp
+		run = !isNextLevel();
+
+		hud->update(mainLvl, player, ninjasIn);				//Ska skicka levelID, Ninjor max, ninjor inne, antal block <- levelID osv borde vara ints i main.cpp
 	}
 
 	return run;
@@ -208,7 +230,7 @@ bool Game::eventHandler(Event e)
 		if((InputHandler::getInstance().getMousePosX(mainWnd) > 96 && InputHandler::getInstance().getMousePosX(mainWnd) < 608 
 			&& InputHandler::getInstance().getMousePosY(mainWnd) > 160 && InputHandler::getInstance().getMousePosY(mainWnd) < 672))
 		{
-			mainWnd->ShowMouseCursor(false);
+			//mainWnd->ShowMouseCursor(false);
 		}
 		else
 			mainWnd->ShowMouseCursor(true);
@@ -242,4 +264,49 @@ void Game::render()
 	if(paused)
 		mainWnd->Draw(*pauseScreen);
 	mainWnd->Display();
+}
+
+
+unsigned short Game::getCompleteNinjas()
+{
+	unsigned short num = 0;
+
+	for(int i = 0; i < this->ninjhold->getNr(); i++)
+	{
+		if(ninjhold->getNinjas(i)->getComplete())
+			num++;
+	}
+
+	return num;
+}
+
+bool Game::isNextLevel()
+{
+
+	ninjasIn = getCompleteNinjas();
+	if(!levelComplete && ninjasIn == mainLvl->getNNinjas())
+		levelComplete = true;
+
+	if(levelComplete && collision->isPlayerAtExit(player, mainLvl->getExitDoor()))
+		return true;
+
+	return false;
+}
+
+void Game::showLevelComplete()
+{
+	Event e;
+	bool stop = false;
+	while(!stop)
+	{
+		while (mainWnd->GetEvent(e))
+		{
+			if(e.Type == Event::MouseButtonReleased)		//För vilket event som helst förrutom mousemove, stoppa och gå vidare
+				stop = true;
+		}
+
+		mainWnd->Draw(*completeScreen);
+		mainWnd->Display(); 
+	}
+	
 }

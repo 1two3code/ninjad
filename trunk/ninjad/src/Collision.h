@@ -25,6 +25,8 @@ public:
 	void ninjaHitsGround(NinjaIF* ninja);
 	void ninjaHitsHead(NinjaIF* ninja);
 	void player(Block** block, Player* player, int nBlocks,RenderWindow* wnd);
+
+	bool isPlayerAtExit(Player* player, Block* exitDoor);
 };
 
 #endif

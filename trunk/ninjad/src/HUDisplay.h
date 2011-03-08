@@ -41,7 +41,7 @@ public:
 	HUDisplay();
 	~HUDisplay();
 
-	void update(Level* lvl, Player* ply);
+	void update(Level* lvl, Player* ply, unsigned short nIn);
 	void render(RenderWindow* rndwnd);
 	void HUDClicked(RenderWindow* rndwnd);
 	int HUDReleased(RenderWindow* rndwnd);
