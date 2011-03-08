@@ -184,7 +184,7 @@ bool Game::eventHandler(Event e)
 			y /= magnitude;
 
 
-			if(player->getAccel()<=0)
+		/*	if(player->getAccel()<=0)
 			{
 				for(int i=0;i<ninjhold->getNr() && add==true;i++){
 					add=false;
@@ -198,8 +198,8 @@ bool Game::eventHandler(Event e)
 						add= true;
 				}
 				if(add)
-					mainLvl->addBlock(1,player->GetPosition().x+(32*x), player->GetPosition().y+(32*y), 0);
-			}
+			*/		mainLvl->addBlock(1,player->GetPosition().x+(32*x), player->GetPosition().y+(32*y), 0, player,ninjhold);
+			//}
 			
 		}
 	}

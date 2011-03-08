@@ -1,12 +1,12 @@
 #ifndef NINJAHOLDER_H
 #define NINJAHOLDER_H
 
-#include"Level.h"
+
 #include"StdNinja.h"
 #include<typeinfo>
 #include<iostream>
 using namespace std;
-
+class Block;
 class NinjaHolder
 {
 private:
@@ -28,5 +28,5 @@ public:
 	int getState();
 	NinjaIF* getNinjas(int index);
 };
-
+#include"Level.h"
 #endif

@@ -206,14 +206,14 @@ unsigned short Level::getNFBlocks()
 	return nFBlocks;
 }
 
-int Level::addBlock(int type, int posX, int posY, int rot) //type används inte än
+int Level::addBlock(int type, int posX, int posY, int rot,Player* player, NinjaHolder* ninjhold) //type används inte än
 {
 
 	Block* tempBlock;
 	int x = posX / 32;
 	int y = posY / 32;
 	bool remove=false;
-	bool occupied=false;
+	bool occupied=true;
 	int re=0;
 	
 
@@ -225,6 +225,10 @@ int Level::addBlock(int type, int posX, int posY, int rot) //type används inte ä
 					entryDoor = tempBlock;
 				block[nBlocks] = tempBlock;
 				block[nBlocks]->SetPosition(16+x*32.0f, 16+y*32.0f); //lägger till nytt block
+				if(player->getAccel()<=0)
+				{
+				
+				
 				for(int i=0;i<nBlocks;i++)
 				{
 
@@ -238,13 +242,25 @@ int Level::addBlock(int type, int posX, int posY, int rot) //type används inte ä
 									re=-1;
 									nPBlocks++;
 								}
-							else
+						}
+						else
 							{
 								occupied=true;
+								for(int i=0;i<ninjhold->getNr() && occupied==true;i++){
+									occupied=false;
+								if(ninjhold->getNinjas(i)->GetPosition().x + ninjhold->getNinjas(i)->GetSize().x/2 <= posX-player->GetSize().x/2)
+									occupied=true;
+								if(ninjhold->getNinjas(i)->GetPosition().x - ninjhold->getNinjas(i)->GetSize().x/2 >= posX+player->GetSize().x/2)
+									occupied=true;
+								if(ninjhold->getNinjas(i)->GetPosition().y + ninjhold->getNinjas(i)->GetSize().y/2 <= posY-player->GetSize().y/2)				
+									occupied=true;
+								if((ninjhold->getNinjas(i)->GetPosition().y - ninjhold->getNinjas(i)->GetSize().y/2 >= posY+player->GetSize().y/2)	)		
+									occupied=true;
+								
 							}
 						}
 				}
-					if(remove==false&& occupied==false)
+					if(remove==false&& occupied==true)
 					{
 						if(nPBlocks>0){
 						nBlocks++;
@@ -252,6 +268,7 @@ int Level::addBlock(int type, int posX, int posY, int rot) //type används inte ä
 						nPBlocks--;
 						}
 					}
+				}
 				tempBlock = NULL;
 				delete tempBlock;
 
