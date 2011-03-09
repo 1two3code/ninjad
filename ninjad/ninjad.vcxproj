@@ -54,7 +54,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>.\lib\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-audio-s-d.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
@@ -94,6 +94,7 @@
     <ClCompile Include="src\NinjaHolder.cpp" />
     <ClCompile Include="src\NinjaIF.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\SndHolder.cpp" />
     <ClCompile Include="src\SpringBlock.cpp" />
     <ClCompile Include="src\StdBlock.cpp" />
     <ClCompile Include="src\StdNinja.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="src\NinjaHolder.h" />
     <ClInclude Include="src\NinjaIF.h" />
     <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\SndHolder.h" />
     <ClInclude Include="src\SpringBlock.h" />
     <ClInclude Include="src\StdBlock.h" />
     <ClInclude Include="src\StdNinja.h" />
