@@ -220,6 +220,7 @@ int Level::addBlock(int type, int posX, int posY, int rot,Player* player, NinjaH
 	int y = posY / 32;
 	bool remove=false;
 	bool occupied=true;
+	bool blockThere=true;
 	int re=0;
 	
 
@@ -248,6 +249,10 @@ int Level::addBlock(int type, int posX, int posY, int rot,Player* player, NinjaH
 									re=-1;
 									nPBlocks++;
 								}
+							else
+							{
+								blockThere=false;
+							}
 						}
 						else
 							{
@@ -266,7 +271,7 @@ int Level::addBlock(int type, int posX, int posY, int rot,Player* player, NinjaH
 							}
 						}
 				}
-					if(remove==false&& occupied==true)
+					if(remove==false&& occupied==true && blockThere==true)
 					{
 						if(nPBlocks>0){
 						nBlocks++;
