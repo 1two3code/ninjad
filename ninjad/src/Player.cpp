@@ -46,7 +46,10 @@ void Player::update(RenderWindow* wnd)
 	if(input->isPressRight(wnd) && !input->isPressLeft(wnd) && !hitRight)
 	{
 			Move((float)getSpeedX()*1, (float)getSpeedY()*0);
-			this->speedx=6;
+			if(grounded)
+				this->speedx=6;
+			else
+				this->speedx=4;
 			direction=true;
 			setPosX(this->GetPosition().x);
 			setPosY(this->GetPosition().y + (this->GetSize().y - this->getSizeY())/2);
@@ -54,7 +57,10 @@ void Player::update(RenderWindow* wnd)
 	if(input->isPressLeft(wnd) && !input->isPressRight(wnd) && !hitLeft)
 	{
 			Move((float)getSpeedX()*-1, (float)getSpeedY()*0);
-			this->speedx=6;
+			if(grounded)
+				this->speedx=6;
+			else
+				this->speedx=4;
 			direction=false;
 			setPosX(this->GetPosition().x);
 			setPosY(this->GetPosition().y + (this->GetSize().y - this->getSizeY())/2);
@@ -62,6 +68,7 @@ void Player::update(RenderWindow* wnd)
 	Move((float)0, (float)getSpeedY());
 	if(input->isPressJump(wnd) && grounded)
 	{
+		setSpeedX(4);
 		setSpeedY(-9);
 		setAccel(1);
 		this->bugmode=true;

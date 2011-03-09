@@ -769,12 +769,14 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 		if(player->getPreCollides())
 			player->setSpeedY(1);
 		player->setAccel(1);
+		player->setSpeedX(4);
 		player->setGrounded(false);
 		player->setPreCollides(false);
 	}
 	else
 	{
 		player->setAccel(0);
+		player->setSpeedX(6);
 		player->setGrounded(true);
 		player->setPreCollides(true);
 	}
