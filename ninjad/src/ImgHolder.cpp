@@ -15,6 +15,7 @@ ImgHolder::ImgHolder()
 	buttons->LoadFromFile("./data/sprites/hud/buttons.png");
 	arrows = new Image();
 	arrows->LoadFromFile("./data/sprites/hud/arrows.png");
+	arrows->SetSmooth(false);
 	blocks = new Image();
 	blocks->LoadFromFile("./data/sprites/game/Blocks.png");
 	blocks->SetSmooth(false);
@@ -25,6 +26,7 @@ ImgHolder::ImgHolder()
 	colorCode->LoadFromFile("./data/sprites/game/colorcode.png");
 	player = new Image();
 	player->LoadFromFile("./data/sprites/game/player.png");
+	player->SetSmooth(false);
 	hand = new Image();
 	hand->LoadFromFile("./data/sprites/game/hand.png");
 	pauseScreen = new Image();
@@ -36,6 +38,7 @@ ImgHolder::ImgHolder()
 	splashScreen->LoadFromFile("./data/sprites/menu/Splashscreen.png");
 	menuButton = new Image();
 	menuButton->LoadFromFile("./data/sprites/menu/button.png");
+	menuButton->SetSmooth(false);
 	menuNumbers = new Image();
 	menuNumbers->LoadFromFile("./data/sprites/menu/numbers.png");
 	menuNumbers->SetSmooth(false);
