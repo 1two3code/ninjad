@@ -5,6 +5,7 @@ Collision::Collision()
 	collides=true;
 	airborne=true;
 	savedstate=0;
+	f=0;
 }
 
 Collision::~Collision()
@@ -624,13 +625,14 @@ void Collision::ninjaHitsHead(NinjaIF* ninja)
 
 void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow* wnd)
 {
+	f++;
 	this->firstTime=true;
 	this->savedSpeed=0;
 	//cout<<"X: "<<player->GetPosition().x<<" Y: "<<player->GetPosition().y<<" Sx: "<<player->getSpeedX()<<" Sy: "<<player->getSpeedY()<<endl;
 	//Golv/tak-test
 	bool wallcollide=false;
 	this->collides=true;
-	while(collides && player->getSpeedY() != 0)
+	while(collides)
 	{
 
 
@@ -743,32 +745,42 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 	}
 
 	//Wall-check
-
-	collides=false;
+	bool rightwall=false;
+	bool leftwall=false;
 	for(int i=0;i<nBlocks;i++)
 	{
-		if(player->GetPosition().x == block[i]->GetPosition().x - (player->GetSize().x/2 + block[i]->GetSize().x/2) && player->GetPosition().y > block[i]->GetPosition().y - (player->GetSize().y/2 + block[i]->GetSize().y/2) && player->GetPosition().y < block[i]->GetPosition().y + (player->GetSize().y/2 + block[i]->GetSize().y/2) && typeid(*block[i]) == typeid(StdBlock) && player->getDirection() == true)
+		if(player->GetPosition().x == block[i]->GetPosition().x - (player->GetSize().x/2 + block[i]->GetSize().x/2) && player->GetPosition().y > block[i]->GetPosition().y - (player->GetSize().y/2 + block[i]->GetSize().y/2) && player->GetPosition().y < block[i]->GetPosition().y + (player->GetSize().y/2 + block[i]->GetSize().y/2) && typeid(*block[i]) == typeid(StdBlock))
 		{
 			wallcollide=true;
-			collides=true;
+			rightwall=true;
 		}
-		else if(player->GetPosition().x == block[i]->GetPosition().x + (player->GetSize().x/2 + block[i]->GetSize().x/2) && player->GetPosition().y > block[i]->GetPosition().y - (player->GetSize().y/2 + block[i]->GetSize().y/2) && player->GetPosition().y < block[i]->GetPosition().y + (player->GetSize().y/2 + block[i]->GetSize().y/2) && typeid(*block[i]) == typeid(StdBlock) && player->getDirection() == false)
+		if(player->GetPosition().x == block[i]->GetPosition().x + (player->GetSize().x/2 + block[i]->GetSize().x/2) && player->GetPosition().y > block[i]->GetPosition().y - (player->GetSize().y/2 + block[i]->GetSize().y/2) && player->GetPosition().y < block[i]->GetPosition().y + (player->GetSize().y/2 + block[i]->GetSize().y/2) && typeid(*block[i]) == typeid(StdBlock))
 		{
 			wallcollide=true;
-			collides=true;
+			leftwall=true;
 		}
 	}
 
-	if(!collides)
+	if(leftwall)
 	{
-		player->setSpeedX(8);
+		player->setHitLeft(true);
 	}
 	else
 	{
-		player->setSpeedX(0);
+		player->setHitLeft(false);
+	}
+
+	if(rightwall)
+	{
+		player->setHitRight(true);
+	}
+	else
+	{
+		player->setHitRight(false);
 	}
 
 	//cout<<"X: "<<player->GetPosition().x<<" Y: "<<player->GetPosition().y<<" Sx: "<<player->getSpeedX()<<" Sy: "<<player->getSpeedY()<<endl;
+	cout<<rightwall<<" "<<leftwall<<" "<<f<<endl;
 }
 
 

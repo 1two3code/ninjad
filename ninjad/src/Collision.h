@@ -17,6 +17,7 @@ private:
 	int savedstate;
 	bool firstTime;
 	int savedSpeed;
+	int f;
 public:
 	Collision();
 	~Collision();
