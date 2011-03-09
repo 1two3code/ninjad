@@ -715,7 +715,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 			player->setSpeedY(player->getSpeedY()+1);
 		}
 
-		if(player->getSpeedY()==0 && !firstTime) //Försöker få player att inte få speedY=0 så fort den kolliderar.
+		/*if(player->getSpeedY()==0 && !firstTime) //Försöker få player att inte få speedY=0 så fort den kolliderar. Gör så att man fastnar i hörn.
 		{
 			this->collides=false;
 			player->testmove(wnd);
@@ -735,7 +735,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 			{
 				player->setSpeedY(savedSpeed);
 			}
-		}
+		}*/
 		
 	}
 
