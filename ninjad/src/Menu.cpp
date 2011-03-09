@@ -31,7 +31,7 @@ Menu::Menu()
 
 	htpButton = new Sprite();
 	htpButton->SetImage(*ImgHolder::getInst()->buttons);
-	htpButton->SetSubRect(IntRect(72, 0, 144, 72));
+	htpButton->SetSubRect(IntRect(288, 0, 360, 72));
 	htpButton->SetPosition(684+72*2, 634);
 
 	howToPlayScreen = new Sprite();
@@ -164,7 +164,7 @@ int Menu::eventHandler(Event e)
 		}
 		else if(temp == -2)
 		{
-			htpButton->SetSubRect(IntRect(72,72,144,144));
+			htpButton->SetSubRect(IntRect(288, 72, 360, 144));
 			SndHolder::getInst()->sndClick.Play();
 		}
 	}
@@ -179,7 +179,7 @@ int Menu::eventHandler(Event e)
 			return -1;
 	
 		quitButton->SetSubRect(IntRect(0, 0, 72, 72));
-		htpButton->SetSubRect(IntRect(72, 0, 144, 72));
+		htpButton->SetSubRect(IntRect(288, 0, 360, 72));
 		buttonClicked = -1;	
 		return -25;
 		
