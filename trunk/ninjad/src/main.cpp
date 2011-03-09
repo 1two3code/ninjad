@@ -5,6 +5,7 @@
 #include "Menu.h"
 #include "Game.h"
 #include "ImgHolder.h"
+#include "SndHolder.h"
 
 unsigned short readConfig();
 void writeConfig(unsigned short val);
@@ -24,6 +25,7 @@ int main()
 	newGame = new Game();
 
 	ImgHolder::getInst();		//Bara för att initera ImgHolder
+	SndHolder::getInst();
 
 	bool running = true;
 	int quit = -2;
@@ -69,6 +71,7 @@ int main()
 		delete menu;
 	
 	delete ImgHolder::getInst();
+	delete SndHolder::getInst();
     return EXIT_SUCCESS;
 }
 

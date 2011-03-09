@@ -5,6 +5,7 @@
 #include <iostream>
 #include <SFML\System.hpp>
 #include <SFML\Graphics.hpp>
+#include "SndHolder.h"
 
 using namespace sf;
 
@@ -28,8 +29,8 @@ private:
 	Vector2i btnFrame;
 
 	InputHandler* input;
-	unsigned short unlocked;		//Temporär för att testa vilka som är locked och inte
-
+	unsigned short unlocked;
+	
 	bool switchBool(bool tf);
 
 protected:
