@@ -14,7 +14,7 @@ using namespace std;
 
 int main()
 {
-	FreeConsole();			//<- kommentera bort för att få ut consolen
+	//FreeConsole();			//<- kommentera bort för att få ut consolen
 
 	unsigned short unlockedLevels = readConfig();
 	Menu* menu;

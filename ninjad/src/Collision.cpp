@@ -682,7 +682,6 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 
 		this->collides=false;
 		player->testmove(wnd);
-		player->testmoveY(wnd);
 		for(int i=0;i<nBlocks;i++)
 		{
 			if(player->getPosX() > block[i]->GetPosition().x - (player->getSizeX()/2 + block[i]->GetSize().x/2) && player->getPosX() < block[i]->GetPosition().x + (player->getSizeX()/2 + block[i]->GetSize().x/2) && typeid(*block[i]) == typeid(StdBlock) ) //Kolliderar i x-led
@@ -692,7 +691,6 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 			}
 		}
 		player->retrace(wnd);
-		player->retraceY(wnd);
 
 		if(collides && player->getSpeedX() > 0)
 		{
@@ -705,6 +703,29 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 			player->setSpeedX(player->getSpeedX()+1);
 			wallcollide=true;
 		}
+		
+		else if(collides && player->getSpeedX() == 0)
+		{
+			collides=false;
+		}
+	}
+
+
+
+	this->collides=true;
+	while(collides)
+	{
+		this->collides=false;
+		player->testmoveY(wnd);
+		for(int i=0;i<nBlocks;i++)
+		{
+			if(player->getPosX() > block[i]->GetPosition().x - (player->getSizeX()/2 + block[i]->GetSize().x/2) && player->getPosX() < block[i]->GetPosition().x + (player->getSizeX()/2 + block[i]->GetSize().x/2) && typeid(*block[i]) == typeid(StdBlock) ) //Kolliderar i x-led
+			{
+				if(player->getPosY() > block[i]->GetPosition().y - (player->getSizeY()/2 + block[i]->GetSize().y/2) && player->getPosY() < block[i]->GetPosition().y + (player->getSizeY()/2 + block[i]->GetSize().y/2)) //Kolliderar i y-led
+					this->collides=true;
+			}
+		}
+		player->retraceY(wnd);
 
 		if(collides && player->getSpeedY() > 0)
 		{
@@ -726,27 +747,10 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 			player->setSpeedY(player->getSpeedY()+1);
 		}
 
-		/*if(player->getSpeedY()==0 && !firstTime) //Försöker få player att inte få speedY=0 så fort den kolliderar. Gör så att man fastnar i hörn.
+		else if(collides && player->getSpeedY() == 0)
 		{
-			this->collides=false;
-			player->testmove(wnd);
-			player->testmoveY(wnd);
-			for(int i=0;i<nBlocks;i++)
-			{
-				if(player->getPosX() > block[i]->GetPosition().x - (player->getSizeX()/2 + block[i]->GetSize().x/2) && player->getPosX() < block[i]->GetPosition().x + (player->getSizeX()/2 + block[i]->GetSize().x/2) && typeid(*block[i]) == typeid(StdBlock) ) //Kolliderar i x-led
-				{
-					if(player->getPosY() > block[i]->GetPosition().y - (player->getSizeY()/2 + block[i]->GetSize().y/2) && player->getPosY() < block[i]->GetPosition().y + (player->getSizeY()/2 + block[i]->GetSize().y/2)) //Kolliderar i y-led
-						this->collides=true;
-				}
-			}
-			player->retrace(wnd);
-			player->retraceY(wnd);
-		
-			if(collides)
-			{
-				player->setSpeedY(savedSpeed);
-			}
-		}*/
+			collides=false;
+		}
 		
 	}
 
