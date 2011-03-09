@@ -843,7 +843,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 
 bool Collision::isPlayerAtExit(Player* p, Block* d)
 {
-	if(p->GetPosition().x == d->GetPosition().x && p->GetPosition().y + (p->GetSize().y/2 - d->GetSize().y/2) == d->GetPosition().y )
+	if(p->GetPosition().x > d->GetPosition().x - d->GetSize().x/2 && p->GetPosition().x < d->GetPosition().x + d->GetSize().x/2 && p->GetPosition().y + (p->GetSize().y/2 - d->GetSize().y/2) == d->GetPosition().y )
 	{
 		return true;
 	}
