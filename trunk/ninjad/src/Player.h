@@ -23,6 +23,11 @@ private:
 	bool direction; //false=left true=right
 	bool hitRight;
 	bool hitLeft;
+	int posX;
+	int posY;
+	int sizeX;
+	int sizeY;
+	bool precollides;
 
 public:
 	Player(Vector2i pos);
@@ -53,6 +58,16 @@ public:
 	void setHitRight(bool hit);
 	void setHitLeft(bool hit);
 	Sprite* getHand();
+	int getPosX();
+	void setPosX(int pos);
+	int getPosY();
+	void setPosY(int pos);
+	int getSizeX();
+	void setSizeX(int size);
+	int getSizeY();
+	void setSizeY(int size);
+	void setPreCollides(bool val);
+	bool getPreCollides();
 };
 
 #endif
