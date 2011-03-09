@@ -15,6 +15,8 @@ Player::Player(Vector2i pos)
 	this->setGrounded(true);
 	nextToWall=false;
 	direction=false;
+	hitLeft=false;
+	hitRight=false;
 
 	SetImage(*ImgHolder::getInst()->player);
 
@@ -36,14 +38,16 @@ void Player::update(RenderWindow* wnd)
 {
 	hand->SetPosition(Player::GetPosition().x,Player::GetPosition().y);
 	int f = getAnimFrame();
-	if(input->isPressRight(wnd) && !input->isPressLeft(wnd))
+	if(input->isPressRight(wnd) && !input->isPressLeft(wnd) && !hitRight)
 	{
 			Move((float)getSpeedX()*1, (float)getSpeedY()*0);
+			this->speedx=8;
 			direction=true;
 	}
-	if(input->isPressLeft(wnd) && !input->isPressRight(wnd))
+	if(input->isPressLeft(wnd) && !input->isPressRight(wnd) && !hitLeft)
 	{
 			Move((float)getSpeedX()*-1, (float)getSpeedY()*0);
+			this->speedx=8;
 			direction=false;
 	}
 	Move((float)0, (float)getSpeedY());
@@ -71,7 +75,7 @@ void Player::update(RenderWindow* wnd)
 
 void Player::testmove(RenderWindow* wnd)
 {
-	if(input->isPressRight(wnd) && !input->isPressLeft(wnd) )
+	if(input->isPressRight(wnd) && !input->isPressLeft(wnd))
 		Move((float)getSpeedX()*1, (float)getSpeedY()*0);
 	if(input->isPressLeft(wnd) && !input->isPressRight(wnd))
 		Move((float)getSpeedX()*-1, (float)getSpeedY()*0);
@@ -179,4 +183,14 @@ bool Player::getDirection()
 bool Player::getGrounded()
 {
 	return this->grounded;
+}
+
+void Player::setHitLeft(bool hit)
+{
+	this->hitLeft=hit;
+}
+
+void Player::setHitRight(bool hit)
+{
+	this->hitRight=hit;
 }

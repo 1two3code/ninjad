@@ -21,6 +21,8 @@ private:
 	bool grounded;
 	bool nextToWall;
 	bool direction; //false=left true=right
+	bool hitRight;
+	bool hitLeft;
 
 public:
 	Player(Vector2i pos);
@@ -48,6 +50,8 @@ public:
 	void setNextToWall(bool ntw);
 	void setBugMode(bool mode);
 	bool getDirection();
+	void setHitRight(bool hit);
+	void setHitLeft(bool hit);
 	Sprite* getHand();
 };
 
