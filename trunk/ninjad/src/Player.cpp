@@ -8,7 +8,7 @@ Player::Player(Vector2i pos)
 	precollides=false;
 	input = &InputHandler::getInstance();
 	setAnimFrame(0);
-	setSpeedX(8);
+	setSpeedX(6);
 	setSpeedY(0);
 	setAccel(0);
 	animTimer=0;
@@ -46,7 +46,7 @@ void Player::update(RenderWindow* wnd)
 	if(input->isPressRight(wnd) && !input->isPressLeft(wnd) && !hitRight)
 	{
 			Move((float)getSpeedX()*1, (float)getSpeedY()*0);
-			this->speedx=8;
+			this->speedx=6;
 			direction=true;
 			setPosX(this->GetPosition().x);
 			setPosY(this->GetPosition().y + (this->GetSize().y - this->getSizeY())/2);
@@ -54,7 +54,7 @@ void Player::update(RenderWindow* wnd)
 	if(input->isPressLeft(wnd) && !input->isPressRight(wnd) && !hitLeft)
 	{
 			Move((float)getSpeedX()*-1, (float)getSpeedY()*0);
-			this->speedx=8;
+			this->speedx=6;
 			direction=false;
 			setPosX(this->GetPosition().x);
 			setPosY(this->GetPosition().y + (this->GetSize().y - this->getSizeY())/2);
