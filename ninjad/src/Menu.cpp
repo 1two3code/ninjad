@@ -65,6 +65,10 @@ Menu::~Menu()
 	delete menuWnd;
 	delete background;
 	delete mapPreview;
+	delete numbers;
+	delete quitButton;
+	delete htpButton;
+	delete howToPlayScreen;
 
 	for(int i = 0; i < 25; i++)
 		delete levelButtons[i];
@@ -148,14 +152,21 @@ int Menu::eventHandler(Event e)
 	{
 		int temp = checkMousePos();
 		if(temp == -1)
+		{
 			quitButton->SetSubRect(IntRect(0, 72, 72, 144));
+			SndHolder::getInst()->sndClick.Play();//sndClick->Play();
+		}
 		else if(temp > -1 && temp < unlocked)
 		{
 			levelButtons[temp]->SetSubRect(IntRect(0, 144, 72, 216));
 			buttonClicked = temp;
+			SndHolder::getInst()->sndClick.Play();
 		}
 		else if(temp == -2)
+		{
 			htpButton->SetSubRect(IntRect(72,72,144,144));
+			SndHolder::getInst()->sndClick.Play();
+		}
 	}
 	if(e.Type == Event::MouseButtonReleased)
 	{

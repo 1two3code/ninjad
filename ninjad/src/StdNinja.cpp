@@ -26,19 +26,22 @@ StdNinja::~StdNinja()
 
 void StdNinja::update()
 {
-	int f = getAnimFrame();
-	int t = getAnimTimer();
-	Move((float)getSpeed()*getDirX(), (float)getSpeed()*getDirY());
-	if(t==0)
+	if(active)
 	{
-		SetSubRect(IntRect(f*16, 0, f*16+16, 16));
-		f++;
-		f %= 4;
-		setAnimFrame(f);
+		int f = getAnimFrame();
+		int t = getAnimTimer();
+		Move((float)getSpeed()*getDirX(), (float)getSpeed()*getDirY());
+		if(t==0)
+		{
+			SetSubRect(IntRect(f*16, 0, f*16+16, 16));
+			f++;
+			f %= 4;
+			setAnimFrame(f);
+		}
+		t++;
+		t %= 2;
+		setAnimTimer(t);
 	}
-	t++;
-	t %= 2;
-	setAnimTimer(t);
 }
 
 void StdNinja::testmove()

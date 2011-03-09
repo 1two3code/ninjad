@@ -26,6 +26,7 @@ private:
 	InputHandler* input;
 	Sprite* pauseScreen;
 	Sprite* completeScreen;
+	Clock* clockHold;
 	
 	unsigned short currLevel;
 	unsigned short ninjasIn;

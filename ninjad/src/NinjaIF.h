@@ -6,7 +6,7 @@ using namespace sf;
 class NinjaIF:public Sprite
 {
 
-private:
+protected:
 	int animFrame;
 	bool active;
 	int state;

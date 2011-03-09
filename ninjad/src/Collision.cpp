@@ -1,4 +1,5 @@
-#include"Collision.h"
+#include "Collision.h"
+#include "SndHolder.h"
 
 Collision::Collision()
 {
@@ -95,6 +96,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				ninja->setDrawn(false);
 				ninja->setComplete(true);
+				SndHolder::getInst()->sndYay.Play();
 			}
 		}
 		break;
@@ -105,6 +107,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				ninja->setDrawn(false);
 				ninja->setComplete(true);
+				SndHolder::getInst()->sndYay.Play();
 			}
 		}
 		break;
@@ -115,6 +118,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				ninja->setDrawn(false);
 				ninja->setComplete(true);
+				SndHolder::getInst()->sndYay.Play();
 			}
 		}
 		break;
@@ -125,6 +129,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				ninja->setDrawn(false);
 				ninja->setComplete(true);
+				SndHolder::getInst()->sndYay.Play();
 			}
 		}
 		break;
@@ -135,6 +140,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				ninja->setDrawn(false);
 				ninja->setComplete(true);
+				SndHolder::getInst()->sndYay.Play();
 			}
 		}
 		break;
@@ -145,6 +151,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				ninja->setDrawn(false);
 				ninja->setComplete(true);
+				SndHolder::getInst()->sndYay.Play();
 			}
 		}
 		break;
@@ -155,6 +162,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				ninja->setDrawn(false);
 				ninja->setComplete(true);
+				SndHolder::getInst()->sndYay.Play();
 			}
 		}
 		break;
@@ -165,6 +173,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				ninja->setDrawn(false);
 				ninja->setComplete(true);
+				SndHolder::getInst()->sndYay.Play();
 			}
 		}
 		break;
@@ -175,6 +184,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				ninja->setDrawn(false);
 				ninja->setComplete(true);
+				SndHolder::getInst()->sndYay.Play();				
 			}
 		}
 		break;
@@ -648,6 +658,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 					this->collides=true;
 					knuffarN=block[i]->GetPosition().x;
 				}
+
 			}
 		}
 
@@ -818,6 +829,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 
 	//cout<<"X: "<<player->getPosX()<<" Y: "<<player->getPosY()<<" Sx: "<<player->getSpeedX()<<" Sy: "<<player->getSpeedY()<<endl;
 	//cout<<rightwall<<" "<<leftwall<<" "<<f<<endl;
+
 }
 
 

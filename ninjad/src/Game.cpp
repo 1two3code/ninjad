@@ -14,6 +14,7 @@ Game::Game()
 	collision = NULL;
 	pauseScreen = NULL;
 	completeScreen = NULL;
+	clockHold = NULL;
 
 	FPS = 0;
 	ninjasIn = 0;
@@ -41,6 +42,8 @@ Game::~Game()
 		delete pauseScreen;
 	if(completeScreen)
 		delete completeScreen;
+	if(clockHold)
+		delete clockHold;
 	//if(player)
 		//delete player;
 	if(collision)
@@ -78,6 +81,7 @@ bool Game::init(int level)
 
 	ninjasIn = 0;
 	levelComplete = false;
+	clockHold = new Clock();
 	return false;
 }
 
@@ -98,20 +102,13 @@ int Game::run()
 	//return -1 = quit bak till menyn, -2 = reset till samma bana igen,  -3 = next level
 	if(levelComplete)
 	{
-		cout << "-3";
 		showLevelComplete();
 		return -3;
 	}
 	else if(reset)
-	{
-		cout << "reset";
 		return -2;		
-	}
 	else
-	{
-		cout << "-1 ";
 		return -1;
-	}
 }
 
 void Game::cleanUp()
@@ -141,6 +138,10 @@ bool Game::update()
 
 	if(!paused)
 	{
+		if(clockHold->GetElapsedTime() > 6 && !ninjhold->getNinjas(0)->isActive())
+			for(int i = 0; i < ninjhold->getNr(); i++)
+				ninjhold->getNinjas(i)->setActive(true);
+	
 		for(int i=0;i<ninjhold->getNr();i++)
 			ninjhold->getNinjas(i)->update();
 
