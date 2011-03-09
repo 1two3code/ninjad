@@ -631,6 +631,35 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 	//cout<<"X: "<<player->GetPosition().x<<" Y: "<<player->GetPosition().y<<" Sx: "<<player->getSpeedX()<<" Sy: "<<player->getSpeedY()<<endl;
 	//Golv/tak-test
 	bool wallcollide=false;
+	int knuffarN=0;
+
+	this->collides=true;
+	while(collides)
+	{
+
+
+		this->collides=false;
+		for(int i=0;i<nBlocks;i++)
+		{
+			if(player->GetPosition().x > block[i]->GetPosition().x - (player->GetSize().x/2 + block[i]->GetSize().x/2) && player->GetPosition().x < block[i]->GetPosition().x + (player->GetSize().x/2 + block[i]->GetSize().x/2) && typeid(*block[i]) == typeid(StdBlock) ) //Kolliderar i x-led
+			{
+				if(player->GetPosition().y > block[i]->GetPosition().y - (player->GetSize().y/2 + block[i]->GetSize().y/2) && player->GetPosition().y < block[i]->GetPosition().y + (player->GetSize().y/2 + block[i]->GetSize().y/2)) //Kolliderar i y-led
+					this->collides=true;
+				knuffarN=block[i]->GetPosition().x;
+			}
+		}
+
+		if(collides && player->GetPosition().x < knuffarN)
+		{
+			player->SetPosition(player->GetPosition().x - player->GetSize().x/8, player->GetPosition().y);
+		}
+		else if(collides && player->GetPosition().x > knuffarN)
+		{
+			player->SetPosition(player->GetPosition().x + player->GetSize().x/8, player->GetPosition().y);
+		}
+	}
+
+
 	this->collides=true;
 	while(collides)
 	{
@@ -682,7 +711,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 			player->setSpeedY(player->getSpeedY()+1);
 		}
 
-		/*if(player->getSpeedY()==0) //Försöker få player att inte få speedY=0 så fort den kolliderar.
+		if(player->getSpeedY()==0 && !firstTime) //Försöker få player att inte få speedY=0 så fort den kolliderar.
 		{
 			this->collides=false;
 			player->testmove(wnd);
@@ -702,7 +731,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 			{
 				player->setSpeedY(savedSpeed);
 			}
-		}*/
+		}
 		
 	}
 
