@@ -638,7 +638,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 	f++;
 	this->firstTime=true;
 	this->savedSpeed=0;
-	cout<<"X: "<<player->getPosX()<<" Y: "<<player->getPosY()<<" Sx: "<<player->getSpeedX()<<" Sy: "<<player->getSpeedY()<<endl;
+	//cout<<"X: "<<player->getPosX()<<" Y: "<<player->getPosY()<<" Sx: "<<player->getSpeedX()<<" Sy: "<<player->getSpeedY()<<endl;
 	//Golv/tak-test
 	bool wallcollide=false;
 	int knuffarN=0;
