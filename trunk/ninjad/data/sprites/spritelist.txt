@@ -1,0 +1,38 @@
+-NINJA-
+name		block loc	ninja dir		frame count
+
+running		D		R/L		OK	4		-gå ovanpå block
+falling		none		U/D/R/L		OK	8		-i luften
+climbing	R/L		U			4?		-Uppför block
+sliding down	R/L		D		OK  	1		-nedför block
+armgång		U		R/L			4?		-under block
+jump				R/L			4?		-springa uppför ramp(jumpb)
+
+transition1	R/L&D		U&R/L			?		
+transition2	R/L&U		R/L&D			?
+
+-BLOCKS-
+
+staticb idle						1
+woodb idle					OK	1
+springb	anim					OK	6
+springb idle					OK	1
+fallb anim						3?
+fallb idle					OK	1
+jumpb idle						1
+
+-SENSEI-
+
+idle							1
+running							4
+jumping							1?
+
+-BUTTONS-
+
+Exit						OK
+Retry						OK
+Time+						OK
+Time-						OK
+HowTo						OK
+Pause						OK
+Sound						OK
