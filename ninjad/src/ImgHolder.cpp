@@ -25,9 +25,13 @@ ImgHolder::ImgHolder()
 	blocks->LoadFromFile("./data/sprites/game/Blocks.png");
 	blocks->SetSmooth(false);
 
-	ninja = new Image();
-	ninja->LoadFromFile("./data/sprites/game/ninja.png");
-	ninja->SetSmooth(false);
+	ninRun = new Image();
+	ninRun->LoadFromFile("./data/sprites/game/nin_run.png");
+	ninRun->SetSmooth(false);
+
+	ninSlide = new Image();
+	ninSlide->LoadFromFile("./data/sprites/game/nin_slide.png");
+	ninSlide->SetSmooth(false);
 
 	colorCode = new Image();
 	colorCode->LoadFromFile("./data/sprites/game/colorcode.png");
@@ -88,7 +92,8 @@ ImgHolder::~ImgHolder()
 	delete hud;
 	delete buttons;
 	delete blocks;
-	delete ninja;
+	delete ninRun;
+	delete ninSlide;
 	delete colorCode;
 	delete player;
 	delete hand;

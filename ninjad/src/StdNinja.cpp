@@ -2,22 +2,26 @@
 
 StdNinja::StdNinja(int s)
 {
+		
+
         setActive(false);
-                  //<-- Sätter också mirroredX, dirX och dirY
+		//<-- Sätter också mirroredX, dirX och dirY
         setSpeed(2);
         setDrawn(false);
         setComplete(false);
-		this->curAnim = NULL;
 
-		this->runAnim = new Animation(ImgHolder::getInst()->ninja, 4, 16, 16, 1, true, true);
         //SetSubRect(IntRect(0,0,16,16));
         //SetPosition(208,112);
         //FlipX(true);
+		this->curAnim = NULL;
+		this->runAnim = new Animation(ImgHolder::getInst()->ninRun, 4, 16, 16, 2, true, true);
+		this->slideAnim = new Animation(ImgHolder::getInst()->ninSlide, 1, 16, 16, 1, true, false);
 		this->runAnim->sprite.SetCenter(8,8);
-		this->curAnim = this->runAnim;
+		this->slideAnim->sprite.SetCenter(8,8);
+		//this->curAnim = this->runAnim;
         //this->SetRotation(90);
-        setState(s);
         //SetCenter(0,0);
+		setState(s);
         
 }
 
@@ -55,58 +59,79 @@ void StdNinja::updateSprite()
         switch(this->getState())
         {
         case 0:         //riktning Åt vänster, huvudet upp
+				if(this->curAnim)this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+				this->curAnim = this->runAnim;
 				this->curAnim->MirX(false);
 				this->curAnim->sprite.SetRotation(0);
                 setDirX(-1);
                 setDirY(0);
                 break;
         case 1:         //riktning Neråt, huvudet åt vänster
-                this->curAnim->MirX(false);
-                this->curAnim->sprite.SetRotation(90);
+				if(this->curAnim)this->slideAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+				this->curAnim = this->slideAnim;
+                this->curAnim->MirX(true);
+                //this->curAnim->sprite.SetRotation(90);
                 setDirX(0);
                 setDirY(1);
                 break;
         case 2:         //riktning höger, huvudet neråt
+				if(this->curAnim)this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+				this->curAnim = this->runAnim;
                 this->curAnim->MirX(false);
                 this->curAnim->sprite.SetRotation(180);
                 setDirX(1);
                 setDirY(0);
                 break;
         case 3:         //riktning uppåt, huvudet åt höger
+				if(this->curAnim)this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+				this->curAnim = this->runAnim;
                 this->curAnim->MirX(false);
                 this->curAnim->sprite.SetRotation(-90);
                 setDirX(0);
                 setDirY(-1);
                 break;
         case 4:         //riktning vänster, huvudet neråt
+				if(this->curAnim)this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+				this->curAnim = this->runAnim;
                 this->curAnim->MirX(true);
                 this->curAnim->sprite.SetRotation(180);
                 setDirX(-1);
                 setDirY(0);
                 break;
         case 5:         //riktning neråt, huvudet åt höger
-                this->curAnim->MirX(true);
-                this->curAnim->sprite.SetRotation(-90);
+				if(this->curAnim)this->slideAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+				this->curAnim = this->slideAnim;
+                this->curAnim->MirX(false);
+				this->curAnim->MirY(false);
+                //this->curAnim->sprite.SetRotation(-90);
                 setDirX(0);
                 setDirY(1);
                 break;
         case 6:         //riktning höger, huvudet uppåt
+				if(this->curAnim)this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+				this->curAnim = this->runAnim;
                 this->curAnim->MirX(true);
                 this->curAnim->sprite.SetRotation(0);
                 setDirX(1);
                 setDirY(0);
                 break;
         case 7:         //riktning uppåt, huvudet åt vänster
+				if(this->curAnim)this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+				this->curAnim = this->runAnim;
                 this->curAnim->MirX(true);
                 this->curAnim->sprite.SetRotation(90);
                 setDirX(0);
                 setDirY(-1);
                 break;
         case 8:         //faller neråt, ingen spegling, ingen rotation
+				if(this->curAnim)this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+				this->curAnim = this->runAnim;
                 setDirX(0);
                 setDirY(1);
                 break;
         case 9:         //flyger uppåt
+				if(this->curAnim)this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+				this->curAnim = this->runAnim;
                 setDirX(0);
                 setDirY(-1);
                 break;
