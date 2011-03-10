@@ -49,13 +49,14 @@ HUDisplay::HUDisplay()
 	//684, 634
 
 	font = new Font();
-	font->LoadFromFile("./data/misc/JustTheWayYouAre.ttf");
+	font->LoadFromFile("./data/misc/ninjadfont.ttf");
+	font->SetSmooth(false);
 	
 	levelText = new String();
 	levelText->SetFont(*font);
-	levelText->SetPosition(875, 40);
+	levelText->SetPosition(875, 45);
 	levelText->SetColor(Color(0, 0, 0));
-	levelText->SetSize(64.0f);
+	levelText->SetSize(50.0f);
 
 	minNinjaText = new String();
 	minNinjaText->SetFont(*font);

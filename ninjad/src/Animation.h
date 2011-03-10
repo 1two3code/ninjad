@@ -3,13 +3,11 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
-#include <fstream>
 
 class Animation
 {
 private:
-	std::string fileName;
-	sf::Image img;
+	sf::Image* img;
 	int frameDelay;
 	int frames;
 	int curFrame;
@@ -17,16 +15,22 @@ private:
 	unsigned int counter;
 	sf::IntRect subRect;
 
+	bool loop, isRunning, mirX, mirY;
+
+
 public:
+	sf::Sprite sprite;
+
 	Animation();
-	Animation(std::string, int, int, int, int);
+	Animation(sf::Image* img, int frames, int sizeX, int sizeY, int frameDelay, bool loop, bool isRunning);
 	~Animation();
 	void Update();
-	void IncreaseDelay();
-	void DecreaseDelay();
-	void Load(std::string, int, int, int);
-	
-	sf::Sprite sprite;
+	void SetFrame(int frame);
+	void Loop(bool loop);
+	void IsRunning(bool isRunning);
+	void Reset();
+	void MirX(bool mirX);
+	void MirY(bool mirY);
 };
 
 #endif

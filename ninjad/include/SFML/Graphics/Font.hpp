@@ -122,6 +122,8 @@ public :
     ////////////////////////////////////////////////////////////
     static const Font& GetDefaultFont();
 
+	void SetSmooth(bool smooth);
+
 private :
 
     friend class priv::FontLoader;

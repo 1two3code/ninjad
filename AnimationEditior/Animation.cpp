@@ -17,6 +17,7 @@ Animation::Animation(std::string fileName, int frames, int sizeX, int sizeY, int
 	this->frameDelay = frameDelay;
 	
 	this->img.LoadFromFile(this->fileName);
+	this->img.SetSmooth(false);
 	this->sprite.SetImage(this->img);
 	this->subRect = sf::IntRect(0, 0, this->sX, this->sY);
 	this->sprite.SetSubRect(this->subRect);
@@ -60,6 +61,8 @@ void Animation::Load(std::string fileName, int frames, int sizeX, int sizeY)
 {
 	if(this->img.LoadFromFile(fileName))
 	{
+		this->img.SetSmooth(false);
+
 		this->fileName = fileName;
 		this->frames = frames;
 		this->sX = sizeX;

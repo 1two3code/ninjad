@@ -6,16 +6,6 @@ NinjaIF::NinjaIF()
 NinjaIF::~NinjaIF()
 {}
 
-
-void NinjaIF::setAnimFrame(int f)
-{
-	animFrame = f;
-}
-int NinjaIF::getAnimFrame()
-{
-	return animFrame;
-}
-
 void NinjaIF::setActive(bool bl)
 {
 	active = bl;
@@ -33,16 +23,6 @@ void NinjaIF::setState(int s)
 int NinjaIF::getState()
 {
 	return state;
-}
-
-void NinjaIF::setMirroredX(bool mx)
-{
-	mirroredX = mx;
-	FlipX(mirroredX);
-}
-bool NinjaIF::isMirroredX()
-{
-	return mirroredX;
 }
 
 void NinjaIF::setDirX(int dx)
@@ -90,16 +70,6 @@ void NinjaIF::setDrawn(bool draw)
 int NinjaIF::getDrawn()
 {
 	return this->drawn;
-}
-
-void NinjaIF::setAnimTimer(int t)
-{
-	this->animTimer=t;
-}
-
-int NinjaIF::getAnimTimer()
-{
-	return this->animTimer;
 }
 
 void NinjaIF::setComplete(bool c)
