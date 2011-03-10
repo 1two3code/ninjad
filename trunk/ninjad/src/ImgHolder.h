@@ -17,12 +17,13 @@ public:
 	Image* buttons;
 	Image* arrows;
 	Image* blocks;
-	Image* ninja;
+	Image* ninRun;
 	Image** maps;
 	Image* colorCode;
 	Image* player;
 	Image* pauseScreen;
 	Image* icon;
+	Image* ninSlide;
 
 	Image* howToPlay;
 
