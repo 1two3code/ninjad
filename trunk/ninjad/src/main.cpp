@@ -10,6 +10,9 @@
 unsigned short readConfig();
 void writeConfig(unsigned short val);
 
+void sf::Font::SetSmooth(bool smooth){
+	this->myTexture.SetSmooth(smooth);
+}
 using namespace std;
 
 int main()

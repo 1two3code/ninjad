@@ -60,31 +60,31 @@ NinjaHolder::NinjaHolder(int nr, int type, int state, Block* entryDoor)
 		switch(ninjas[i]->getState())
 		{
 		case 0:
-			ninjas[i]->SetPosition(entryDoor->GetPosition().x+16+16*i, entryDoor->GetPosition().y + (entryDoor->GetSize().y/2 - ninjas[i]->GetSize().y/2));
+			ninjas[i]->curAnim->sprite.SetPosition(entryDoor->GetPosition().x+16+16*i, entryDoor->GetPosition().y + (entryDoor->GetSize().y/2 - ninjas[i]->curAnim->sprite.GetSize().y/2));
 			break;
 		case 1:
-			ninjas[i]->SetPosition(entryDoor->GetPosition().x + (entryDoor->GetSize().x/2 - ninjas[i]->GetSize().x/2), entryDoor->GetPosition().y-16-16*i);
+			ninjas[i]->curAnim->sprite.SetPosition(entryDoor->GetPosition().x + (entryDoor->GetSize().x/2 - ninjas[i]->curAnim->sprite.GetSize().x/2), entryDoor->GetPosition().y-16-16*i);
 			break;
 		case 2:
-			ninjas[i]->SetPosition(entryDoor->GetPosition().x-16-16*i, entryDoor->GetPosition().y - (entryDoor->GetSize().y/2 - ninjas[i]->GetSize().y/2));
+			ninjas[i]->curAnim->sprite.SetPosition(entryDoor->GetPosition().x-16-16*i, entryDoor->GetPosition().y - (entryDoor->GetSize().y/2 - ninjas[i]->curAnim->sprite.GetSize().y/2));
 			break;
 		case 3:
-			ninjas[i]->SetPosition(entryDoor->GetPosition().x - (entryDoor->GetSize().x/2 - ninjas[i]->GetSize().x/2), entryDoor->GetPosition().y+16+16*i);
+			ninjas[i]->curAnim->sprite.SetPosition(entryDoor->GetPosition().x - (entryDoor->GetSize().x/2 - ninjas[i]->curAnim->sprite.GetSize().x/2), entryDoor->GetPosition().y+16+16*i);
 			break;
 		case 4:
-			ninjas[i]->SetPosition(entryDoor->GetPosition().x+16+16*i, entryDoor->GetPosition().y - (entryDoor->GetSize().y/2 - ninjas[i]->GetSize().y/2));
+			ninjas[i]->curAnim->sprite.SetPosition(entryDoor->GetPosition().x+16+16*i, entryDoor->GetPosition().y - (entryDoor->GetSize().y/2 - ninjas[i]->curAnim->sprite.GetSize().y/2));
 			break;
 		case 5:
-			ninjas[i]->SetPosition(entryDoor->GetPosition().x - (entryDoor->GetSize().x/2 - ninjas[i]->GetSize().x/2), entryDoor->GetPosition().y-16-16*i);
+			ninjas[i]->curAnim->sprite.SetPosition(entryDoor->GetPosition().x - (entryDoor->GetSize().x/2 - ninjas[i]->curAnim->sprite.GetSize().x/2), entryDoor->GetPosition().y-16-16*i);
 			break;
 		case 6:
-			ninjas[i]->SetPosition(entryDoor->GetPosition().x-16-16*i, entryDoor->GetPosition().y + (entryDoor->GetSize().y/2 - ninjas[i]->GetSize().y/2));
+			ninjas[i]->curAnim->sprite.SetPosition(entryDoor->GetPosition().x-16-16*i, entryDoor->GetPosition().y + (entryDoor->GetSize().y/2 - ninjas[i]->curAnim->sprite.GetSize().y/2));
 			break;
 		case 7:
-			ninjas[i]->SetPosition(entryDoor->GetPosition().x + (entryDoor->GetSize().x/2 - ninjas[i]->GetSize().x/2), entryDoor->GetPosition().y+16+16*i);
+			ninjas[i]->curAnim->sprite.SetPosition(entryDoor->GetPosition().x + (entryDoor->GetSize().x/2 - ninjas[i]->curAnim->sprite.GetSize().x/2), entryDoor->GetPosition().y+16+16*i);
 			break;
 		case 8:
-			ninjas[i]->SetPosition(entryDoor->GetPosition().x, entryDoor->GetPosition().y-16-16*i);
+			ninjas[i]->curAnim->sprite.SetPosition(entryDoor->GetPosition().x, entryDoor->GetPosition().y-16-16*i);
 			break;
 		default:
 			break;

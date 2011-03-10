@@ -5,9 +5,8 @@ Animation::Animation()
 	
 }
 
-Animation::Animation(std::string fileName, int frames, int sizeX, int sizeY, int frameDelay)
+Animation::Animation(sf::Image* img, int frames, int sizeX, int sizeY, int frameDelay, bool loop, bool isRunning)
 {
-	this->fileName = fileName;
 	this->frames = frames;
 	this->sX = sizeX;
 	this->sY = sizeY;
@@ -16,10 +15,13 @@ Animation::Animation(std::string fileName, int frames, int sizeX, int sizeY, int
 	this->curFrame = 0;
 	this->frameDelay = frameDelay;
 	
-	this->img.LoadFromFile(this->fileName);
-	this->sprite.SetImage(this->img);
+	this->img = img;
+	this->sprite.SetImage(*this->img);
 	this->subRect = sf::IntRect(0, 0, this->sX, this->sY);
 	this->sprite.SetSubRect(this->subRect);
+
+	this->mirX = false;
+	this->mirY = false;
 }
 
 Animation::~Animation()
@@ -39,41 +41,50 @@ void Animation::Update()
 
 	this->subRect = sf::IntRect(left, top, right, bottom);
 	this->sprite.SetSubRect(this->subRect);
+
+		this->sprite.FlipX(mirX);
+		this->sprite.FlipY(mirY);
 }
 
-void Animation::IncreaseDelay()
+void Animation::SetFrame(int frame)
 {
-	this->frameDelay++;
+	this->curFrame = frame;
 
-	this-> counter = 0;
+	int top = 0;
+	int bottom = this->sY;
+	int left = this->sX * curFrame;
+	int right = this->sX * curFrame + this->sX;
+
+	this->subRect = sf::IntRect(left, top, right, bottom);
+	this->sprite.SetSubRect(this->subRect);
+
+		this->sprite.FlipX(mirX);
+		this->sprite.FlipY(mirY);
+
+	this->counter = (this->curFrame * this->frames * this->frameDelay) - (this->frameDelay * (this->frames-this->curFrame)) - (this->frameDelay-1);
 }
 
-void Animation::DecreaseDelay()
+void Animation::Loop(bool loop)
 {
-	if(this->frameDelay > 1)
-		this->frameDelay--;
+	this->loop = loop;
+}
 
+void Animation::IsRunning(bool isRunning)
+{
+	this->isRunning = isRunning;
+}
+
+void Animation::Reset()
+{
 	this->counter = 0;
 }
 
-void Animation::Load(std::string fileName, int frames, int sizeX, int sizeY)
+void Animation::MirX(bool mirX)
 {
-	if(this->img.LoadFromFile(fileName))
-	{
-		this->fileName = fileName;
-		this->frames = frames;
-		this->sX = sizeX;
-		this->sY = sizeY;
-
-		this->counter = 0;
-		this->curFrame = 0;
-
-		this->sprite.SetImage(this->img);
-		this->subRect = sf::IntRect(0, 0, this->sX, this->sY);
-		this->sprite.SetSubRect(this->subRect);
-	}
-
-	else
-		this->img.LoadFromFile(this->fileName);
+	this->mirX = mirX;
 }
 
+void Animation::MirY(bool mirY)
+{
+	this->mirY = mirY;
+}

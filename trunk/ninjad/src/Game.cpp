@@ -265,7 +265,7 @@ void Game::render()
 	mainLvl->render(mainWnd);
 	for(int i=0;i<ninjhold->getNr();i++)
 		if(ninjhold->getNinjas(i)->getDrawn()==true)
-			mainWnd->Draw(*ninjhold->getNinjas(i));
+			mainWnd->Draw(ninjhold->getNinjas(i)->curAnim->sprite);
 	mainWnd->Draw(*player);
 	mainWnd->Draw(*player->getHand());
 

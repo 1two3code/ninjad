@@ -2,6 +2,7 @@
 #define STDNINJA_H
 #include "NinjaIF.h"
 #include "ImgHolder.h"
+#include "Animation.h"
 
 class StdNinja:public NinjaIF
 {
