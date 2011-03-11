@@ -18,7 +18,7 @@ protected:
 	bool complete;
 
 public:
-	Animation *curAnim, *runAnim, *slideAnim;
+	Animation *curAnim, *runAnim, *slideAnim, *fallAnim, *climbAnim, *armAnim;
 	NinjaIF();
 	virtual ~NinjaIF() = 0;
 

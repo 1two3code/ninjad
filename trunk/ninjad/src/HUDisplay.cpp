@@ -50,7 +50,7 @@ HUDisplay::HUDisplay()
 
 	font = new Font();
 	font->LoadFromFile("./data/misc/ninjadfont.ttf");
-	font->SetSmooth(false);
+	font->SetSmooth(true);
 	
 	levelText = new String();
 	levelText->SetFont(*font);

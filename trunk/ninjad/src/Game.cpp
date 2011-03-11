@@ -194,11 +194,17 @@ bool Game::eventHandler(Event e)
 				break;
 			case 5:
 				if(FPS < 100 && !paused)
-					mainWnd->SetFramerateLimit(++FPS);		//Fulhack, använder framerate för att öka spelhastigheten :)
+				{
+					mainWnd->SetFramerateLimit(FPS + 2);		//Fulhack, använder framerate för att öka spelhastigheten :)
+					FPS += 2;
+				}
 				break;
 			case 6:
 				if(FPS > 30 && !paused)
-					mainWnd->SetFramerateLimit(--FPS);
+				{
+					mainWnd->SetFramerateLimit(FPS - 2);
+					FPS -= 2;
+				}
 				break;
 			}	
 		}
