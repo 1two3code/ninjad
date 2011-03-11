@@ -33,12 +33,24 @@ ImgHolder::ImgHolder()
 	ninSlide->LoadFromFile("./data/sprites/game/nin_slide.png");
 	ninSlide->SetSmooth(false);
 
+	ninFall = new Image();
+	ninFall->LoadFromFile("./data/sprites/game/nin_fall.png");
+	ninFall->SetSmooth(false);
+
+	ninClimb = new Image();
+	ninClimb->LoadFromFile("./data/sprites/game/nin_climb.png");
+	ninClimb->SetSmooth(false);
+
+	ninArm = new Image();
+	ninArm->LoadFromFile("./data/sprites/game/nin_arm.png");
+	ninArm->SetSmooth(false);
+
 	colorCode = new Image();
 	colorCode->LoadFromFile("./data/sprites/game/colorcode.png");
 
-	player = new Image();
-	player->LoadFromFile("./data/sprites/game/player.png");
-	player->SetSmooth(false);
+	plyRun = new Image();
+	plyRun->LoadFromFile("./data/sprites/game/ply_run.png");
+	plyRun->SetSmooth(false);
 
 	hand = new Image();
 	hand->LoadFromFile("./data/sprites/game/hand.png");
@@ -94,8 +106,11 @@ ImgHolder::~ImgHolder()
 	delete blocks;
 	delete ninRun;
 	delete ninSlide;
+	delete ninFall;
+	delete ninClimb;
+	delete ninArm;
 	delete colorCode;
-	delete player;
+	delete plyRun;
 	delete hand;
 	delete pauseScreen;
 	delete icon;

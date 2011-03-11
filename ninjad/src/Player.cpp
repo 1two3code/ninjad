@@ -21,7 +21,7 @@ Player::Player(Vector2i pos)
 	setSizeX(16);
 	setSizeY(26);
 	
-	SetImage(*ImgHolder::getInst()->player);
+	SetImage(*ImgHolder::getInst()->plyRun);
 
 	//SetSubRect(IntRect(0,0,24,24));
 	SetPosition(80+pos.x,144+pos.y); //5x17

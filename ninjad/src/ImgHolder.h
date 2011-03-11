@@ -20,10 +20,13 @@ public:
 	Image* ninRun;
 	Image** maps;
 	Image* colorCode;
-	Image* player;
+	Image* plyRun;
 	Image* pauseScreen;
 	Image* icon;
 	Image* ninSlide;
+	Image* ninFall;
+	Image* ninClimb;
+	Image* ninArm;
 
 	Image* howToPlay;
 
