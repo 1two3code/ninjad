@@ -57,6 +57,7 @@ public:
 	void setNextToWall(bool ntw);
 	void setBugMode(bool mode);
 	bool getDirection();
+	void setDirection(bool dir);
 	void setHitRight(bool hit);
 	void setHitLeft(bool hit);
 	Sprite* getHand();
