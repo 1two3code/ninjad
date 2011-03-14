@@ -664,12 +664,12 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 
 		if(collides && player->getPosX() <= knuffarN)
 		{
-			player->SetPosition(player->GetPosition().x - 1, player->GetPosition().y);
+			player->curAnim->sprite.SetPosition(player->curAnim->sprite.GetPosition().x - 1, player->curAnim->sprite.GetPosition().y);
 			player->setPosX(player->getPosX() - 1);
 		}
 		else if(collides && player->getPosX() > knuffarN)
 		{
-			player->SetPosition(player->GetPosition().x + 1, player->GetPosition().y);
+			player->curAnim->sprite.SetPosition(player->curAnim->sprite.GetPosition().x + 1, player->curAnim->sprite.GetPosition().y);
 			player->setPosX(player->getPosX() + 1);
 		}
 	}
@@ -843,7 +843,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 
 bool Collision::isPlayerAtExit(Player* p, Block* d)
 {
-	if(p->GetPosition().x > d->GetPosition().x - d->GetSize().x/2 && p->GetPosition().x < d->GetPosition().x + d->GetSize().x/2 && p->GetPosition().y + (p->GetSize().y/2 - d->GetSize().y/2) == d->GetPosition().y )
+	if(p->curAnim->sprite.GetPosition().x > d->GetPosition().x - d->GetSize().x/2 && p->curAnim->sprite.GetPosition().x < d->GetPosition().x + d->GetSize().x/2 && p->curAnim->sprite.GetPosition().y + (p->curAnim->sprite.GetSize().y/2 - d->GetSize().y/2) == d->GetPosition().y )
 	{
 		return true;
 	}

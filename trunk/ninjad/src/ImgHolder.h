@@ -21,6 +21,7 @@ public:
 	Image** maps;
 	Image* colorCode;
 	Image* plyRun;
+	Image* plyIdle;
 	Image* pauseScreen;
 	Image* icon;
 	Image* ninSlide;

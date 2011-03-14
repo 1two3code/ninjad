@@ -5,13 +5,16 @@ Player::Player(Vector2i pos)
 	hand = new Sprite();
 	hand->SetImage(*ImgHolder::getInst()->hand);
 
+	this->curAnim = NULL;
+	this->runAnim = new Animation(ImgHolder::getInst()->plyRun, 4, 32, 32, 2, true, true);
+	this->idleAnim = new Animation(ImgHolder::getInst()->plyIdle, 1, 32, 32, 1, true, false);
+	this->jumpAnim = new Animation(ImgHolder::getInst()->plyRun, 1, 32, 32, 1, true, false);
+
 	precollides=false;
 	input = &InputHandler::getInstance();
-	setAnimFrame(0);
 	setSpeedX(6);
 	setSpeedY(0);
 	setAccel(0);
-	animTimer=0;
 	this->setBugMode(false);
 	this->setGrounded(true);
 	nextToWall=false;
@@ -21,18 +24,18 @@ Player::Player(Vector2i pos)
 	setSizeX(16);
 	setSizeY(26);
 	
-	SetImage(*ImgHolder::getInst()->plyRun);
+	this->curAnim = this->idleAnim;
 
 	//SetSubRect(IntRect(0,0,24,24));
-	SetPosition(80+pos.x,144+pos.y); //5x17
-	setPosX(this->GetPosition().x);
-	setPosY(this->GetPosition().y + (this->GetSize().y - this->getSizeY())/2);
+	this->curAnim->sprite.SetPosition(80+pos.x,144+pos.y); //5x17
+	setPosX(this->curAnim->sprite.GetPosition().x);
+	setPosY(this->curAnim->sprite.GetPosition().y + (this->curAnim->sprite.GetSize().y - this->getSizeY())/2);
 
-	this->SetCenter(1.5*getSizeX(), GetSize().y/2);
+	this->curAnim->sprite.SetCenter(1.5*getSizeX(), this->curAnim->sprite.GetSize().y/2);
 	//this->SetRotation(90);
 	
 	//SetCenter(0,0);
-	input = &InputHandler::getInstance();
+	input = &InputHandler::getInstance(); //varför?
 }
 
 Player::~Player()
@@ -41,31 +44,33 @@ Player::~Player()
 
 void Player::update(RenderWindow* wnd)
 {
-	hand->SetPosition(Player::GetPosition().x,Player::GetPosition().y);
-	int f = getAnimFrame();
+	hand->SetPosition(this->curAnim->sprite.GetPosition().x+6,this->curAnim->sprite.GetPosition().y-4);
 	if(input->isPressRight(wnd) && !input->isPressLeft(wnd) && !hitRight)
 	{
-			Move((float)getSpeedX()*1, (float)getSpeedY()*0);
+		this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+		this->curAnim = this->runAnim;
+		this->curAnim->sprite.FlipX(false);
+		this->curAnim->sprite.Move((float)getSpeedX()*1, (float)getSpeedY()*0);
 			if(grounded)
 				this->speedx=6;
 			else
 				this->speedx=4;
 			direction=true;
-			setPosX(this->GetPosition().x);
-			setPosY(this->GetPosition().y + (this->GetSize().y - this->getSizeY())/2);
+			setPosX(this->curAnim->sprite.GetPosition().x);
+			setPosY(this->curAnim->sprite.GetPosition().y + (this->curAnim->sprite.GetSize().y - this->getSizeY())/2);
 	}
 	if(input->isPressLeft(wnd) && !input->isPressRight(wnd) && !hitLeft)
 	{
-			Move((float)getSpeedX()*-1, (float)getSpeedY()*0);
+			this->curAnim->sprite.Move((float)getSpeedX()*-1, (float)getSpeedY()*0);
 			if(grounded)
 				this->speedx=6;
 			else
 				this->speedx=4;
 			direction=false;
-			setPosX(this->GetPosition().x);
-			setPosY(this->GetPosition().y + (this->GetSize().y - this->getSizeY())/2);
+			setPosX(this->curAnim->sprite.GetPosition().x);
+			setPosY(this->curAnim->sprite.GetPosition().y + (this->curAnim->sprite.GetSize().y - this->getSizeY())/2);
 	}
-	Move((float)0, (float)getSpeedY());
+	this->curAnim->sprite.Move((float)0, (float)getSpeedY());
 	if(input->isPressJump(wnd) && grounded)
 	{
 		setSpeedX(4);
@@ -78,15 +83,7 @@ void Player::update(RenderWindow* wnd)
 	setSpeedY(getSpeedY()+getAccel());
 	if(input->isPressClick(wnd))
 	{}//släng ut block
-	if(animTimer==0)
-	{
-		SetSubRect(IntRect(f*32, 0, f*32+32, 32));
-		f++;
-		f %= 4;
-		setAnimFrame(f);
-	}
-	animTimer++;
-	animTimer %= 2;
+	this->curAnim->Update();
 	//if(bugmode) cin.get();
 }
 
@@ -94,15 +91,15 @@ void Player::testmove(RenderWindow* wnd)
 {
 	if(input->isPressRight(wnd) && !input->isPressLeft(wnd))
 	{
-		Move((float)getSpeedX()*1, (float)getSpeedY()*0);
-		setPosX(this->GetPosition().x);
-		setPosY(this->GetPosition().y + (this->GetSize().y - this->getSizeY())/2);
+		this->curAnim->sprite.Move((float)getSpeedX()*1, (float)getSpeedY()*0);
+		setPosX(this->curAnim->sprite.GetPosition().x);
+		setPosY(this->curAnim->sprite.GetPosition().y + (this->curAnim->sprite.GetSize().y - this->getSizeY())/2);
 	}
 	if(input->isPressLeft(wnd) && !input->isPressRight(wnd))
 	{
-		Move((float)getSpeedX()*-1, (float)getSpeedY()*0);
-		setPosX(this->GetPosition().x);
-		setPosY(this->GetPosition().y + (this->GetSize().y - this->getSizeY())/2);
+		this->curAnim->sprite.Move((float)getSpeedX()*-1, (float)getSpeedY()*0);
+		setPosX(this->curAnim->sprite.GetPosition().x);
+		setPosY(this->curAnim->sprite.GetPosition().y + (this->curAnim->sprite.GetSize().y - this->getSizeY())/2);
 	}
 	if(input->isPressClick(wnd))
 	{}//släng ut block
@@ -110,31 +107,31 @@ void Player::testmove(RenderWindow* wnd)
 
 void Player::testmoveY(RenderWindow* wnd)
 {
-	Move(0, (float)getSpeedY());
-	setPosX(this->GetPosition().x);
-	setPosY(this->GetPosition().y + (this->GetSize().y - this->getSizeY())/2);
+	this->curAnim->sprite.Move(0, (float)getSpeedY());
+	setPosX(this->curAnim->sprite.GetPosition().x);
+	setPosY(this->curAnim->sprite.GetPosition().y + (this->curAnim->sprite.GetSize().y - this->getSizeY())/2);
 }
 
 void Player::retraceY(RenderWindow* wnd)
 {
-	Move(0, -(float)getSpeedY());
-	setPosX(this->GetPosition().x);
-	setPosY(this->GetPosition().y + (this->GetSize().y - this->getSizeY())/2);
+	this->curAnim->sprite.Move(0, -(float)getSpeedY());
+	setPosX(this->curAnim->sprite.GetPosition().x);
+	setPosY(this->curAnim->sprite.GetPosition().y + (this->curAnim->sprite.GetSize().y - this->getSizeY())/2);
 }
 
 void Player::retrace(RenderWindow* wnd)
 {
 	if(input->isPressRight(wnd)&& !input->isPressLeft(wnd))
 	{
-		Move(-(float)getSpeedX()*1, -(float)getSpeedY()*0);
-		setPosX(this->GetPosition().x);
-		setPosY(this->GetPosition().y + (this->GetSize().y - this->getSizeY())/2);
+		this->curAnim->sprite.Move(-(float)getSpeedX()*1, -(float)getSpeedY()*0);
+		setPosX(this->curAnim->sprite.GetPosition().x);
+		setPosY(this->curAnim->sprite.GetPosition().y + (this->curAnim->sprite.GetSize().y - this->getSizeY())/2);
 	}
 	if(input->isPressLeft(wnd) && !input->isPressRight(wnd))
 	{
-		Move(-(float)getSpeedX()*-1, -(float)getSpeedY()*0);
-		setPosX(this->GetPosition().x);
-		setPosY(this->GetPosition().y + (this->GetSize().y - this->getSizeY())/2);
+		this->curAnim->sprite.Move(-(float)getSpeedX()*-1, -(float)getSpeedY()*0);
+		setPosX(this->curAnim->sprite.GetPosition().x);
+		setPosY(this->curAnim->sprite.GetPosition().y + (this->curAnim->sprite.GetSize().y - this->getSizeY())/2);
 	}
 	if(input->isPressClick(wnd))
 	{}//släng ut block
@@ -144,29 +141,35 @@ void Player::updateSprite(RenderWindow* wnd)
 {
 	if(input->isPressRight(wnd) && !input->isPressLeft(wnd))
 	{
-		FlipX(true);
-		this->SetCenter(1.5*getSizeX(), GetSize().y/2);
+		this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+		this->curAnim = this->runAnim;
+		this->curAnim->sprite.FlipX(true);
+		this->curAnim->sprite.SetCenter(1.5*getSizeX(), this->curAnim->sprite.GetSize().y/2);
 	}
-	if(input->isPressLeft(wnd) && !input->isPressRight(wnd))
+	else if(input->isPressLeft(wnd) && !input->isPressRight(wnd))
 	{
-		FlipX(false);
-		this->SetCenter(0.5*getSizeX(), GetSize().y/2);
+		this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+		this->curAnim = this->runAnim;
+		this->curAnim->sprite.FlipX(false);
+		this->curAnim->sprite.SetCenter(0.5*getSizeX(), this->curAnim->sprite.GetSize().y/2);
 	}
-	if(input->isPressJump(wnd))
-	{}	//jump animation
-	if(input->isPressClick(wnd))
+	else if(input->isPressJump(wnd))
+	{
+		this->jumpAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+		this->jumpAnim->sprite.FlipX(!this->curAnim->sprite.isFlippedX());
+		this->curAnim = this->jumpAnim;
+	}	//jump animation
+	else if(input->isPressClick(wnd))
 	{} //block animation
+	else
+	{
+		this->idleAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+		this->idleAnim->sprite.FlipX(!this->curAnim->sprite.isFlippedX());
+		this->curAnim = this->idleAnim;
+		this->curAnim->sprite.SetCenter(0.5*getSizeX(), this->curAnim->sprite.GetSize().y/2);
+	}
 }
 
-int Player::getAnimFrame()
-{
-	return animFrame;
-}
-
-void Player::setAnimFrame(int f)
-{
-	animFrame = f;
-}
 
 int Player::getSpeedX()
 {

@@ -52,6 +52,10 @@ ImgHolder::ImgHolder()
 	plyRun->LoadFromFile("./data/sprites/game/ply_run.png");
 	plyRun->SetSmooth(false);
 
+	plyIdle = new Image();
+	plyIdle->LoadFromFile("./data/sprites/game/ply_idle.png");
+	plyIdle->SetSmooth(false);
+
 	hand = new Image();
 	hand->LoadFromFile("./data/sprites/game/hand.png");
 
@@ -111,6 +115,7 @@ ImgHolder::~ImgHolder()
 	delete ninArm;
 	delete colorCode;
 	delete plyRun;
+	delete plyIdle;
 	delete hand;
 	delete pauseScreen;
 	delete icon;
