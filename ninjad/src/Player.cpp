@@ -7,8 +7,11 @@ Player::Player(Vector2i pos)
 
 	this->curAnim = NULL;
 	this->runAnim = new Animation(ImgHolder::getInst()->plyRun, 4, 32, 32, 2, true, true);
+	this->runAnim->sprite.SetCenter(16,16);
 	this->idleAnim = new Animation(ImgHolder::getInst()->plyIdle, 1, 32, 32, 1, true, false);
+	this->idleAnim->sprite.SetCenter(16,16);
 	this->jumpAnim = new Animation(ImgHolder::getInst()->plyRun, 1, 32, 32, 1, true, false);
+	this->jumpAnim->sprite.SetCenter(16,16);
 
 	precollides=false;
 	input = &InputHandler::getInstance();
@@ -139,21 +142,21 @@ void Player::retrace(RenderWindow* wnd)
 
 void Player::updateSprite(RenderWindow* wnd)
 {
-	if(input->isPressRight(wnd) && !input->isPressLeft(wnd))
+	if(input->isPressRight(wnd) && !input->isPressLeft(wnd) && this->grounded)
 	{
 		this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
 		this->curAnim = this->runAnim;
 		this->curAnim->sprite.FlipX(true);
 		this->curAnim->sprite.SetCenter(1.5*getSizeX(), this->curAnim->sprite.GetSize().y/2);
 	}
-	else if(input->isPressLeft(wnd) && !input->isPressRight(wnd))
+	else if(input->isPressLeft(wnd) && !input->isPressRight(wnd) && this->grounded)
 	{
 		this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
 		this->curAnim = this->runAnim;
 		this->curAnim->sprite.FlipX(false);
 		this->curAnim->sprite.SetCenter(0.5*getSizeX(), this->curAnim->sprite.GetSize().y/2);
 	}
-	else if(input->isPressJump(wnd))
+	else if(!this->grounded)
 	{
 		this->jumpAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
 		this->jumpAnim->sprite.FlipX(!this->curAnim->sprite.isFlippedX());
