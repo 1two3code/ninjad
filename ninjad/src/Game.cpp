@@ -213,8 +213,8 @@ bool Game::eventHandler(Event e)
 
 			Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
 			bool add=true;
-			float x = mousePos.x - player->GetPosition().x;
-			float y = mousePos.y - player->GetPosition().y; 
+			float x = mousePos.x - player->curAnim->sprite.GetPosition().x;
+			float y = mousePos.y - player->curAnim->sprite.GetPosition().y; 
 			float magnitude = sqrt((x*x)+(y*y));
 			x /= magnitude;
 			y /= magnitude;
@@ -234,7 +234,7 @@ bool Game::eventHandler(Event e)
 						add= true;
 				}
 				if(add)
-			*/		mainLvl->addBlock(1,player->GetPosition().x+(32*x), player->GetPosition().y+(32*y), 0, player,ninjhold);
+			*/		mainLvl->addBlock(1,player->curAnim->sprite.GetPosition().x+(32*x), player->curAnim->sprite.GetPosition().y+(32*y), 0, player,ninjhold);
 			//}
 			
 		}
@@ -251,7 +251,7 @@ bool Game::eventHandler(Event e)
 
 		sf::Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
 		float angle;	//kan användas om vi ska ha en sprite som pekar där du siktar med musen
-		angle = 57.3065f * atan2(mousePos.y - player->GetPosition().y, mousePos.x - player->GetPosition().x);
+		angle = 57.3065f * atan2(mousePos.y - player->curAnim->sprite.GetPosition().y, mousePos.x - player->curAnim->sprite.GetPosition().x);
 		player->getHand()->SetRotation(360-angle);
 	}
 	if (e.Type == Event::Closed)
@@ -272,7 +272,7 @@ void Game::render()
 	for(int i=0;i<ninjhold->getNr();i++)
 		if(ninjhold->getNinjas(i)->getDrawn()==true)
 			mainWnd->Draw(ninjhold->getNinjas(i)->curAnim->sprite);
-	mainWnd->Draw(*player);
+	mainWnd->Draw(player->curAnim->sprite);
 	mainWnd->Draw(*player->getHand());
 
 	if(paused)

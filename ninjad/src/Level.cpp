@@ -259,13 +259,13 @@ int Level::addBlock(int type, int posX, int posY, int rot,Player* player, NinjaH
 								occupied=true;
 								for(int i=0;i<ninjhold->getNr() && occupied==true;i++){
 									occupied=false;
-								if(ninjhold->getNinjas(i)->curAnim->sprite.GetPosition().x + ninjhold->getNinjas(i)->curAnim->sprite.GetSize().x/2 <= posX-player->GetSize().x/2)
+								if(ninjhold->getNinjas(i)->curAnim->sprite.GetPosition().x + ninjhold->getNinjas(i)->curAnim->sprite.GetSize().x/2 <= posX-player->curAnim->sprite.GetSize().x/2)
 									occupied=true;
-								if(ninjhold->getNinjas(i)->curAnim->sprite.GetPosition().x - ninjhold->getNinjas(i)->curAnim->sprite.GetSize().x/2 >= posX+player->GetSize().x/2)
+								if(ninjhold->getNinjas(i)->curAnim->sprite.GetPosition().x - ninjhold->getNinjas(i)->curAnim->sprite.GetSize().x/2 >= posX+player->curAnim->sprite.GetSize().x/2)
 									occupied=true;
-								if(ninjhold->getNinjas(i)->curAnim->sprite.GetPosition().y + ninjhold->getNinjas(i)->curAnim->sprite.GetSize().y/2 <= posY-player->GetSize().y/2)				
+								if(ninjhold->getNinjas(i)->curAnim->sprite.GetPosition().y + ninjhold->getNinjas(i)->curAnim->sprite.GetSize().y/2 <= posY-player->curAnim->sprite.GetSize().y/2)				
 									occupied=true;
-								if((ninjhold->getNinjas(i)->curAnim->sprite.GetPosition().y - ninjhold->getNinjas(i)->curAnim->sprite.GetSize().y/2 >= posY+player->GetSize().y/2)	)		
+								if((ninjhold->getNinjas(i)->curAnim->sprite.GetPosition().y - ninjhold->getNinjas(i)->curAnim->sprite.GetSize().y/2 >= posY+player->curAnim->sprite.GetSize().y/2)	)		
 									occupied=true;
 								
 							}

@@ -3,18 +3,17 @@
 #include <SFML/Graphics.hpp>
 #include "ImgHolder.h"
 #include "InputHandler.h"
+#include "Animation.h"
 #include <iostream>
 using namespace std;
 
-class Player : public Sprite
+class Player
 {
 private:
 	InputHandler* input;
-	int animFrame;
 	int speedx;
 	int speedy;
 	int acceleration;
-	int animTimer;
 	int blocks;
 	Sprite* hand;
 	bool bugmode;
@@ -30,10 +29,13 @@ private:
 	bool precollides;
 
 public:
+	Animation* curAnim;
+	Animation* runAnim;
+	Animation* idleAnim;
+	Animation* jumpAnim;
+
 	Player(Vector2i pos);
 	~Player();
-	void setAnimFrame(int f);
-	int getAnimFrame();
 	void setSpeedX(int s);
 	int getSpeedX();
 	void setSpeedY(int s);
