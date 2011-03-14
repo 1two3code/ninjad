@@ -22,6 +22,7 @@ public:
 	Image* colorCode;
 	Image* plyRun;
 	Image* plyIdle;
+	Image* plyJump;
 	Image* pauseScreen;
 	Image* icon;
 	Image* ninSlide;

@@ -56,8 +56,13 @@ ImgHolder::ImgHolder()
 	plyIdle->LoadFromFile("./data/sprites/game/ply_idle.png");
 	plyIdle->SetSmooth(false);
 
+	plyJump = new Image();
+	plyJump->LoadFromFile("./data/sprites/game/ply_jump.png");
+	plyJump->SetSmooth(false);
+
 	hand = new Image();
 	hand->LoadFromFile("./data/sprites/game/hand.png");
+	plyJump->SetSmooth(false);
 
 	pauseScreen = new Image();
 	pauseScreen->LoadFromFile("./data/sprites/game//pauseScreen.png");

@@ -259,7 +259,8 @@ bool Game::eventHandler(Event e)
 		mainWnd->Close();
 		return false;
 	}
-
+	Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
+	player->setDirection(!(player->curAnim->sprite.GetPosition().x > mousePos.x));
 	return true;
 }
 

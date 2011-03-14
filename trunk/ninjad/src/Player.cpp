@@ -4,13 +4,14 @@ Player::Player(Vector2i pos)
 {
 	hand = new Sprite();
 	hand->SetImage(*ImgHolder::getInst()->hand);
+	hand->SetCenter(9,0);
 
 	this->curAnim = NULL;
 	this->runAnim = new Animation(ImgHolder::getInst()->plyRun, 4, 32, 32, 2, true, true);
 	this->runAnim->sprite.SetCenter(16,16);
 	this->idleAnim = new Animation(ImgHolder::getInst()->plyIdle, 1, 32, 32, 1, true, false);
 	this->idleAnim->sprite.SetCenter(16,16);
-	this->jumpAnim = new Animation(ImgHolder::getInst()->plyRun, 1, 32, 32, 1, true, false);
+	this->jumpAnim = new Animation(ImgHolder::getInst()->plyJump, 1, 32, 32, 1, true, false);
 	this->jumpAnim->sprite.SetCenter(16,16);
 
 	precollides=false;
@@ -47,18 +48,17 @@ Player::~Player()
 
 void Player::update(RenderWindow* wnd)
 {
-	hand->SetPosition(this->curAnim->sprite.GetPosition().x+6,this->curAnim->sprite.GetPosition().y-4);
 	if(input->isPressRight(wnd) && !input->isPressLeft(wnd) && !hitRight)
 	{
 		this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
 		this->curAnim = this->runAnim;
-		this->curAnim->sprite.FlipX(false);
+
 		this->curAnim->sprite.Move((float)getSpeedX()*1, (float)getSpeedY()*0);
 			if(grounded)
 				this->speedx=6;
 			else
 				this->speedx=4;
-			direction=true;
+			//direction=true;
 			setPosX(this->curAnim->sprite.GetPosition().x);
 			setPosY(this->curAnim->sprite.GetPosition().y + (this->curAnim->sprite.GetSize().y - this->getSizeY())/2);
 	}
@@ -69,7 +69,7 @@ void Player::update(RenderWindow* wnd)
 				this->speedx=6;
 			else
 				this->speedx=4;
-			direction=false;
+			//direction=false;
 			setPosX(this->curAnim->sprite.GetPosition().x);
 			setPosY(this->curAnim->sprite.GetPosition().y + (this->curAnim->sprite.GetSize().y - this->getSizeY())/2);
 	}
@@ -88,6 +88,10 @@ void Player::update(RenderWindow* wnd)
 	{}//släng ut block
 	this->curAnim->Update();
 	//if(bugmode) cin.get();
+	hand->SetPosition(this->curAnim->sprite.GetPosition().x-1,this->curAnim->sprite.GetPosition().y-4);
+	if(!direction) hand->SetCenter(9,9);
+	if(direction) hand->SetCenter(9,0);
+	hand->FlipY(!direction);
 }
 
 void Player::testmove(RenderWindow* wnd)
@@ -146,30 +150,29 @@ void Player::updateSprite(RenderWindow* wnd)
 	{
 		this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
 		this->curAnim = this->runAnim;
-		this->curAnim->sprite.FlipX(true);
+		this->curAnim->sprite.FlipX(direction);
 		this->curAnim->sprite.SetCenter(this->curAnim->sprite.GetSize().x/2, this->curAnim->sprite.GetSize().y/2);
 	}
 	else if(input->isPressLeft(wnd) && !input->isPressRight(wnd) && this->grounded)
 	{
 		this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
 		this->curAnim = this->runAnim;
-		this->curAnim->sprite.FlipX(false);
+		this->curAnim->sprite.FlipX(direction);
 		this->curAnim->sprite.SetCenter(this->curAnim->sprite.GetSize().x/2, this->curAnim->sprite.GetSize().y/2);
 	}
 	else if(!this->grounded)
 	{
 		this->jumpAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
-		this->jumpAnim->sprite.FlipX(!this->curAnim->sprite.isFlippedX());
+		this->jumpAnim->sprite.FlipX(direction);
 		this->curAnim = this->jumpAnim;
 	}	//jump animation
-	else if(input->isPressClick(wnd))
-	{} //block animation
+	//else if(input->isPressClick(wnd))
+	//{} //block animation
 	else
 	{
 		this->idleAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
-		this->idleAnim->sprite.FlipX(!this->curAnim->sprite.isFlippedX());
+		this->idleAnim->sprite.FlipX(direction);
 		this->curAnim = this->idleAnim;
-		this->curAnim->sprite.SetCenter(this->curAnim->sprite.GetSize().x/2, this->curAnim->sprite.GetSize().y/2);
 	}
 }
 
@@ -292,4 +295,9 @@ void Player::setPreCollides(bool val)
 bool Player::getPreCollides()
 {
 	return precollides;
+}
+
+void Player::setDirection(bool dir)
+{
+	this->direction = dir;
 }
