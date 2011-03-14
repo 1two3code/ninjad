@@ -34,7 +34,7 @@ Player::Player(Vector2i pos)
 	setPosX(this->curAnim->sprite.GetPosition().x);
 	setPosY(this->curAnim->sprite.GetPosition().y + (this->curAnim->sprite.GetSize().y - this->getSizeY())/2);
 
-	this->curAnim->sprite.SetCenter(1.5*getSizeX(), this->curAnim->sprite.GetSize().y/2);
+	this->curAnim->sprite.SetCenter(this->curAnim->sprite.GetSize().x/2, this->curAnim->sprite.GetSize().y/2);
 	//this->SetRotation(90);
 	
 	//SetCenter(0,0);
@@ -147,14 +147,14 @@ void Player::updateSprite(RenderWindow* wnd)
 		this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
 		this->curAnim = this->runAnim;
 		this->curAnim->sprite.FlipX(true);
-		this->curAnim->sprite.SetCenter(1.5*getSizeX(), this->curAnim->sprite.GetSize().y/2);
+		this->curAnim->sprite.SetCenter(this->curAnim->sprite.GetSize().x/2, this->curAnim->sprite.GetSize().y/2);
 	}
 	else if(input->isPressLeft(wnd) && !input->isPressRight(wnd) && this->grounded)
 	{
 		this->runAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
 		this->curAnim = this->runAnim;
 		this->curAnim->sprite.FlipX(false);
-		this->curAnim->sprite.SetCenter(0.5*getSizeX(), this->curAnim->sprite.GetSize().y/2);
+		this->curAnim->sprite.SetCenter(this->curAnim->sprite.GetSize().x/2, this->curAnim->sprite.GetSize().y/2);
 	}
 	else if(!this->grounded)
 	{
@@ -169,7 +169,7 @@ void Player::updateSprite(RenderWindow* wnd)
 		this->idleAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
 		this->idleAnim->sprite.FlipX(!this->curAnim->sprite.isFlippedX());
 		this->curAnim = this->idleAnim;
-		this->curAnim->sprite.SetCenter(0.5*getSizeX(), this->curAnim->sprite.GetSize().y/2);
+		this->curAnim->sprite.SetCenter(this->curAnim->sprite.GetSize().x/2, this->curAnim->sprite.GetSize().y/2);
 	}
 }
 
