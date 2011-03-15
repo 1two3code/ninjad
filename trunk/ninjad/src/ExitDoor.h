@@ -8,6 +8,8 @@ class ExitDoor: public Block
 private:
 public:
 	ExitDoor();
+	void Update();
+	void Animate();
 	~ExitDoor();
 };
 

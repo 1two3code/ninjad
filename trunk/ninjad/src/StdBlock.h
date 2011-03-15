@@ -8,6 +8,8 @@ private:
 	
 public:
 	StdBlock();
+	void Update();
+	void Animate();
 	~StdBlock();
 };
 

@@ -20,7 +20,7 @@ void Block::SetRotation(int rot)
 	//std::cout << "ROTERAD" << std::endl;
 
 	
-	Sprite::SetRotation(rot);
+//	Sprite::SetRotation(rot);
 }
 
 

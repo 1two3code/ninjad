@@ -29,9 +29,9 @@ void Level::render(RenderWindow* rnd)
 {
 	for(int i= 0; i < nBlocks; i++)
 	{
-		if(block[i]->GetPosition().x > 96 && block[i]->GetPosition().x < 608 && block[i]->GetPosition().y > 160 && block[i]->GetPosition().y < 672)
-		//if(block[i]->GetPosition().x > 512)
-			rnd->Draw(*block[i]);
+		if(block[i]->curAnim->sprite.GetPosition().x > 96 && block[i]->curAnim->sprite.GetPosition().x < 608 && block[i]->curAnim->sprite.GetPosition().y > 160 && block[i]->curAnim->sprite.GetPosition().y < 672)
+		//if(block[i]->curAnim->sprite.GetPosition().x > 512)
+		rnd->Draw(block[i]->curAnim->sprite);
 	}
 }
 
@@ -67,7 +67,7 @@ void Level::generateBlocks(int j)
 				if(blockType == 3)
 					entryDoor = tempBlock;
 				block[nBlocks] = tempBlock;
-				block[nBlocks]->SetPosition(64+16+i*32.0f, 128+16+j*32.0f);
+				block[nBlocks]->curAnim->sprite.SetPosition(64+16+i*32.0f, 128+16+j*32.0f);
 				nBlocks++;
 				tempBlock = NULL;
 
@@ -231,7 +231,7 @@ int Level::addBlock(int type, int posX, int posY, int rot,Player* player, NinjaH
 				if(type == 3)
 					entryDoor = tempBlock;
 				block[nBlocks] = tempBlock;
-				block[nBlocks]->SetPosition(16+x*32.0f, 16+y*32.0f); //lägger till nytt block
+				block[nBlocks]->curAnim->sprite.SetPosition(16+x*32.0f, 16+y*32.0f); //lägger till nytt block
 				if(player->getAccel()<=0)
 				{
 				
@@ -239,7 +239,7 @@ int Level::addBlock(int type, int posX, int posY, int rot,Player* player, NinjaH
 				for(int i=0;i<nBlocks;i++)
 				{
 
-						if(tempBlock->GetPosition()==block[i]->GetPosition()) //ifall redan finns block där du klickar och om det är av samma typ
+						if(tempBlock->curAnim->sprite.GetPosition()==block[i]->curAnim->sprite.GetPosition()) //ifall redan finns block där du klickar och om det är av samma typ
 						{														// som det du försöker sätta ut, ta bort det blocket
 							if(typeid(*tempBlock)==typeid(*block[i]))
 								{

@@ -8,6 +8,8 @@ class SpringBlock: public Block
 private:
 public:
 	SpringBlock();
+	void Update();
+	void Animate();
 	~SpringBlock();
 };
 

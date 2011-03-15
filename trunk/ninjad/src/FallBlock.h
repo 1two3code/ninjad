@@ -7,6 +7,8 @@ class FallBlock: public Block
 private:
 public:
 	FallBlock();
+	void Update();
+	void Animate();
 	~FallBlock();
 };
 

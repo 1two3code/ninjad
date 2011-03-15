@@ -8,6 +8,8 @@ class JumpBlock: public Block
 private:
 public:
 	JumpBlock();
+	void Update();
+	void Animate();
 	~JumpBlock();
 };
 
