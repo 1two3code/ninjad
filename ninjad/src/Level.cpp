@@ -31,7 +31,10 @@ void Level::render(RenderWindow* rnd)
 	{
 		if(block[i]->curAnim->sprite.GetPosition().x > 96 && block[i]->curAnim->sprite.GetPosition().x < 608 && block[i]->curAnim->sprite.GetPosition().y > 160 && block[i]->curAnim->sprite.GetPosition().y < 672)
 		//if(block[i]->curAnim->sprite.GetPosition().x > 512)
+		{
+		block[i]->Update();
 		rnd->Draw(block[i]->curAnim->sprite);
+		}
 	}
 }
 

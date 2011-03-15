@@ -202,6 +202,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 				{
 				savedstate=ninja->getState();
 				ninja->setState(9);
+				block[i]->Animate();
 			}
 		}
 		break;
@@ -212,6 +213,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 				{
 				savedstate=ninja->getState();
 				ninja->setState(9);
+				block[i]->Animate();
 			}
 		}
 		break;
@@ -222,6 +224,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 				{
 				savedstate=ninja->getState();
 				ninja->setState(9);
+				block[i]->Animate();
 			}
 		}
 		break;
@@ -232,6 +235,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 				{
 				savedstate=ninja->getState();
 				ninja->setState(9);
+				block[i]->Animate();
 			}
 		}
 		break;
@@ -242,6 +246,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 				{
 				savedstate=ninja->getState();
 				ninja->setState(9);
+				block[i]->Animate();
 			}
 		}
 		break;
@@ -252,6 +257,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 				{
 				savedstate=ninja->getState();
 				ninja->setState(9);
+				block[i]->Animate();
 			}
 		}
 		break;
@@ -262,6 +268,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 				{
 				savedstate=ninja->getState();
 				ninja->setState(9);
+				block[i]->Animate();
 			}
 		}
 		break;
@@ -272,6 +279,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				savedstate=ninja->getState();
 				ninja->setState(9);
+				block[i]->Animate();
 			}
 		}
 		break;
@@ -279,7 +287,10 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 		for(int i=0; i<nBlocks; i++)
 		{
 			if(ninja->curAnim->sprite.GetPosition().x == block[i]->curAnim->sprite.GetPosition().x && ninja->curAnim->sprite.GetPosition().y + (ninja->curAnim->sprite.GetSize().y/2 - block[i]->curAnim->sprite.GetSize().y/2) == block[i]->curAnim->sprite.GetPosition().y && typeid(*block[i]) == typeid(JumpBlock) && block[i]->curAnim->sprite.GetRotation()==ninja->curAnim->sprite.GetRotation())
+			{
 				ninja->setState(9);
+				block[i]->Animate();
+			}
 		}
 		break;
 	default:

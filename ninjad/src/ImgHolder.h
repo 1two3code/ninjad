@@ -17,6 +17,7 @@ public:
 	Image* buttons;
 	Image* arrows;
 	Image* blocks;
+	Image* blkSpringAct;
 	Image* ninRun;
 	Image** maps;
 	Image* colorCode;
