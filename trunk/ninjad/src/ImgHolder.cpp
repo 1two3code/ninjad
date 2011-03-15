@@ -25,6 +25,10 @@ ImgHolder::ImgHolder()
 	blocks->LoadFromFile("./data/sprites/game/Blocks.png");
 	blocks->SetSmooth(false);
 
+	blkSpringAct = new Image();
+	blkSpringAct->LoadFromFile("./data/sprites/game/blk_spring.png");
+	blkSpringAct->SetSmooth(false);
+
 	ninRun = new Image();
 	ninRun->LoadFromFile("./data/sprites/game/nin_run.png");
 	ninRun->SetSmooth(false);
@@ -113,6 +117,7 @@ ImgHolder::~ImgHolder()
 	delete hud;
 	delete buttons;
 	delete blocks;
+	delete blkSpringAct;
 	delete ninRun;
 	delete ninSlide;
 	delete ninFall;

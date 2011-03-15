@@ -19,6 +19,8 @@ private:
 
 
 public:
+	bool done;
+
 	sf::Sprite sprite;
 
 	Animation();

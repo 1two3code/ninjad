@@ -15,7 +15,7 @@ StdNinja::StdNinja(int s)
         //FlipX(true);
 		this->curAnim = NULL;
 		this->runAnim = new Animation(ImgHolder::getInst()->ninRun, 4, 16, 16, 2, true, true);
-		this->slideAnim = new Animation(ImgHolder::getInst()->ninSlide, 1, 16, 16, 1, true, false);
+		this->slideAnim = new Animation(ImgHolder::getInst()->ninSlide, 1, 16, 16, 1, true, true);
 		this->fallAnim = new Animation(ImgHolder::getInst()->ninFall, 8, 16, 16, 2, true, true);
 		this->climbAnim = new Animation(ImgHolder::getInst()->ninClimb, 4, 16, 16, 2, true, true);
 		this->armAnim = new Animation(ImgHolder::getInst()->ninArm, 4, 16, 16, 2, true, true);
@@ -107,7 +107,7 @@ void StdNinja::updateSprite()
 				if(this->curAnim)this->slideAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
 				this->curAnim = this->slideAnim;
                 this->curAnim->MirX(false);
-				this->curAnim->MirY(false);
+				//this->curAnim->MirY(false);
                 //this->curAnim->sprite.SetRotation(-90);
                 setDirX(0);
                 setDirY(1);
