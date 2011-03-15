@@ -184,7 +184,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				ninja->setDrawn(false);
 				ninja->setComplete(true);
-				SndHolder::getInst()->sndYay.Play();				
+				SndHolder::getInst()->sndYay.Play();
 			}
 		}
 		break;

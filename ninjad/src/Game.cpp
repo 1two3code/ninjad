@@ -239,8 +239,8 @@ bool Game::eventHandler(Event e)
 			
 		}
 	}
-	if (e.Type == Event::MouseMoved)
-	{
+	//if (e.Type == Event::MouseMoved)
+	//{
 		if((InputHandler::getInstance().getMousePosX(mainWnd) > 96 && InputHandler::getInstance().getMousePosX(mainWnd) < 608 
 			&& InputHandler::getInstance().getMousePosY(mainWnd) > 160 && InputHandler::getInstance().getMousePosY(mainWnd) < 672))
 		{
@@ -253,13 +253,13 @@ bool Game::eventHandler(Event e)
 		float angle;	//kan användas om vi ska ha en sprite som pekar där du siktar med musen
 		angle = 57.3065f * atan2(mousePos.y - player->curAnim->sprite.GetPosition().y, mousePos.x - player->curAnim->sprite.GetPosition().x);
 		player->getHand()->SetRotation(360-angle);
-	}
+	//}
 	if (e.Type == Event::Closed)
 	{
 		mainWnd->Close();
 		return false;
 	}
-	Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
+	//Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
 	player->setDirection(!(player->curAnim->sprite.GetPosition().x > mousePos.x));
 	return true;
 }
@@ -317,7 +317,7 @@ void Game::showLevelComplete()
 	{
 		while (mainWnd->GetEvent(e))
 		{
-			if(e.Type == Event::MouseButtonReleased)		//För vilket event som helst förrutom mousemove, stoppa och gå vidare
+			if(e.Type == Event::MouseButtonReleased)		//För vilket event som helst förrutom mousemove, stoppa och gå vidare (MouseButtonRelease menar du väl?  //Erik J)
 				stop = true;
 		}
 
