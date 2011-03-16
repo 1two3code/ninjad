@@ -4,6 +4,7 @@
 #include <SFML\Graphics.hpp>
 #include "ImgHolder.h"
 #include "Animation.h"
+#include "SndHolder.h"
 
 enum blocktype{eSolid, eStandard, eSpring, eJump, eEntry, eExit};
 

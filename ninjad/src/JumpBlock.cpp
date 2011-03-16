@@ -36,6 +36,7 @@ void JumpBlock::Update()
 
 void JumpBlock::Animate()
 {
+	SndHolder::getInst()->sndSpring.Play();
 	this->activeAnim->Reset();
 	this->activeAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
 	this->curAnim = this->activeAnim;
