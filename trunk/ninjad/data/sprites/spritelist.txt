@@ -20,9 +20,9 @@ jumpb idle					OK	1
 
 -SENSEI-
 
-idle							1
-running							4
-jumping							1?
+idle						OK	1
+running						OK	4
+jumping						OK	1?
 
 -BUTTONS-
 
@@ -33,3 +33,9 @@ Time-						OK
 HowTo						OK
 Pause						OK
 Sound						OK
+Credits						OK
+
+-ETC-
+Howtoplay
+Congrats
+Creditsscreen

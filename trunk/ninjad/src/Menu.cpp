@@ -36,7 +36,7 @@ Menu::Menu()
 
 	howToPlayScreen = new Sprite();
 	howToPlayScreen->SetImage(*ImgHolder::getInst()->howToPlay);
-	howToPlayScreen->SetPosition(112, 80);
+	howToPlayScreen->SetPosition(0, 0);
 	howToPlay = false;
 
 

@@ -10,7 +10,11 @@ SndHolder::SndHolder()
 	yay.LoadFromFile("./data/audio/yay.wav");
 	sndYay.SetBuffer(yay);
 	sndYay.SetPitch(2.0f);
-	sndYay.SetVolume(30.0f);	
+	sndYay.SetVolume(30.0f);
+
+	spring.LoadFromFile("./data/audio/spring.wav");
+	sndSpring.SetBuffer(spring);
+
 }
 
 SndHolder::~SndHolder()

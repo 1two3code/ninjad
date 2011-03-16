@@ -13,9 +13,11 @@ private:
 public:
 	SoundBuffer click;
 	SoundBuffer yay;
+	SoundBuffer spring;
 
 	Sound sndClick;
 	Sound sndYay;
+	Sound sndSpring;
 
 	~SndHolder();
 	static SndHolder* getInst();
