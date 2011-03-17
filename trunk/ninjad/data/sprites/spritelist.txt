@@ -22,7 +22,7 @@ jumpb idle					OK	1
 
 idle						OK	1
 running						OK	4
-jumping						OK	1?
+jumping						OK	1
 
 -BUTTONS-
 
@@ -36,6 +36,6 @@ Sound						OK
 Credits						OK
 
 -ETC-
-Howtoplay
+Howtoplay					OK
 Congrats
 Creditsscreen

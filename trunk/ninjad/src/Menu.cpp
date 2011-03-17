@@ -108,14 +108,14 @@ void Menu::render()
 	
 	menuWnd->Draw(*background);	
 	menuWnd->Draw(*mapPreview);
-	menuWnd->Draw(*quitButton);
-	menuWnd->Draw(*htpButton);
 
 	for(int i = 0; i < 25; i ++)
 		menuWnd->Draw(*levelButtons[i]);
 	menuWnd->Draw(*numbers);
 	if(howToPlay)
 		menuWnd->Draw(*howToPlayScreen);
+	menuWnd->Draw(*quitButton);
+	menuWnd->Draw(*htpButton);
 
 	menuWnd->Display();
 }
@@ -237,6 +237,7 @@ void Menu::splashScreen()
 
 	bool splash = true;
 	Event e;
+
 	Sprite splashScreen;
 	splashScreen.SetImage(*ImgHolder::getInst()->splashScreen);
 	String str;

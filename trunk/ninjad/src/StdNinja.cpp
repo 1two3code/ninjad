@@ -161,7 +161,7 @@ void StdNinja::updateSprite()
 				this->curAnim = this->fallAnim;
                 setDirX(0);
                 setDirY(1);
-				setSpeed(4);
+				setSpeed(2);
                 break;
         case 9:         //flyger uppåt
 				if(this->curAnim)this->fallAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);

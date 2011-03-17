@@ -6,6 +6,7 @@
 #include <SFML\System.hpp>
 #include <SFML\Graphics.hpp>
 #include "SndHolder.h"
+#include "Animation.h"
 
 using namespace sf;
 
