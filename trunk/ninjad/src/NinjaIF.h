@@ -16,6 +16,8 @@ protected:
 	int nr;
 	bool drawn;
 	bool complete;
+	int speedY;
+	int count;
 
 public:
 	Animation *curAnim, *runAnim, *slideAnim, *fallAnim, *climbAnim, *armAnim;
@@ -45,6 +47,9 @@ public:
 
 	void setComplete(bool c);
 	bool getComplete();
+
+	void setSpeedY(int sy);
+	int getSpeedY();
 
 	virtual void update() = 0;
 	virtual void updateSprite() = 0;

@@ -9,6 +9,8 @@ StdNinja::StdNinja(int s)
         setSpeed(2);
         setDrawn(false);
         setComplete(false);
+		setSpeedY(0);
+		count=0;
 
         //SetSubRect(IntRect(0,0,16,16));
         //SetPosition(208,112);
@@ -35,11 +37,29 @@ StdNinja::~StdNinja()
 
 void StdNinja::update()
 {
-        if(active)
+        if(active && getState()!=10)
         {
 			this->curAnim->Update();
 			this->curAnim->sprite.Move((float)getSpeed()*getDirX(), (float)getSpeed()*getDirY());
         }
+		else if(active && getState()==10)
+		{
+			this->curAnim->Update();
+			this->curAnim->sprite.Move((float)getSpeed()*getDirX(), 0);
+			if(count==0)
+			{
+				this->curAnim->sprite.Move(0, (float)getSpeedY()*getDirX());
+				setSpeedY(getSpeedY()+1);
+			}
+
+			count++;
+			count= count%2;
+			if(getSpeedY()>8)
+			{
+				setState(6);
+				count=0;
+			}
+		}
 }
 
 void StdNinja::testmove()
@@ -150,7 +170,13 @@ void StdNinja::updateSprite()
                 setDirY(-1);
 				setSpeed(4);
                 break;
-        default:
+		case 10:		//Hoppar åt höger (trampolin)
+			if(this->curAnim)this->fallAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+				this->curAnim = this->fallAnim;
+				//setDirX(1);
+				setDirY(1);
+				setSpeed(8);
+				setSpeedY(-8);
                 break;
 		}
 }

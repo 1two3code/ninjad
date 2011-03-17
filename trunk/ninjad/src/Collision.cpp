@@ -296,6 +296,111 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 	default:
 		break;
 	}
+	
+	//Ska ninjan hoppa längdhopp?
+	switch(ninja->getState())
+	{
+	case 0:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().x == block[i]->curAnim->sprite.GetPosition().x && ninja->curAnim->sprite.GetPosition().y + (ninja->curAnim->sprite.GetSize().y/2 - block[i]->curAnim->sprite.GetSize().y/2) == block[i]->curAnim->sprite.GetPosition().y && typeid(*block[i]) == typeid(SpringBlock) && block[i]->curAnim->sprite.GetRotation()==ninja->curAnim->sprite.GetRotation())
+				{
+				savedstate=ninja->getState();
+				ninja->setState(10);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 1:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().y == block[i]->curAnim->sprite.GetPosition().y && ninja->curAnim->sprite.GetPosition().x + (ninja->curAnim->sprite.GetSize().x/2 - block[i]->curAnim->sprite.GetSize().x/2) == block[i]->curAnim->sprite.GetPosition().x && typeid(*block[i]) == typeid(SpringBlock) && block[i]->curAnim->sprite.GetRotation()==ninja->curAnim->sprite.GetRotation())
+				{
+				savedstate=ninja->getState();
+				ninja->setState(10);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 2:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().x == block[i]->curAnim->sprite.GetPosition().x && ninja->curAnim->sprite.GetPosition().y - (ninja->curAnim->sprite.GetSize().y/2 - block[i]->curAnim->sprite.GetSize().y/2) == block[i]->curAnim->sprite.GetPosition().y && typeid(*block[i]) == typeid(SpringBlock) && block[i]->curAnim->sprite.GetRotation()==ninja->curAnim->sprite.GetRotation())
+				{
+				savedstate=ninja->getState();
+				ninja->setState(10);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 3:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().y == block[i]->curAnim->sprite.GetPosition().y && ninja->curAnim->sprite.GetPosition().x - (ninja->curAnim->sprite.GetSize().x/2 - block[i]->curAnim->sprite.GetSize().x/2) == block[i]->curAnim->sprite.GetPosition().x && typeid(*block[i]) == typeid(SpringBlock) && block[i]->curAnim->sprite.GetRotation()==-ninja->curAnim->sprite.GetRotation())
+				{
+				savedstate=ninja->getState();
+				ninja->setState(10);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 6:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().x == block[i]->curAnim->sprite.GetPosition().x && ninja->curAnim->sprite.GetPosition().y + (ninja->curAnim->sprite.GetSize().y/2 - block[i]->curAnim->sprite.GetSize().y/2) == block[i]->curAnim->sprite.GetPosition().y && typeid(*block[i]) == typeid(SpringBlock) && block[i]->curAnim->sprite.GetRotation()==ninja->curAnim->sprite.GetRotation())
+				{
+				savedstate=ninja->getState();
+				ninja->setState(10);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 7:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().y == block[i]->curAnim->sprite.GetPosition().y && ninja->curAnim->sprite.GetPosition().x + (ninja->curAnim->sprite.GetSize().x/2 - block[i]->curAnim->sprite.GetSize().x/2) == block[i]->curAnim->sprite.GetPosition().x && typeid(*block[i]) == typeid(SpringBlock) && block[i]->curAnim->sprite.GetRotation()==ninja->curAnim->sprite.GetRotation())
+				{
+				savedstate=ninja->getState();
+				ninja->setState(10);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 4:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().x == block[i]->curAnim->sprite.GetPosition().x && ninja->curAnim->sprite.GetPosition().y - (ninja->curAnim->sprite.GetSize().y/2 - block[i]->curAnim->sprite.GetSize().y/2) == block[i]->curAnim->sprite.GetPosition().y && typeid(*block[i]) == typeid(SpringBlock) && block[i]->curAnim->sprite.GetRotation()==ninja->curAnim->sprite.GetRotation())
+				{
+				savedstate=ninja->getState();
+				ninja->setState(10);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 5:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().y == block[i]->curAnim->sprite.GetPosition().y && ninja->curAnim->sprite.GetPosition().x - (ninja->curAnim->sprite.GetSize().x/2 - block[i]->curAnim->sprite.GetSize().x/2) == block[i]->curAnim->sprite.GetPosition().x && typeid(*block[i]) == typeid(SpringBlock) && block[i]->curAnim->sprite.GetRotation()==-ninja->curAnim->sprite.GetRotation())
+			{
+				savedstate=ninja->getState();
+				ninja->setState(10);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 8:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().x == block[i]->curAnim->sprite.GetPosition().x && ninja->curAnim->sprite.GetPosition().y + (ninja->curAnim->sprite.GetSize().y/2 - block[i]->curAnim->sprite.GetSize().y/2) == block[i]->curAnim->sprite.GetPosition().y && typeid(*block[i]) == typeid(SpringBlock) && block[i]->curAnim->sprite.GetRotation()==ninja->curAnim->sprite.GetRotation())
+			{
+				ninja->setState(10);
+				block[i]->Animate();
+			}
+		}
+		break;
+	default:
+		break;
+	}
 
 	//3. Har blocket under fötterna försvunnit?
 	//cout<<"State before check: "<<ninja->getState()<<endl;
@@ -374,7 +479,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 		break;
 	}
 
-	if(airborne && ninja->getState()!=8 && ninja->getState()!=9 && ninja->getDrawn() == true)
+	if(airborne && ninja->getState()!=8 && ninja->getState()!=9 && ninja->getState()!=10 && ninja->getDrawn() == true)
 	{
 		savedstate=ninja->getState();
 		ninja->setState(8);
@@ -393,7 +498,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 	//cout<<"State after check: "<<ninja->getState()<<endl;
 
 	//4. Krock med vägg
-	if(ninja->getState() != 8 && ninja->getState() != 9)
+	if(ninja->getState() != 8 && ninja->getState() != 9 && ninja->getState() != 10)
 	{
 	this->collides=false;
 	ninja->testmove();
@@ -418,7 +523,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 	}
 
 	//5. Gå över en kant
-	if((((int)(ninja->curAnim->sprite.GetPosition().x)%(int)(block[0]->curAnim->sprite.GetSize().x) == 0) && ((int)ninja->getState()%2 == 0)) || (((int)(ninja->curAnim->sprite.GetPosition().y)%(int)(block[0]->curAnim->sprite.GetSize().y) == 0) && ((int)ninja->getState()%2 == 1)) && ninja->getState() != 8 && ninja->getState() != 9 && ninja->getDrawn() == true)
+	if((((int)(ninja->curAnim->sprite.GetPosition().x)%(int)(block[0]->curAnim->sprite.GetSize().x) == 0) && ((int)ninja->getState()%2 == 0)) || (((int)(ninja->curAnim->sprite.GetPosition().y)%(int)(block[0]->curAnim->sprite.GetSize().y) == 0) && ((int)ninja->getState()%2 == 1)) && ninja->getState() != 8 && ninja->getState() != 9 && ninja->getState() != 10 && ninja->getDrawn() == true)
 	{
 		this->foothold=false;
 		switch(ninja->getState())

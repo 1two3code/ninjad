@@ -81,3 +81,13 @@ bool NinjaIF::getComplete()
 {
 	return complete;
 }
+
+void NinjaIF::setSpeedY(int sy)
+{
+	this->speedY=sy;
+}
+
+int NinjaIF::getSpeedY()
+{
+	return this->speedY;
+}
