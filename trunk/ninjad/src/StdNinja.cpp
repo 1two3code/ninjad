@@ -53,7 +53,7 @@ void StdNinja::update()
 			}
 
 			count++;
-			count= count%2;
+			count= count%1;
 			if(getSpeedY()>8)
 			{
 				setState(6);
