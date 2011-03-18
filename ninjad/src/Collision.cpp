@@ -867,7 +867,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 		this->collides=false;
 		for(int i=0;i<nBlocks;i++)
 		{
-			if(player->getPosX() > block[i]->curAnim->sprite.GetPosition().x - (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && player->getPosX() < block[i]->curAnim->sprite.GetPosition().x + (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && typeid(*block[i]) == typeid(StdBlock) ) //Kolliderar i x-led
+			if(player->getPosX() > block[i]->curAnim->sprite.GetPosition().x - (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && player->getPosX() < block[i]->curAnim->sprite.GetPosition().x + (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && (typeid(*block[i]) == typeid(StdBlock) || typeid(*block[i]) == typeid(FallBlock))) //Kolliderar i x-led
 			{
 				if(player->getPosY() > block[i]->curAnim->sprite.GetPosition().y - (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2) && player->getPosY() < block[i]->curAnim->sprite.GetPosition().y + (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2)) //Kolliderar i y-led
 				{
@@ -900,7 +900,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 		player->testmove(wnd);
 		for(int i=0;i<nBlocks;i++)
 		{
-			if(player->getPosX() > block[i]->curAnim->sprite.GetPosition().x - (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && player->getPosX() < block[i]->curAnim->sprite.GetPosition().x + (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && typeid(*block[i]) == typeid(StdBlock) ) //Kolliderar i x-led
+			if(player->getPosX() > block[i]->curAnim->sprite.GetPosition().x - (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && player->getPosX() < block[i]->curAnim->sprite.GetPosition().x + (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && (typeid(*block[i]) == typeid(StdBlock) || typeid(*block[i]) == typeid(FallBlock))) //Kolliderar i x-led
 			{
 				if(player->getPosY() > block[i]->curAnim->sprite.GetPosition().y - (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2) && player->getPosY() < block[i]->curAnim->sprite.GetPosition().y + (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2)) //Kolliderar i y-led
 					this->collides=true;
@@ -935,7 +935,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 		player->testmoveY(wnd);
 		for(int i=0;i<nBlocks;i++)
 		{
-			if(player->getPosX() > block[i]->curAnim->sprite.GetPosition().x - (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && player->getPosX() < block[i]->curAnim->sprite.GetPosition().x + (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && typeid(*block[i]) == typeid(StdBlock) ) //Kolliderar i x-led
+			if(player->getPosX() > block[i]->curAnim->sprite.GetPosition().x - (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && player->getPosX() < block[i]->curAnim->sprite.GetPosition().x + (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && (typeid(*block[i]) == typeid(StdBlock) || typeid(*block[i]) == typeid(FallBlock))) //Kolliderar i x-led
 			{
 				if(player->getPosY() > block[i]->curAnim->sprite.GetPosition().y - (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2) && player->getPosY() < block[i]->curAnim->sprite.GetPosition().y + (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2)) //Kolliderar i y-led
 					this->collides=true;
@@ -974,7 +974,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 	collides=false;
 	for(int i=0;i<nBlocks;i++)
 	{
-		if(player->getPosY() == block[i]->curAnim->sprite.GetPosition().y - (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2) && player->getPosX() > block[i]->curAnim->sprite.GetPosition().x - (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && player->getPosX() < block[i]->curAnim->sprite.GetPosition().x + (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && typeid(*block[i]) == typeid(StdBlock))
+		if(player->getPosY() == block[i]->curAnim->sprite.GetPosition().y - (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2) && player->getPosX() > block[i]->curAnim->sprite.GetPosition().x - (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && player->getPosX() < block[i]->curAnim->sprite.GetPosition().x + (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && (typeid(*block[i]) == typeid(StdBlock) || typeid(*block[i]) == typeid(FallBlock)))
 		{
 			collides=true;
 		}
@@ -1001,7 +1001,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 	collides=false;
 	for(int i=0;i<nBlocks;i++)
 	{
-		if(player->getPosY() == block[i]->curAnim->sprite.GetPosition().y + (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2) && player->getPosX() > block[i]->curAnim->sprite.GetPosition().x - (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && player->getPosX() < block[i]->curAnim->sprite.GetPosition().x + (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && typeid(*block[i]) == typeid(StdBlock))
+		if(player->getPosY() == block[i]->curAnim->sprite.GetPosition().y + (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2) && player->getPosX() > block[i]->curAnim->sprite.GetPosition().x - (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && player->getPosX() < block[i]->curAnim->sprite.GetPosition().x + (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && (typeid(*block[i]) == typeid(StdBlock) || typeid(*block[i]) == typeid(FallBlock)))
 		{
 			collides=true;
 		}
@@ -1019,12 +1019,12 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 	bool leftwall=false;
 	for(int i=0;i<nBlocks;i++)
 	{
-		if(player->getPosX() == block[i]->curAnim->sprite.GetPosition().x - (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && player->getPosY() > block[i]->curAnim->sprite.GetPosition().y - (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2) && player->getPosY() < block[i]->curAnim->sprite.GetPosition().y + (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2) && typeid(*block[i]) == typeid(StdBlock))
+		if(player->getPosX() == block[i]->curAnim->sprite.GetPosition().x - (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && player->getPosY() > block[i]->curAnim->sprite.GetPosition().y - (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2) && player->getPosY() < block[i]->curAnim->sprite.GetPosition().y + (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2) && (typeid(*block[i]) == typeid(StdBlock) || typeid(*block[i]) == typeid(FallBlock)))
 		{
 			wallcollide=true;
 			rightwall=true;
 		}
-		if(player->getPosX() == block[i]->curAnim->sprite.GetPosition().x + (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && player->getPosY() > block[i]->curAnim->sprite.GetPosition().y - (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2) && player->getPosY() < block[i]->curAnim->sprite.GetPosition().y + (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2) && typeid(*block[i]) == typeid(StdBlock))
+		if(player->getPosX() == block[i]->curAnim->sprite.GetPosition().x + (player->getSizeX()/2 + block[i]->curAnim->sprite.GetSize().x/2) && player->getPosY() > block[i]->curAnim->sprite.GetPosition().y - (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2) && player->getPosY() < block[i]->curAnim->sprite.GetPosition().y + (player->getSizeY()/2 + block[i]->curAnim->sprite.GetSize().y/2) && (typeid(*block[i]) == typeid(StdBlock) || typeid(*block[i]) == typeid(FallBlock)))
 		{
 			wallcollide=true;
 			leftwall=true;
