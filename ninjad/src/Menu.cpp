@@ -34,10 +34,37 @@ Menu::Menu()
 	htpButton->SetSubRect(IntRect(288, 0, 360, 72));
 	htpButton->SetPosition(684+72*2, 634);
 
+	credButton = new Sprite();
+	credButton->SetImage(*ImgHolder::getInst()->buttons);
+	credButton->SetSubRect(IntRect(360, 0, 432, 72));
+	credButton->SetPosition(684+72, 634);
+
+	menuHUD = new Sprite;
+	menuHUD->SetImage(*ImgHolder::getInst()->menuhud);
+	menuHUD->SetPosition(0, 0);
+
+
+	nNinjas  = new String();
+	//nNinjas->SetSize(
+	nNinjas->SetPosition(120,700); 
+	nStd = new String();
+	nStd->SetPosition(2*120,700); 
+	nFall = new String();
+	nFall->SetPosition(3*120,700); 
+	nJump = new String();
+	nJump->SetPosition(4*120,700); 
+	nSpring = new String();
+	nSpring->SetPosition(5*120,700); 
+
 	howToPlayScreen = new Sprite();
 	howToPlayScreen->SetImage(*ImgHolder::getInst()->howToPlay);
 	howToPlayScreen->SetPosition(0, 0);
 	howToPlay = false;
+
+	credScreen = new Sprite();
+	credScreen->SetImage(*ImgHolder::getInst()->creditScreen);
+	credScreen->SetPosition(0, 0);
+	credits = false;
 
 
 	levelButtons = new Sprite*[25];
@@ -69,6 +96,14 @@ Menu::~Menu()
 	delete quitButton;
 	delete htpButton;
 	delete howToPlayScreen;
+	delete credButton;
+	delete credScreen;
+	delete menuHUD;
+	delete nNinjas;
+	delete nStd;
+	delete nFall;
+	delete nSpring;
+	delete nJump;
 
 	for(int i = 0; i < 25; i++)
 		delete levelButtons[i];
@@ -108,14 +143,25 @@ void Menu::render()
 	
 	menuWnd->Draw(*background);	
 	menuWnd->Draw(*mapPreview);
+	menuWnd->Draw(*menuHUD);
+	menuWnd->Draw(*nNinjas);
+	menuWnd->Draw(*nStd);
+	menuWnd->Draw(*nFall);
+	menuWnd->Draw(*nJump);
+	menuWnd->Draw(*nSpring);
 
 	for(int i = 0; i < 25; i ++)
 		menuWnd->Draw(*levelButtons[i]);
+
 	menuWnd->Draw(*numbers);
 	if(howToPlay)
 		menuWnd->Draw(*howToPlayScreen);
+	else if(credits)
+		menuWnd->Draw(*credScreen);
+
 	menuWnd->Draw(*quitButton);
 	menuWnd->Draw(*htpButton);
+	menuWnd->Draw(*credButton);
 
 	menuWnd->Display();
 }
@@ -142,9 +188,16 @@ int Menu::eventHandler(Event e)
 			else
 				levelButtons[btn]->SetSubRect(IntRect(0, 144, 72, 216));
 			if(btn < unlocked)
-				mapPreview->SetImage(*ImgHolder::getInst()->maps[btn]);
+			{
+				map = ImgHolder::getInst()->maps[btn];
+				mapPreview->SetImage(*map);
+				changeText(true);
+			}
 			else
+			{
 				mapPreview->SetImage(*ImgHolder::getInst()->locked);
+				changeText(false);
+			}
 		}
 
 	}
@@ -167,12 +220,19 @@ int Menu::eventHandler(Event e)
 			htpButton->SetSubRect(IntRect(288, 72, 360, 144));
 			SndHolder::getInst()->sndClick.Play();
 		}
+		else if(temp == -3)
+		{
+			credButton->SetSubRect(IntRect(360, 72, 432, 144));
+			SndHolder::getInst()->sndClick.Play();
+		}
 	}
 	if(e.Type == Event::MouseButtonReleased)
 	{
 		btn = checkMousePos();
 		if(btn > -1 && btn < unlocked && btn == buttonClicked)
 			return btn;
+		else if(btn == -3)
+			credits = switchBool(credits);
 		else if(btn == -2)
 			howToPlay = switchBool(howToPlay);
 		else if(btn == -1)
@@ -180,6 +240,7 @@ int Menu::eventHandler(Event e)
 	
 		quitButton->SetSubRect(IntRect(0, 0, 72, 72));
 		htpButton->SetSubRect(IntRect(288, 0, 360, 72));
+		credButton->SetSubRect(IntRect(360, 0, 432, 72));
 		buttonClicked = -1;	
 		return -25;
 		
@@ -214,7 +275,11 @@ int Menu::checkMousePos()
 		&& mpy > htpButton->GetPosition().y && mpy < htpButton->GetPosition().y+htpButton->GetSize().y)
 	{
 		return -2;	
-
+	}
+	else if(mpx > credButton->GetPosition().x && mpx < credButton->GetPosition().x+credButton->GetSize().y
+		&& mpy > credButton->GetPosition().y && mpy < credButton->GetPosition().y+credButton->GetSize().y)
+	{
+		return -3;
 	}
 
 	return -25;
@@ -225,10 +290,6 @@ void Menu::Show(bool tf)
 {
 	menuWnd->Show(tf);
 }
-
-
-
-
 
 void Menu::splashScreen()
 {
@@ -242,9 +303,9 @@ void Menu::splashScreen()
 	splashScreen.SetImage(*ImgHolder::getInst()->splashScreen);
 	String str;
 	str.SetText("Press any key to continue");
-	//str.SetSize(
+	
 	str.SetColor(Color(0,0,0));
-	str.SetPosition(512, 384);
+	str.SetPosition(450, 420);
 	
 	while(splash)
 	{
@@ -266,6 +327,37 @@ bool Menu::switchBool(bool tf)
 		return false;
 	else
 		return true;
+}
+
+void Menu::changeText(bool preview)
+{
+	if(preview)
+	{
+		char temp[8];
+		itoa(map->GetPixel(0,18).r, temp, 10);	
+		nNinjas->SetText(temp);
+
+		itoa(map->GetPixel(1,18).r, temp, 10);	
+		nStd->SetText(temp);
+
+		itoa(map->GetPixel(2,18).r, temp, 10);	
+		nFall->SetText(temp);
+
+		itoa(map->GetPixel(3,18).r, temp, 10);	
+		nJump->SetText(temp);
+
+		itoa(map->GetPixel(4,18).r, temp, 10);	
+		nSpring->SetText(temp);
+	}
+	else
+	{
+		nNinjas->SetText("X");
+		nStd->SetText("X");
+		nFall->SetText("X");
+		nJump->SetText("X");
+		nSpring->SetText("X");
+	}
+
 }
 
 void Menu::setUnlockedLevels(unsigned short levels)

@@ -32,12 +32,15 @@ public:
 	Image* ninArm;
 
 	Image* howToPlay;
+	Image* levelComplete;
 
 	//Image* menuBackground;
+	Image* creditScreen;
 	Image* splashScreen;
 	Image* menuButton;
 	Image* menuNumbers;
 	Image* locked;
+	Image* menuhud;
 	Image* hand;
 	~ImgHolder();
 	static ImgHolder* getInst();

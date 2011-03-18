@@ -68,7 +68,7 @@ bool Game::init(int level)
 	pauseScreen->SetPosition(96, 160);
 
 	completeScreen = new Sprite();
-	completeScreen->SetImage(*ImgHolder::getInst()->howToPlay); //Måste ändras senare ^^
+	completeScreen->SetImage(*ImgHolder::getInst()->levelComplete); 
 	completeScreen->SetPosition(112, 80);
 
 	hud = new HUDisplay();
@@ -189,9 +189,9 @@ bool Game::eventHandler(Event e)
 				else
 					paused = true;
 				break;
-			case 4:
-				cout << "Sound..." << endl;
-				break;
+			case 4:				
+				SndHolder::getInst()->onoff();				
+				break;				
 			case 5:
 				if(FPS < 100 && !paused)
 				{

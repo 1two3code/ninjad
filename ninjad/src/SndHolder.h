@@ -18,6 +18,10 @@ public:
 	Sound sndClick;
 	Sound sndYay;
 	Sound sndSpring;
+	bool soundOn;
+
+	void onoff();
+	void sndOn(bool on);
 
 	~SndHolder();
 	static SndHolder* getInst();
