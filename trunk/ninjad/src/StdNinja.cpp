@@ -54,7 +54,7 @@ void StdNinja::update()
 
 			count++;
 			count= count%1;
-			if(getSpeedY()>8)
+			if(getSpeedY()>6)
 			{
 				setState(6);
 				count=0;
@@ -176,7 +176,7 @@ void StdNinja::updateSprite()
 				//setDirX(1);
 				setDirY(1);
 				setSpeed(8);
-				setSpeedY(-8);
+				setSpeedY(-6);
                 break;
 		}
 }
