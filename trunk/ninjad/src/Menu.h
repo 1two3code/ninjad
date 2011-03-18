@@ -21,8 +21,20 @@ private:
 	Sprite* numbers;
 	Sprite* quitButton;
 	Sprite* htpButton;		//How to play knapp
+	Sprite* credButton;
+	Sprite* credScreen;
 	Sprite* howToPlayScreen;
+
+	Sprite* menuHUD;
+	String* nNinjas;
+	String* nStd;
+	String* nFall;
+	String* nJump;
+	String* nSpring;
+	Image* map;
+
 	bool howToPlay;
+	bool credits;
 
 	int buttonPointed;
 	int buttonClicked;
@@ -33,6 +45,7 @@ private:
 	unsigned short unlocked;
 	
 	bool switchBool(bool tf);
+	void changeText(bool preview);
 
 protected:
 public:

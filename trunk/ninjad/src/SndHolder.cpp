@@ -10,11 +10,38 @@ SndHolder::SndHolder()
 	yay.LoadFromFile("./data/audio/yay.wav");
 	sndYay.SetBuffer(yay);
 	sndYay.SetPitch(2.0f);
-	sndYay.SetVolume(30.0f);
 
 	spring.LoadFromFile("./data/audio/spring.wav");
 	sndSpring.SetBuffer(spring);
 
+	soundOn = true;
+	sndOn(soundOn);
+}
+
+void SndHolder::onoff()
+{
+	if(soundOn == true)
+		soundOn = false;
+	else
+		soundOn = true;
+
+	sndOn(soundOn);
+}
+
+void SndHolder::sndOn(bool on)		//bool elgiganten ftw
+{
+	if(on)
+	{
+		sndYay.SetVolume(30.0f);
+		sndClick.SetVolume(100.0f);
+		sndSpring.SetVolume(100.0f);
+	}
+	else
+	{
+		sndYay.SetVolume(0.0f);
+		sndClick.SetVolume(0.0f);
+		sndSpring.SetVolume(0.0f);
+	}
 }
 
 SndHolder::~SndHolder()

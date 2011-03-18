@@ -69,12 +69,15 @@ ImgHolder::ImgHolder()
 	plyJump->SetSmooth(false);
 
 	pauseScreen = new Image();
-	pauseScreen->LoadFromFile("./data/sprites/game//pauseScreen.png");
+	pauseScreen->LoadFromFile("./data/sprites/game/pauseScreen.png");
 	pauseScreen->SetSmooth(false);
 
 	icon = new Image();
 	icon->LoadFromFile("./data/misc/icon.png");
 
+	creditScreen = new Image();
+	creditScreen->LoadFromFile("./data/sprites/menu/Creditscreen.png");
+	
 	splashScreen = new Image();
 	splashScreen->LoadFromFile("./data/sprites/menu/Splashscreen.png");
 
@@ -89,6 +92,12 @@ ImgHolder::ImgHolder()
 	howToPlay = new Image();
 	howToPlay->LoadFromFile("./data/sprites/menu/howtoplay.png");
 	howToPlay->SetSmooth(false);
+
+	menuhud = new Image();
+	menuhud->LoadFromFile("./data/sprites/menu/menuHUD.png");	
+
+	levelComplete = new Image();
+	levelComplete->LoadFromFile("./data/sprites/game/levelComplete.png");	
 
 	locked = new Image();
 	locked->LoadFromFile("./data/sprites/menu/locked.png");
@@ -130,12 +139,15 @@ ImgHolder::~ImgHolder()
 	delete pauseScreen;
 	delete icon;
 	delete howToPlay;
+	delete levelComplete;
 
 	//delete menuBackground;
+	delete creditScreen;
 	delete splashScreen;
 	delete menuButton;
 	delete menuNumbers;
 	delete locked;
+	delete menuhud;
 
 	for(int i = 0; i < nMaps; i++)
 		delete maps[i];
