@@ -48,7 +48,7 @@ void StdNinja::update()
 			this->curAnim->sprite.Move((float)getSpeed()*getDirX(), 0);
 			if(count==0)
 			{
-				this->curAnim->sprite.Move(0, (float)getSpeedY()*getDirX());
+				this->curAnim->sprite.Move(0, (float)getSpeedY()*getDirY());
 				setSpeedY(getSpeedY()+1);
 			}
 
