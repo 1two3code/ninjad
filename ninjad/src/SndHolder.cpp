@@ -14,6 +14,12 @@ SndHolder::SndHolder()
 	spring.LoadFromFile("./data/audio/spring.wav");
 	sndSpring.SetBuffer(spring);
 
+	drumroll.LoadFromFile("./data/audio/drumroll.wav");
+	musDrumroll.SetBuffer(drumroll);
+
+	theme.LoadFromFile("./data/audio/gp.wav");
+	musTheme.SetBuffer(theme);
+
 	soundOn = true;
 	sndOn(soundOn);
 }
@@ -35,12 +41,16 @@ void SndHolder::sndOn(bool on)		//bool elgiganten ftw
 		sndYay.SetVolume(30.0f);
 		sndClick.SetVolume(100.0f);
 		sndSpring.SetVolume(100.0f);
+		musDrumroll.SetVolume(100.0f);
+		musTheme.SetVolume(100.0f);
 	}
 	else
 	{
 		sndYay.SetVolume(0.0f);
 		sndClick.SetVolume(0.0f);
 		sndSpring.SetVolume(0.0f);
+		musDrumroll.SetVolume(0.0f);
+		musTheme.SetVolume(0.0f);
 	}
 }
 

@@ -51,8 +51,8 @@ void Animation::Update()
 
 			this->sprite.FlipX(mirX);
 			this->sprite.FlipY(mirY);
-		if((this->counter == this->frames * this->frameDelay) && !this->loop) this->done = true;
 	}
+	if((this->counter+frameDelay >= this->frames * this->frameDelay) && !this->loop) this->done = true;
 }
 
 void Animation::SetFrame(int frame)

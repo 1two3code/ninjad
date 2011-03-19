@@ -18,6 +18,7 @@ public:
 	Image* arrows;
 	Image* blocks;
 	Image* blkSpringAct;
+	Image* blkFallAct;
 	Image* ninRun;
 	Image** maps;
 	Image* colorCode;
@@ -31,12 +32,15 @@ public:
 	Image* ninClimb;
 	Image* ninArm;
 
+	Image* title;
+
 	Image* howToPlay;
 	Image* levelComplete;
 
 	//Image* menuBackground;
 	Image* creditScreen;
 	Image* splashScreen;
+	Image* pressAnyKey;
 	Image* menuButton;
 	Image* menuNumbers;
 	Image* locked;

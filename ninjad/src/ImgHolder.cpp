@@ -29,6 +29,10 @@ ImgHolder::ImgHolder()
 	blkSpringAct->LoadFromFile("./data/sprites/game/blk_spring.png");
 	blkSpringAct->SetSmooth(false);
 
+	blkFallAct = new Image();
+	blkFallAct->LoadFromFile("./data/sprites/game/blk_fall.png");
+	blkFallAct->SetSmooth(false);
+
 	ninRun = new Image();
 	ninRun->LoadFromFile("./data/sprites/game/nin_run.png");
 	ninRun->SetSmooth(false);
@@ -80,6 +84,11 @@ ImgHolder::ImgHolder()
 	
 	splashScreen = new Image();
 	splashScreen->LoadFromFile("./data/sprites/menu/Splashscreen.png");
+	splashScreen->SetSmooth(false);
+
+	pressAnyKey = new Image();
+	pressAnyKey->LoadFromFile("./data/sprites/menu/pressanykey.png");
+	pressAnyKey->SetSmooth(false);
 
 	menuButton = new Image();
 	menuButton->LoadFromFile("./data/sprites/menu/button.png");
@@ -89,15 +98,21 @@ ImgHolder::ImgHolder()
 	menuNumbers->LoadFromFile("./data/sprites/menu/numbers.png");
 	menuNumbers->SetSmooth(false);
 
+	title = new Image();
+	title->LoadFromFile("./data/sprites/menu/title.png");
+	title->SetSmooth(false);
+
 	howToPlay = new Image();
 	howToPlay->LoadFromFile("./data/sprites/menu/howtoplay.png");
 	howToPlay->SetSmooth(false);
 
 	menuhud = new Image();
-	menuhud->LoadFromFile("./data/sprites/menu/menuHUD.png");	
+	menuhud->LoadFromFile("./data/sprites/menu/menuHUD.png");
+	menuhud->SetSmooth(false);
 
 	levelComplete = new Image();
 	levelComplete->LoadFromFile("./data/sprites/game/levelComplete.png");	
+	levelComplete->SetSmooth(false);
 
 	locked = new Image();
 	locked->LoadFromFile("./data/sprites/menu/locked.png");

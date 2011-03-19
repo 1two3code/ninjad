@@ -8,7 +8,7 @@ SpringBlock::SpringBlock()
 	//cropY1 = 32;
 	this->idleAnim = new Animation(ImgHolder::getInst()->blocks, 8, 32, 32, 1, false, false);
 	this->idleAnim->sprite.SetCenter(16,16);
-	this->idleAnim->SetFrame(4);
+	this->idleAnim->SetFrame(6);
 
 	this->activeAnim = new Animation(ImgHolder::getInst()->blocks, 8, 32, 32, 1, false, false);
 	this->activeAnim->sprite.SetCenter(16,16);
@@ -22,7 +22,14 @@ SpringBlock::SpringBlock()
 }
 void SpringBlock::Update()
 {
-
+	if(!this->curAnim->done)
+		this->curAnim->Update();
+	else
+	{
+		this->curAnim->Reset();
+		this->idleAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+		this->curAnim = this->idleAnim;
+	}
 }
 
 void SpringBlock::Animate()
