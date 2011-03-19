@@ -10,7 +10,7 @@ JumpBlock::JumpBlock()
 	this->idleAnim->sprite.SetCenter(16,16);
 	this->idleAnim->SetFrame(5);
 
-	this->activeAnim = new Animation(ImgHolder::getInst()->blkSpringAct, 6, 32, 32, 1, false, false);
+	this->activeAnim = new Animation(ImgHolder::getInst()->blkSpringAct, 6, 32, 32, 3, false, false);
 	this->activeAnim->sprite.SetCenter(16,16);
 	this->activeAnim->SetFrame(5);
 

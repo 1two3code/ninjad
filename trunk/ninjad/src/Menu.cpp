@@ -41,20 +41,41 @@ Menu::Menu()
 
 	menuHUD = new Sprite;
 	menuHUD->SetImage(*ImgHolder::getInst()->menuhud);
-	menuHUD->SetPosition(0, 0);
+	menuHUD->SetPosition(110, 682);
 
+	font = new Font();
+	font->LoadFromFile("./data/misc/ninjadfont.ttf");
+	font->SetSmooth(true);
 
 	nNinjas  = new String();
-	//nNinjas->SetSize(
-	nNinjas->SetPosition(120,700); 
+	nNinjas->SetFont(*font);
+	nNinjas->SetColor(Color(0,0,0));
+	nNinjas->SetSize(50);
+	nNinjas->SetPosition(180,701);
+
 	nStd = new String();
-	nStd->SetPosition(2*120,700); 
+	nStd->SetPosition(290,678);
+	nStd->SetFont(*font);
+	nStd->SetColor(Color(0,0,0));
+	nStd->SetSize(20);
+
 	nFall = new String();
-	nFall->SetPosition(3*120,700); 
+	nFall->SetPosition(290,705); 
+	nFall->SetFont(*font);
+	nFall->SetColor(Color(0,0,0));
+	nFall->SetSize(20);
+
 	nJump = new String();
-	nJump->SetPosition(4*120,700); 
+	nJump->SetPosition(375,678);
+	nJump->SetFont(*font);
+	nJump->SetColor(Color(0,0,0));
+	nJump->SetSize(20);
+
 	nSpring = new String();
-	nSpring->SetPosition(5*120,700); 
+	nSpring->SetPosition(375,705);
+	nSpring->SetFont(*font);
+	nSpring->SetColor(Color(0,0,0));
+	nSpring->SetSize(20);
 
 	howToPlayScreen = new Sprite();
 	howToPlayScreen->SetImage(*ImgHolder::getInst()->howToPlay);
@@ -300,17 +321,59 @@ void Menu::splashScreen()
 	Event e;
 
 	Sprite splashScreen;
+
+	Animation* pressAnyKey = new Animation(ImgHolder::getInst()->pressAnyKey, 2, 600, 200, 15, true, true);
+	pressAnyKey->sprite.SetCenter(300, 100);
+	pressAnyKey->sprite.SetPosition(512, 400);
+	pressAnyKey->sprite.SetScale(0.5f, 0.5f);
+	Sprite title;
+	title.SetImage(*ImgHolder::getInst()->title);
+	title.SetCenter(640, 320);
+	title.SetPosition(512, 200);
+	float titleScale = 2.0f;
+	title.SetScale(titleScale, titleScale);
+	float maxtitleScale = 0.3f;
+	float mintitleScale = 0.25f;
+	float titleScaleSpeed = -0.01f;
+	float maxTitleRot = 10.0f;
+	float minTitleRot = -10.0f;
+	float titleRotSpeed = 2.0f;
+	float currentRot = 0.0f;
+
 	splashScreen.SetImage(*ImgHolder::getInst()->splashScreen);
 	String str;
 	str.SetText("Press any key to continue");
 	
 	str.SetColor(Color(0,0,0));
 	str.SetPosition(450, 420);
+
+	//SndHolder::getInst()->musDrumroll.Play();
+	//SndHolder::getInst()->musTheme.SetPlayingOffset(2);
+	SndHolder::getInst()->musTheme.SetLoop(true);
+	SndHolder::getInst()->musTheme.Play();
 	
 	while(splash)
 	{
+		title.Rotate(titleRotSpeed);
+		currentRot = title.GetRotation();
+		if(currentRot > 180)
+			currentRot = currentRot - 360;
+		if(currentRot > maxTitleRot) titleRotSpeed = -0.5f;
+		if(currentRot < minTitleRot) titleRotSpeed = 0.5f;
+		title.SetScale(title.GetScale().x + titleScaleSpeed, title.GetScale().y + titleScaleSpeed);
+		if(title.GetScale().x > maxtitleScale && titleScaleSpeed == 0.01f) titleScaleSpeed = -0.01f;
+		if(title.GetScale().x < mintitleScale)
+		{
+			//if(SndHolder::getInst()->musDrumroll.GetStatus() == Sound::Status::Playing) SndHolder::getInst()->musDrumroll.Stop();
+			//SndHolder::getInst()->musTheme.SetPlayingOffset(1);
+			titleScaleSpeed = 0.01f;
+		}
+		pressAnyKey->Update();
+		//if(SndHolder::getInst()->musDrumroll.GetStatus() == Sound::Status::Stopped) SndHolder::getInst()->musTheme.Play();
 		menuWnd->Draw(splashScreen);
-		menuWnd->Draw(str);
+		//menuWnd->Draw(str);
+		menuWnd->Draw(pressAnyKey->sprite);
+		menuWnd->Draw(title);
 		menuWnd->Display();
 		while(menuWnd->GetEvent(e))
 		{
@@ -318,6 +381,8 @@ void Menu::splashScreen()
 				splash = false;
 		}
 	}
+	//SndHolder::getInst()->musDrumroll.Stop();
+	//
 }
 
 
@@ -351,11 +416,11 @@ void Menu::changeText(bool preview)
 	}
 	else
 	{
-		nNinjas->SetText("X");
-		nStd->SetText("X");
-		nFall->SetText("X");
-		nJump->SetText("X");
-		nSpring->SetText("X");
+		nNinjas->SetText("");
+		nStd->SetText("");
+		nFall->SetText("");
+		nJump->SetText("");
+		nSpring->SetText("");
 	}
 
 }

@@ -33,6 +33,8 @@ private:
 	String* nSpring;
 	Image* map;
 
+	Font* font;
+
 	bool howToPlay;
 	bool credits;
 
