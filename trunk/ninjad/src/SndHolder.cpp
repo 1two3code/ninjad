@@ -41,8 +41,8 @@ void SndHolder::sndOn(bool on)		//bool elgiganten ftw
 		sndYay.SetVolume(30.0f);
 		sndClick.SetVolume(100.0f);
 		sndSpring.SetVolume(100.0f);
-		musDrumroll.SetVolume(100.0f);
-		musTheme.SetVolume(100.0f);
+		musDrumroll.SetVolume(40.0f);
+		musTheme.SetVolume(30.0f);
 	}
 	else
 	{
