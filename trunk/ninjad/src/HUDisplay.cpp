@@ -85,12 +85,12 @@ HUDisplay::HUDisplay()
 
 	jumpBlockText = new String();
 	jumpBlockText->SetFont(*font);
-	jumpBlockText->SetPosition(780, 360);
+	jumpBlockText->SetPosition(930, 360);
 	jumpBlockText->SetColor(Color(0, 0, 0));
 
 	fallBlockText = new String();
 	fallBlockText->SetFont(*font);
-	fallBlockText->SetPosition(930,360);
+	fallBlockText->SetPosition(780,360);
 	fallBlockText->SetColor(Color(0, 0, 0));
 }
 

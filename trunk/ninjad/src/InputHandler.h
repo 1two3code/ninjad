@@ -27,6 +27,10 @@ public:
 	bool isPressJump(RenderWindow* wnd);
 	bool isPressEscape(RenderWindow* wnd);
 	bool isPressClick(RenderWindow* wnd);
+	bool isPress1(RenderWindow* wnd);
+	bool isPress2(RenderWindow* wnd);
+	bool isPress3(RenderWindow* wnd);
+	bool isPress4(RenderWindow* wnd);
 
 	int getMousePosX(RenderWindow* wnd);
 	int getMousePosY(RenderWindow* wnd);

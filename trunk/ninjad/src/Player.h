@@ -27,6 +27,7 @@ private:
 	int sizeX;
 	int sizeY;
 	bool precollides;
+	int blockSelected;
 
 public:
 	Animation* curAnim;
@@ -71,6 +72,8 @@ public:
 	void setSizeY(int size);
 	void setPreCollides(bool val);
 	bool getPreCollides();
+	int getBlockSelected();
+	void setBlockSelected(int blocktype); // 7=block, 4=springblock, 5=jumpblock, 6=fallblock
 };
 
 #endif

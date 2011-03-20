@@ -94,6 +94,7 @@
     <ClCompile Include="src\NinjaHolder.cpp" />
     <ClCompile Include="src\NinjaIF.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\PlayerBlock.cpp" />
     <ClCompile Include="src\SndHolder.cpp" />
     <ClCompile Include="src\SpringBlock.cpp" />
     <ClCompile Include="src\StdBlock.cpp" />
@@ -116,6 +117,7 @@
     <ClInclude Include="src\NinjaHolder.h" />
     <ClInclude Include="src\NinjaIF.h" />
     <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\PlayerBlock.h" />
     <ClInclude Include="src\SndHolder.h" />
     <ClInclude Include="src\SpringBlock.h" />
     <ClInclude Include="src\StdBlock.h" />

@@ -6,7 +6,7 @@
 #include "Animation.h"
 #include "SndHolder.h"
 
-enum blocktype{eSolid, eStandard, eSpring, eJump, eEntry, eExit};
+enum blocktype{eSolid, eStandard, eSpring, eJump, eEntry, eExit, ePlayer};
 
 using namespace sf;
 
