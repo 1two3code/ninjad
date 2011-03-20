@@ -220,22 +220,8 @@ bool Game::eventHandler(Event e)
 			y /= magnitude;
 
 
-		/*	if(player->getAccel()<=0)
-			{
-				for(int i=0;i<ninjhold->getNr() && add==true;i++){
-					add=false;
-					if(ninjhold->getNinjas(i)->GetPosition().x + ninjhold->getNinjas(i)->GetSize().x/2 <= player->GetPosition().x+(32*x)-player->GetSize().x/2)
-						add=true;
-					if(ninjhold->getNinjas(i)->GetPosition().x - ninjhold->getNinjas(i)->GetSize().x/2 >= player->GetPosition().x+(32*x)+player->GetSize().x/2)
-						add=true;
-					if(ninjhold->getNinjas(i)->GetPosition().y + ninjhold->getNinjas(i)->GetSize().y/2 <= player->GetPosition().y+(32*y)-player->GetSize().y/2)				
-						add=	true;
-					if((ninjhold->getNinjas(i)->GetPosition().y - ninjhold->getNinjas(i)->GetSize().y/2 >= player->GetPosition().y+(32*y)+player->GetSize().y/2)	)		
-						add= true;
-				}
-				if(add)
-			*/		mainLvl->addBlock(1,player->curAnim->sprite.GetPosition().x+(32*x), player->curAnim->sprite.GetPosition().y+(32*y), 0, player,ninjhold);
-			//}
+
+			mainLvl->addBlock(player->getBlockSelected(),player->curAnim->sprite.GetPosition().x+(32*x), player->curAnim->sprite.GetPosition().y+(32*y), 0, player,ninjhold);
 			
 		}
 	}
@@ -254,6 +240,7 @@ bool Game::eventHandler(Event e)
 		angle = 57.3065f * atan2(mousePos.y - player->curAnim->sprite.GetPosition().y, mousePos.x - player->curAnim->sprite.GetPosition().x);
 		player->getHand()->SetRotation(360-angle);
 	//}
+	
 	if (e.Type == Event::Closed)
 	{
 		mainWnd->Close();

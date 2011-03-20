@@ -5,6 +5,7 @@ Player::Player(Vector2i pos)
 	hand = new Sprite();
 	hand->SetImage(*ImgHolder::getInst()->hand);
 	hand->SetCenter(9,0);
+	this->blockSelected=7;
 
 	this->curAnim = NULL;
 	this->runAnim = new Animation(ImgHolder::getInst()->plyRun, 4, 32, 32, 2, true, true);
@@ -83,6 +84,27 @@ void Player::update(RenderWindow* wnd)
 		setGrounded(false);
 		this->setPreCollides(false);
 	}
+
+	if(input->isPress1(wnd))
+	{
+		setBlockSelected(7); //standardblock
+	}
+	
+	if(input->isPress2(wnd))
+	{
+		setBlockSelected(5); // jumpblock
+	}
+	
+	if(input->isPress3(wnd))
+	{
+		setBlockSelected(6); //fallblock
+	}
+	
+	if(input->isPress4(wnd))
+	{
+		setBlockSelected(4); //springblock
+	}
+
 	setSpeedY(getSpeedY()+getAccel());
 	if(input->isPressClick(wnd))
 	{}//släng ut block
@@ -108,8 +130,7 @@ void Player::testmove(RenderWindow* wnd)
 		setPosX(this->curAnim->sprite.GetPosition().x);
 		setPosY(this->curAnim->sprite.GetPosition().y + (this->curAnim->sprite.GetSize().y - this->getSizeY())/2);
 	}
-	if(input->isPressClick(wnd))
-	{}//släng ut block
+
 }
 
 void Player::testmoveY(RenderWindow* wnd)
@@ -140,8 +161,6 @@ void Player::retrace(RenderWindow* wnd)
 		setPosX(this->curAnim->sprite.GetPosition().x);
 		setPosY(this->curAnim->sprite.GetPosition().y + (this->curAnim->sprite.GetSize().y - this->getSizeY())/2);
 	}
-	if(input->isPressClick(wnd))
-	{}//släng ut block
 }
 
 void Player::updateSprite(RenderWindow* wnd)
@@ -300,4 +319,14 @@ bool Player::getPreCollides()
 void Player::setDirection(bool dir)
 {
 	this->direction = dir;
+}
+
+void Player::setBlockSelected(int type)
+{
+	blockSelected=type;
+}
+
+int Player::getBlockSelected()
+{
+	return blockSelected;
 }

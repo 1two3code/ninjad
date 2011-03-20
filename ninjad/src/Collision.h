@@ -2,6 +2,7 @@
 #define COLLISION_H
 
 #include"Player.h"
+#include"PlayerBlock.h"
 #include"Level.h"
 #include"NinjaIF.h"
 #include<iostream>

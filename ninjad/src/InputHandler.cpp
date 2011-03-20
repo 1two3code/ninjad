@@ -59,3 +59,23 @@ int InputHandler::getMousePosY(RenderWindow* wnd)
 {
 	return wnd->GetInput().GetMouseY();
 }
+
+bool InputHandler::isPress1(RenderWindow* wnd)
+{
+	return wnd->GetInput().IsKeyDown(sf::Key::Num1);
+}
+
+bool InputHandler::isPress2(RenderWindow* wnd)
+{
+	return wnd->GetInput().IsKeyDown(sf::Key::Num2);
+}
+
+bool InputHandler::isPress3(RenderWindow* wnd)
+{
+	return wnd->GetInput().IsKeyDown(sf::Key::Num3);
+}
+
+bool InputHandler::isPress4(RenderWindow* wnd)
+{
+	return wnd->GetInput().IsKeyDown(sf::Key::Num4);
+}

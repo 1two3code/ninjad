@@ -1,4 +1,6 @@
 #include "Level.h"
+#include "Block.h"
+#include "PlayerBlock.h"
 #include <iostream>
 Level::Level(int j)
 {
@@ -150,7 +152,8 @@ Block* Level::createBlock(int type, int rot)
 		rtn->SetRotation(rot);
 		break;
 	case 7:
-		rtn = NULL;
+		rtn = new PlayerBlock();
+		rtn->SetRotation(rot);
 		break;
 	case 8:
 		rtn = NULL;
@@ -243,15 +246,40 @@ int Level::addBlock(int type, int posX, int posY, int rot,Player* player, NinjaH
 				{
 
 						if(tempBlock->curAnim->sprite.GetPosition()==block[i]->curAnim->sprite.GetPosition()) //ifall redan finns block där du klickar och om det är av samma typ
-						{														// som det du försöker sätta ut, ta bort det blocket
-							if(typeid(*tempBlock)==typeid(*block[i]))
-								{
+						{																					// som det du försöker sätta ut, ta bort det blocket
+							//if(typeid(*tempBlock)==typeid(*block[i]))
+							if(typeid(*block[i])==typeid(PlayerBlock))
+							{
 									block[i]=block[nBlocks-1];
 									nBlocks--;
 									remove=true;
 									re=-1;
 									nPBlocks++;
-								}
+							}
+							else if(typeid(*block[i])==typeid(FallBlock))
+							{
+									block[i]=block[nBlocks-1];
+									nBlocks--;
+									remove=true;
+									re=-1;
+									nFBlocks++;
+							}
+							else if(typeid(*block[i])==typeid(JumpBlock))
+							{
+									block[i]=block[nBlocks-1];
+									nBlocks--;
+									remove=true;
+									re=-1;
+									nJBlocks++;
+							}
+							else if(typeid(*block[i])==typeid(SpringBlock))
+							{
+									block[i]=block[nBlocks-1];
+									nBlocks--;
+									remove=true;
+									re=-1;
+									nSBlocks++;
+							}
 							else
 							{
 								blockThere=false;
@@ -276,17 +304,46 @@ int Level::addBlock(int type, int posX, int posY, int rot,Player* player, NinjaH
 				}
 					if(remove==false&& occupied==true && blockThere==true)
 					{
-						if(nPBlocks>0){
-						nBlocks++;
-						re=1;
-						nPBlocks--;
+						if(type==7)
+						{
+							if(nPBlocks>0){
+							nBlocks++;
+							re=1;
+							nPBlocks--;
+							}
+						}
+
+						else if(type == 4)
+						{
+							if(nSBlocks>0){
+							nBlocks++;
+							re=1;
+							nSBlocks--;
+							}
+						}
+						else if(type == 5)
+						{
+							if(nJBlocks>0){
+							nBlocks++;
+							re=1;
+							nJBlocks--;
+							}
+						}
+						else if(type == 6)
+						{
+							if(nFBlocks>0){
+							nBlocks++;
+							re=1;
+							nFBlocks--;
+							}
+						}
 						}
 					}
 				}
 				tempBlock = NULL;
 				delete tempBlock;
 
-			}
+			
 			return re;
 }
 

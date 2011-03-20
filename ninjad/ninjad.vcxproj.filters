@@ -90,6 +90,9 @@
     <ClCompile Include="src\SndHolder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\PlayerBlock.cpp">
+      <Filter>Source Files\Blocks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -151,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="src\SndHolder.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PlayerBlock.h">
+      <Filter>Header Files\Blocks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
