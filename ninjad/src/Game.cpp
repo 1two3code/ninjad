@@ -99,7 +99,7 @@ int Game::run()
 	mainWnd->Show(true);
 	while(running)
 	{
-		float framerate = 1.0f/ mainWnd->GetFrameTime();
+		//float framerate = 1.0f/ mainWnd->GetFrameTime();
 		//cout << framerate << endl;		
 		checkCollision();
 		running = update();
@@ -138,17 +138,15 @@ bool Game::update()
 	bool run = true;
 	Event e;
 	
-	while (mainWnd->GetEvent(e) && run){
+	while (mainWnd->GetEvent(e) && run)
 		run = eventHandler(e);				//Flyttade ner hela den här superscoopen till en egen funktion istället. Fresh.
-		if(e.Type == Event::MouseMoved)
-			mptr->SetPosition(e.MouseMove.X, e.MouseMove.Y);
-	}
+	
 	if(!run)
 		return false;
 
 	if(!paused)
 	{
-		if(clockHold->GetElapsedTime() > 6 && !ninjhold->getNinjas(0)->isActive())
+		if(clockHold->GetElapsedTime() > 3 && !ninjhold->getNinjas(0)->isActive())
 			for(int i = 0; i < ninjhold->getNr(); i++)
 				ninjhold->getNinjas(i)->setActive(true);
 	
@@ -160,14 +158,16 @@ bool Game::update()
 
 		run = !isNextLevel();
 
-		hud->update(mainLvl, player, ninjasIn);				//Ska skicka levelID, Ninjor max, ninjor inne, antal block <- levelID osv borde vara ints i main.cpp
+		hud->update(mainLvl, player, ninjasIn, player->getBlockSelected());				//Ska skicka levelID, Ninjor max, ninjor inne, antal block <- levelID osv borde vara ints i main.cpp
 	}
-
+	
 	return run;
 }
 
 bool Game::eventHandler(Event e)
 {
+	if(e.Type == Event::MouseMoved)
+		mptr->SetPosition(e.MouseMove.X, e.MouseMove.Y);
 	if(e.Type == Event::MouseButtonPressed)
 	{
 		if (!(InputHandler::getInstance().getMousePosX(mainWnd) > 96 && InputHandler::getInstance().getMousePosX(mainWnd) < 608 
@@ -179,7 +179,7 @@ bool Game::eventHandler(Event e)
 	else if(e.Type == Event::MouseButtonReleased)
 	{
 		if(!(InputHandler::getInstance().getMousePosX(mainWnd) > 96 && InputHandler::getInstance().getMousePosX(mainWnd) < 608 
-			&& InputHandler::getInstance().getMousePosY(mainWnd) > 160 && InputHandler::getInstance().getMousePosY(mainWnd) < 672))			//Om musen är inom HUD
+			&& InputHandler::getInstance().getMousePosY(mainWnd) > 160 && InputHandler::getInstance().getMousePosY(mainWnd) < 672))	
 		{
 			int lvl;
 			switch(hud->HUDReleased(mainWnd))
@@ -205,7 +205,7 @@ bool Game::eventHandler(Event e)
 			case 5:
 				if(FPS < 100 && !paused)
 				{
-					mainWnd->SetFramerateLimit(FPS + 2);		//Fulhack, använder framerate för att öka spelhastigheten :)
+					mainWnd->SetFramerateLimit(FPS + 2);
 					FPS += 2;
 				}
 				break;
@@ -229,34 +229,22 @@ bool Game::eventHandler(Event e)
 			x /= magnitude;
 			y /= magnitude;
 
-
-
 			mainLvl->addBlock(player->getBlockSelected(),player->curAnim->sprite.GetPosition().x+(32*x), player->curAnim->sprite.GetPosition().y+(32*y), 0, player,ninjhold);
 			
 		}
 	}
-	//if (e.Type == Event::MouseMoved)
-	//{
-		/*if((InputHandler::getInstance().getMousePosX(mainWnd) > 96 && InputHandler::getInstance().getMousePosX(mainWnd) < 608 
-			&& InputHandler::getInstance().getMousePosY(mainWnd) > 160 && InputHandler::getInstance().getMousePosY(mainWnd) < 672))
-		{
-			mainWnd->ShowMouseCursor(false);
-		}
-		else
-			mainWnd->ShowMouseCursor(true);
-		*/
+
 		sf::Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
 		float angle;	//kan användas om vi ska ha en sprite som pekar där du siktar med musen
 		angle = 57.3065f * atan2(mousePos.y - player->curAnim->sprite.GetPosition().y, mousePos.x - player->curAnim->sprite.GetPosition().x);
 		player->getHand()->SetRotation(360-angle);
-	//}
-	
+
 	if (e.Type == Event::Closed)
 	{
 		mainWnd->Close();
 		return false;
 	}
-	//Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
+
 	player->setDirection(!(player->curAnim->sprite.GetPosition().x > mousePos.x));
 	return true;
 }
@@ -316,7 +304,7 @@ void Game::showLevelComplete()
 	{
 		while (mainWnd->GetEvent(e))
 		{
-			if(e.Type == Event::MouseButtonReleased)		//För vilket event som helst förrutom mousemove, stoppa och gå vidare (MouseButtonRelease menar du väl?  //Erik J)
+			if(e.Type == Event::MouseButtonReleased || e.Type == Event::KeyReleased)
 				stop = true;
 		}
 

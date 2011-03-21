@@ -118,6 +118,9 @@ ImgHolder::ImgHolder()
 	levelComplete->LoadFromFile("./data/sprites/game/levelComplete.png");	
 	levelComplete->SetSmooth(false);
 
+	blockFrame = new Image();
+	blockFrame->LoadFromFile("./data/sprites/hud/blockFrame.png");
+
 	locked = new Image();
 	locked->LoadFromFile("./data/sprites/menu/locked.png");
 	locked->SetSmooth(false);
@@ -159,6 +162,7 @@ ImgHolder::~ImgHolder()
 	delete icon;
 	delete howToPlay;
 	delete levelComplete;
+	delete blockFrame;
 
 	//delete menuBackground;
 	delete creditScreen;

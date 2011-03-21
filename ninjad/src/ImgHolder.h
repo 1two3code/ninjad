@@ -31,6 +31,7 @@ public:
 	Image* ninFall;
 	Image* ninClimb;
 	Image* ninArm;
+	Image* blockFrame;
 
 	Image* title;
 	Image* mousePtr;

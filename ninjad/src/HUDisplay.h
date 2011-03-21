@@ -21,6 +21,7 @@ private:
 	Sprite* soundButton;
 	Sprite* speedUpButton;
 	Sprite* speedDownButton;
+	Sprite* blockFrame;
 
 	Font* font;
 	String* levelText;
@@ -35,13 +36,15 @@ private:
 	int bz;		//Temporary variable for Buttonsize.
 	Clock* clock;
 	int clockMinutes;
-	int clockSeconds;	
+	int clockSeconds;
+
+	void moveBlockFrame(unsigned short type);
 
 public:
 	HUDisplay();
 	~HUDisplay();
 
-	void update(Level* lvl, Player* ply, unsigned short nIn);
+	void update(Level* lvl, Player* ply, unsigned short nIn, unsigned short selectedBlock);
 	void render(RenderWindow* rndwnd);
 	void HUDClicked(RenderWindow* rndwnd);
 	int HUDReleased(RenderWindow* rndwnd);
