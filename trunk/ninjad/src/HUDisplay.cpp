@@ -14,7 +14,6 @@ HUDisplay::HUDisplay()
 	HUDbg = new Sprite();
 	HUDbg->SetImage(*ImgHolder::getInst()->hud);
 
-
 	resetButton = new Sprite();
 	resetButton->SetImage(*ImgHolder::getInst()->buttons);
 	resetButton->SetSubRect(IntRect(bz*1,0,bz*2,bz));
@@ -45,6 +44,10 @@ HUDisplay::HUDisplay()
 	speedDownButton->SetImage(*ImgHolder::getInst()->arrows);
 	speedDownButton->SetSubRect(IntRect(62,0,124,45));
 	speedDownButton->SetPosition(940, 565);
+
+	blockFrame = new Sprite();
+	blockFrame->SetImage(*ImgHolder::getInst()->blockFrame);
+	blockFrame->SetPosition(684+bz*3, 634);
 
 	//684, 634
 
@@ -104,6 +107,7 @@ HUDisplay::~HUDisplay()
 	delete quitButton;
 	delete speedUpButton;
 	delete speedDownButton;
+	delete blockFrame;
 
 	delete font;
 	delete levelText;
@@ -200,7 +204,7 @@ int HUDisplay::HUDReleased(RenderWindow* rndwnd)
 	return 0;
 }
 
-void HUDisplay::update(Level* lvl, Player* ply, unsigned short nIn)
+void HUDisplay::update(Level* lvl, Player* ply, unsigned short nIn, unsigned short blockSelected)
 {
 	char temp[8];
 	std::string sTemp;
@@ -233,6 +237,10 @@ void HUDisplay::update(Level* lvl, Player* ply, unsigned short nIn)
 	jumpBlockText->SetText(temp);
 	itoa(lvl->getNFBlocks(), temp, 10);
 	fallBlockText->SetText(temp);
+
+
+	moveBlockFrame(blockSelected);
+
 }
 
 void HUDisplay::render(RenderWindow* rndwnd)
@@ -253,5 +261,30 @@ void HUDisplay::render(RenderWindow* rndwnd)
 	rndwnd->Draw(*springBlockText);
 	rndwnd->Draw(*fallBlockText);
 	rndwnd->Draw(*jumpBlockText);
+
+	rndwnd->Draw(*blockFrame);
+}
+
+
+void HUDisplay::moveBlockFrame(unsigned short type)
+{
+	switch(type)
+	{
+	default:
+		blockFrame->SetPosition(660, 220);
+		break;
+	case 4:
+		blockFrame->SetPosition(810, 310);
+		break;
+	case 5:
+		blockFrame->SetPosition(810, 220);
+		break;
+	case 6:
+		blockFrame->SetPosition(660, 310);
+		break;
+	case 7:
+		blockFrame->SetPosition(660, 220);
+		break;
+	}
 
 }
