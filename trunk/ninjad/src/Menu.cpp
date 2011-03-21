@@ -4,6 +4,7 @@ Menu::Menu()
 {
 	menuWnd = new RenderWindow(VideoMode(1024, 768, 32), "Ninja'd", Style::Close, WindowSettings());
 	//menuWnd->UseVerticalSync(true);
+	menuWnd->ShowMouseCursor(false);
 	menuWnd->SetFramerateLimit(30);
 	menuWnd->SetIcon(16, 16, ImgHolder::getInst()->icon->GetPixelsPtr());
 
@@ -15,7 +16,7 @@ Menu::Menu()
 	mapPreview->SetImage(*ImgHolder::getInst()->maps[0]);
 	mapPreview->SetSubRect(IntRect(1,1,17,17));
 	mapPreview->SetScale(32,32);
-	mapPreview->SetPosition(85, 148);
+	mapPreview->SetPosition(84, 148);
 
 	btnFrame.x = 640;
 	btnFrame.y = 170;
@@ -87,6 +88,11 @@ Menu::Menu()
 	credScreen->SetPosition(0, 0);
 	credits = false;
 
+	mptr = new Sprite();
+	mptr->SetImage(*ImgHolder::getInst()->mousePtr);
+	mptr->SetCenter(0,0);
+	mptr->SetPosition(0,0);
+
 
 	levelButtons = new Sprite*[25];
 	Sprite* temp;
@@ -125,6 +131,7 @@ Menu::~Menu()
 	delete nFall;
 	delete nSpring;
 	delete nJump;
+	delete mptr;
 
 	for(int i = 0; i < 25; i++)
 		delete levelButtons[i];
@@ -152,9 +159,11 @@ int Menu::update()
 	bool eBool = true;
 	Event e;
 
-	while(menuWnd->GetEvent(e) && choice == -25)
+	while(menuWnd->GetEvent(e) && choice == -25){
 		choice = eventHandler(e);
-
+		if(e.Type == Event::MouseMoved)
+			mptr->SetPosition(e.MouseMove.X, e.MouseMove.Y);
+	}
 	return choice;
 }
 
@@ -184,6 +193,7 @@ void Menu::render()
 	menuWnd->Draw(*htpButton);
 	menuWnd->Draw(*credButton);
 
+	menuWnd->Draw(*mptr);
 	menuWnd->Display();
 }
 
@@ -324,12 +334,12 @@ void Menu::splashScreen()
 
 	Animation* pressAnyKey = new Animation(ImgHolder::getInst()->pressAnyKey, 2, 600, 200, 15, true, true);
 	pressAnyKey->sprite.SetCenter(300, 100);
-	pressAnyKey->sprite.SetPosition(512, 400);
+	pressAnyKey->sprite.SetPosition(512, 500);
 	pressAnyKey->sprite.SetScale(0.5f, 0.5f);
 	Sprite title;
 	title.SetImage(*ImgHolder::getInst()->title);
 	title.SetCenter(640, 320);
-	title.SetPosition(512, 200);
+	title.SetPosition(512, 300);
 	float titleScale = 2.0f;
 	title.SetScale(titleScale, titleScale);
 	float maxtitleScale = 0.3f;
@@ -340,6 +350,8 @@ void Menu::splashScreen()
 	float titleRotSpeed = 2.0f;
 	float currentRot = 0.0f;
 
+	bool introDone = false;
+
 	splashScreen.SetImage(*ImgHolder::getInst()->splashScreen);
 	String str;
 	str.SetText("Press any key to continue");
@@ -347,10 +359,10 @@ void Menu::splashScreen()
 	str.SetColor(Color(0,0,0));
 	str.SetPosition(450, 420);
 
-	//SndHolder::getInst()->musDrumroll.Play();
+	SndHolder::getInst()->musIntro.Play();
 	//SndHolder::getInst()->musTheme.SetPlayingOffset(2);
 	SndHolder::getInst()->musTheme.SetLoop(true);
-	SndHolder::getInst()->musTheme.Play();
+	//SndHolder::getInst()->musTheme.Play();
 	
 	while(splash)
 	{
@@ -364,12 +376,14 @@ void Menu::splashScreen()
 		if(title.GetScale().x > maxtitleScale && titleScaleSpeed == 0.01f) titleScaleSpeed = -0.01f;
 		if(title.GetScale().x < mintitleScale)
 		{
-			//if(SndHolder::getInst()->musDrumroll.GetStatus() == Sound::Status::Playing) SndHolder::getInst()->musDrumroll.Stop();
-			//SndHolder::getInst()->musTheme.SetPlayingOffset(1);
 			titleScaleSpeed = 0.01f;
 		}
 		pressAnyKey->Update();
-		//if(SndHolder::getInst()->musDrumroll.GetStatus() == Sound::Status::Stopped) SndHolder::getInst()->musTheme.Play();
+		if(SndHolder::getInst()->musIntro.GetStatus() == Sound::Status::Stopped && !introDone)
+		{
+			SndHolder::getInst()->musTheme.Play();
+			introDone = true;
+		}
 		menuWnd->Draw(splashScreen);
 		//menuWnd->Draw(str);
 		menuWnd->Draw(pressAnyKey->sprite);

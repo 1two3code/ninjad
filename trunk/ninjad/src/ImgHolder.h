@@ -33,6 +33,7 @@ public:
 	Image* ninArm;
 
 	Image* title;
+	Image* mousePtr;
 
 	Image* howToPlay;
 	Image* levelComplete;

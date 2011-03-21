@@ -27,6 +27,8 @@ private:
 	Sprite* pauseScreen;
 	Sprite* completeScreen;
 	Clock* clockHold;
+
+	Sprite* mptr;
 	
 	unsigned short currLevel;
 	unsigned short ninjasIn;

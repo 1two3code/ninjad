@@ -102,6 +102,10 @@ ImgHolder::ImgHolder()
 	title->LoadFromFile("./data/sprites/menu/title.png");
 	title->SetSmooth(false);
 
+	mousePtr = new Image();
+	mousePtr->LoadFromFile("./data/sprites/menu/mptr.png");
+	mousePtr->SetSmooth(false);
+
 	howToPlay = new Image();
 	howToPlay->LoadFromFile("./data/sprites/menu/howtoplay.png");
 	howToPlay->SetSmooth(false);

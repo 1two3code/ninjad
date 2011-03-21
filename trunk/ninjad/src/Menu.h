@@ -24,6 +24,8 @@ private:
 	Sprite* credButton;
 	Sprite* credScreen;
 	Sprite* howToPlayScreen;
+	
+	Sprite* mptr;
 
 	Sprite* menuHUD;
 	String* nNinjas;

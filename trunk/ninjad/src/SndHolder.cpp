@@ -17,8 +17,11 @@ SndHolder::SndHolder()
 	drumroll.LoadFromFile("./data/audio/drumroll.wav");
 	musDrumroll.SetBuffer(drumroll);
 
-	theme.LoadFromFile("./data/audio/gp.wav");
+	theme.LoadFromFile("./data/audio/gp_loop.wav");
 	musTheme.SetBuffer(theme);
+
+	intro.LoadFromFile("./data/audio/gp_intro.wav");
+	musIntro.SetBuffer(intro);
 
 	soundOn = true;
 	sndOn(soundOn);
@@ -43,6 +46,7 @@ void SndHolder::sndOn(bool on)		//bool elgiganten ftw
 		sndSpring.SetVolume(100.0f);
 		musDrumroll.SetVolume(40.0f);
 		musTheme.SetVolume(30.0f);
+		musIntro.SetVolume(30.0f);
 	}
 	else
 	{
@@ -51,6 +55,7 @@ void SndHolder::sndOn(bool on)		//bool elgiganten ftw
 		sndSpring.SetVolume(0.0f);
 		musDrumroll.SetVolume(0.0f);
 		musTheme.SetVolume(0.0f);
+		musIntro.SetVolume(0.0f);
 	}
 }
 
