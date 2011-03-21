@@ -16,6 +16,11 @@ Game::Game()
 	completeScreen = NULL;
 	clockHold = NULL;
 
+	mptr = new Sprite();
+	mptr->SetImage(*ImgHolder::getInst()->mousePtr);
+	mptr->SetCenter(0,0);
+	mptr->SetPosition(0,0);
+
 	FPS = 0;
 	ninjasIn = 0;
 	paused = false;
@@ -49,6 +54,8 @@ Game::~Game()
 	if(collision)
 		delete collision;
 	//delete InputHandler::getInstance();
+	if(mptr)
+		delete mptr;
 }
 
 bool Game::init(int level)
@@ -59,6 +66,7 @@ bool Game::init(int level)
 	FPS = 30;
 	mainWnd->SetFramerateLimit(FPS);
 	mainWnd->SetIcon(16, 16, ImgHolder::getInst()->icon->GetPixelsPtr());
+	mainWnd->ShowMouseCursor(false);
 
 	background = new Sprite();
 	background->SetImage(*ImgHolder::getInst()->background);
@@ -130,9 +138,11 @@ bool Game::update()
 	bool run = true;
 	Event e;
 	
-	while (mainWnd->GetEvent(e) && run)
+	while (mainWnd->GetEvent(e) && run){
 		run = eventHandler(e);				//Flyttade ner hela den här superscoopen till en egen funktion istället. Fresh.
-
+		if(e.Type == Event::MouseMoved)
+			mptr->SetPosition(e.MouseMove.X, e.MouseMove.Y);
+	}
 	if(!run)
 		return false;
 
@@ -227,14 +237,14 @@ bool Game::eventHandler(Event e)
 	}
 	//if (e.Type == Event::MouseMoved)
 	//{
-		if((InputHandler::getInstance().getMousePosX(mainWnd) > 96 && InputHandler::getInstance().getMousePosX(mainWnd) < 608 
+		/*if((InputHandler::getInstance().getMousePosX(mainWnd) > 96 && InputHandler::getInstance().getMousePosX(mainWnd) < 608 
 			&& InputHandler::getInstance().getMousePosY(mainWnd) > 160 && InputHandler::getInstance().getMousePosY(mainWnd) < 672))
 		{
-			//mainWnd->ShowMouseCursor(false);
+			mainWnd->ShowMouseCursor(false);
 		}
 		else
 			mainWnd->ShowMouseCursor(true);
-
+		*/
 		sf::Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
 		float angle;	//kan användas om vi ska ha en sprite som pekar där du siktar med musen
 		angle = 57.3065f * atan2(mousePos.y - player->curAnim->sprite.GetPosition().y, mousePos.x - player->curAnim->sprite.GetPosition().x);
@@ -265,6 +275,8 @@ void Game::render()
 
 	if(paused)
 		mainWnd->Draw(*pauseScreen);
+
+	mainWnd->Draw(*mptr);
 	mainWnd->Display();
 }
 

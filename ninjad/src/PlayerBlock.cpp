@@ -9,7 +9,7 @@ PlayerBlock::PlayerBlock()
 
 	this->idleAnim = new Animation(ImgHolder::getInst()->blocks, 8, 32, 32, 1, false, false);
 	this->idleAnim->sprite.SetCenter(16,16);
-	this->idleAnim->SetFrame(7);
+	this->idleAnim->SetFrame(1);
 
 	this->activeAnim = idleAnim;
 	this->curAnim = idleAnim;

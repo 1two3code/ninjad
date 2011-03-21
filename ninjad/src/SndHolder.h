@@ -16,12 +16,14 @@ public:
 	SoundBuffer spring;
 	SoundBuffer drumroll;
 	SoundBuffer theme;
+	SoundBuffer intro;
 
 	Sound sndClick;
 	Sound sndYay;
 	Sound sndSpring;
 	Sound musDrumroll;
 	Sound musTheme;
+	Sound musIntro;
 	bool soundOn;
 
 	void onoff();
