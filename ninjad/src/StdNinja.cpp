@@ -11,6 +11,7 @@ StdNinja::StdNinja(int s)
         setComplete(false);
 		setSpeedY(0);
 		count=0;
+		underground=false;
 
         //SetSubRect(IntRect(0,0,16,16));
         //SetPosition(208,112);
@@ -39,6 +40,7 @@ void StdNinja::update()
 {
         if(active && getState()!=10)
         {
+			underground=false;
 			this->curAnim->Update();
 			this->curAnim->sprite.Move((float)getSpeed()*getDirX(), (float)getSpeed()*getDirY());
         }
@@ -49,14 +51,15 @@ void StdNinja::update()
 			if(count==0)
 			{
 				this->curAnim->sprite.Move(0, (float)getSpeedY()*getDirY());
-				setSpeedY(getSpeedY()+1);
+				if(!underground) setSpeedY(getSpeedY()+1);
 			}
 
 			count++;
 			count= count%1;
 			if(getSpeedY()>6)
 			{
-				setState(6);
+				underground=true;
+				this->setSpeedY(8);
 				count=0;
 			}
 		}

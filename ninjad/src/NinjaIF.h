@@ -18,6 +18,7 @@ protected:
 	bool complete;
 	int speedY;
 	int count;
+	bool underground;
 
 public:
 	Animation *curAnim, *runAnim, *slideAnim, *fallAnim, *climbAnim, *armAnim;
