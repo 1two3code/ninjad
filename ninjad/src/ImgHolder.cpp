@@ -81,6 +81,7 @@ ImgHolder::ImgHolder()
 
 	creditScreen = new Image();
 	creditScreen->LoadFromFile("./data/sprites/menu/Creditscreen.png");
+	creditScreen->SetSmooth(false);
 	
 	splashScreen = new Image();
 	splashScreen->LoadFromFile("./data/sprites/menu/Splashscreen.png");
@@ -120,6 +121,7 @@ ImgHolder::ImgHolder()
 
 	blockFrame = new Image();
 	blockFrame->LoadFromFile("./data/sprites/hud/blockFrame.png");
+	blockFrame->SetSmooth(false);
 
 	locked = new Image();
 	locked->LoadFromFile("./data/sprites/menu/locked.png");
