@@ -4,23 +4,23 @@ SndHolder* SndHolder::pInstance = NULL;
 
 SndHolder::SndHolder()
 {
-	click.LoadFromFile("./data/audio/mouse click 2.wav");
+	click.LoadFromFile("./data/audio/mouse click 2.ogg");
 	sndClick.SetBuffer(click);
 
-	yay.LoadFromFile("./data/audio/yay.wav");
+	yay.LoadFromFile("./data/audio/yay.ogg");
 	sndYay.SetBuffer(yay);
 	sndYay.SetPitch(2.0f);
 
-	spring.LoadFromFile("./data/audio/spring.wav");
+	spring.LoadFromFile("./data/audio/spring.ogg");
 	sndSpring.SetBuffer(spring);
 
-	drumroll.LoadFromFile("./data/audio/drumroll.wav");
+	drumroll.LoadFromFile("./data/audio/drumroll.ogg");
 	musDrumroll.SetBuffer(drumroll);
 
-	theme.LoadFromFile("./data/audio/gp_loop.wav");
+	theme.LoadFromFile("./data/audio/gp_loop.ogg");
 	musTheme.SetBuffer(theme);
 
-	intro.LoadFromFile("./data/audio/gp_intro.wav");
+	intro.LoadFromFile("./data/audio/gp_intro.ogg");
 	musIntro.SetBuffer(intro);
 
 	soundOn = true;
@@ -42,11 +42,11 @@ void SndHolder::sndOn(bool on)		//bool elgiganten ftw
 	if(on)
 	{
 		sndYay.SetVolume(30.0f);
-		sndClick.SetVolume(100.0f);
-		sndSpring.SetVolume(100.0f);
+		sndClick.SetVolume(30.0f);
+		sndSpring.SetVolume(30.0f);
 		musDrumroll.SetVolume(40.0f);
-		musTheme.SetVolume(30.0f);
-		musIntro.SetVolume(30.0f);
+		musTheme.SetVolume(15.0f);
+		musIntro.SetVolume(15.0f);
 	}
 	else
 	{

@@ -77,7 +77,7 @@ bool Game::init(int level)
 
 	completeScreen = new Sprite();
 	completeScreen->SetImage(*ImgHolder::getInst()->levelComplete); 
-	completeScreen->SetPosition(112, 80);
+	completeScreen->SetPosition(0, 0);
 
 	hud = new HUDisplay();
 
@@ -300,6 +300,8 @@ void Game::showLevelComplete()
 {
 	Event e;
 	bool stop = false;
+	mainWnd->Draw(*completeScreen);
+	mainWnd->Display(); 
 	while(!stop)
 	{
 		while (mainWnd->GetEvent(e))
@@ -307,9 +309,6 @@ void Game::showLevelComplete()
 			if(e.Type == Event::MouseButtonReleased || e.Type == Event::KeyReleased)
 				stop = true;
 		}
-
-		mainWnd->Draw(*completeScreen);
-		mainWnd->Display(); 
 	}
 	
 }

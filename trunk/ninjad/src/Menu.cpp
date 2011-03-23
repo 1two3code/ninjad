@@ -51,29 +51,29 @@ Menu::Menu()
 	nNinjas  = new String();
 	nNinjas->SetFont(*font);
 	nNinjas->SetColor(Color(0,0,0));
-	nNinjas->SetSize(50);
-	nNinjas->SetPosition(180,701);
+	nNinjas->SetSize(43);
+	nNinjas->SetPosition(180,680);
 
 	nStd = new String();
-	nStd->SetPosition(290,678);
+	nStd->SetPosition(290,682);
 	nStd->SetFont(*font);
 	nStd->SetColor(Color(0,0,0));
 	nStd->SetSize(20);
 
 	nFall = new String();
-	nFall->SetPosition(290,705); 
+	nFall->SetPosition(290,709); 
 	nFall->SetFont(*font);
 	nFall->SetColor(Color(0,0,0));
 	nFall->SetSize(20);
 
 	nJump = new String();
-	nJump->SetPosition(375,678);
+	nJump->SetPosition(375,682);
 	nJump->SetFont(*font);
 	nJump->SetColor(Color(0,0,0));
 	nJump->SetSize(20);
 
 	nSpring = new String();
-	nSpring->SetPosition(375,705);
+	nSpring->SetPosition(375,709);
 	nSpring->SetFont(*font);
 	nSpring->SetColor(Color(0,0,0));
 	nSpring->SetSize(20);
@@ -184,14 +184,21 @@ void Menu::render()
 		menuWnd->Draw(*levelButtons[i]);
 
 	menuWnd->Draw(*numbers);
-	if(howToPlay)
-		menuWnd->Draw(*howToPlayScreen);
-	else if(credits)
-		menuWnd->Draw(*credScreen);
-
 	menuWnd->Draw(*quitButton);
-	menuWnd->Draw(*htpButton);
-	menuWnd->Draw(*credButton);
+
+	if(!howToPlay) menuWnd->Draw(*htpButton);
+	if(!credits)   menuWnd->Draw(*credButton);
+
+	if(howToPlay)
+	{
+		menuWnd->Draw(*howToPlayScreen);
+		menuWnd->Draw(*htpButton);
+	}
+	else if(credits)
+	{
+		menuWnd->Draw(*credScreen);
+		menuWnd->Draw(*credButton);
+	}
 
 	menuWnd->Draw(*mptr);
 	menuWnd->Display();
@@ -386,12 +393,12 @@ void Menu::splashScreen()
 		}
 		menuWnd->Draw(splashScreen);
 		//menuWnd->Draw(str);
-		menuWnd->Draw(pressAnyKey->sprite);
+		if(introDone) menuWnd->Draw(pressAnyKey->sprite);
 		menuWnd->Draw(title);
 		menuWnd->Display();
 		while(menuWnd->GetEvent(e))
 		{
-			if(e.Type == Event::KeyPressed )
+			if(e.Type == Event::KeyPressed /*&& introDone*/ )
 				splash = false;
 		}
 	}
