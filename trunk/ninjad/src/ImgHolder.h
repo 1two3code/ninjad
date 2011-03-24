@@ -24,6 +24,7 @@ public:
 	Image* ninSlide;
 	Image* ninFall;
 	Image* ninClimb;
+	Image* ninDeath;
 	Image* ninArm;
 	Image* colorCode;
 	Image* plyRun;
