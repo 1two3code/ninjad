@@ -18,6 +18,7 @@ using namespace std;
 int main()
 {
 	FreeConsole();			//<- kommentera bort för att få ut consolen
+	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 
 	unsigned short unlockedLevels = readConfig();
 	Menu* menu;
@@ -75,6 +76,8 @@ int main()
 	
 	delete ImgHolder::getInst();
 	delete SndHolder::getInst();
+	if(newGame)
+		delete newGame;
     return EXIT_SUCCESS;
 }
 

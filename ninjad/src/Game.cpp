@@ -33,8 +33,10 @@ Game::Game()
 
 Game::~Game()
 {
-	if(mainWnd)
+	if(mainWnd){
 		delete mainWnd;
+		mainWnd = NULL;
+	}
 	if(mainLvl)
 		delete mainLvl;
 	if(ninjhold)
@@ -51,8 +53,6 @@ Game::~Game()
 		delete completeScreen;
 	if(clockHold)
 		delete clockHold;
-	//if(player)
-		//delete player;
 	if(collision)
 		delete collision;
 	//delete InputHandler::getInstance();
