@@ -12,6 +12,7 @@ StdNinja::StdNinja(int s)
 		setSpeedY(0);
 		count=0;
 		underground=false;
+		setDead(false);
 
         //SetSubRect(IntRect(0,0,16,16));
         //SetPosition(208,112);
@@ -182,8 +183,10 @@ void StdNinja::updateSprite()
 				setSpeedY(-6);
                 break;
 		case 11:
-			this->setActive(false);
+			this->setDrawn(false);
 			this->setDead(true);
+			this->setDirX(0);
+			this->setDirY(0);
 			break;
 		}
 }
