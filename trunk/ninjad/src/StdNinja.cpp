@@ -183,7 +183,7 @@ void StdNinja::updateSprite()
 				setSpeedY(-6);
                 break;
 		case 11:
-			this->setDrawn(false);
+			//this->setDrawn(false);
 			this->setDead(true);
 			this->setDirX(0);
 			this->setDirY(0);

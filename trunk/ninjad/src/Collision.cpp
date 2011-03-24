@@ -86,7 +86,6 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 		default:
 			break;
 		}
-	}
 
 	if(ninja->getDrawn() == true)
 	{
@@ -311,6 +310,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				ninja->setState(11);
 				block[i]->Animate();
+				ninja->curAnim->sprite.SetPosition(block[i]->curAnim->sprite.GetPosition().x, block[i]->curAnim->sprite.GetPosition().y);
 			}
 		}
 		break;
@@ -321,6 +321,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 				{
 				ninja->setState(11);
 				block[i]->Animate();
+				ninja->curAnim->sprite.SetPosition(block[i]->curAnim->sprite.GetPosition().x, block[i]->curAnim->sprite.GetPosition().y);
 			}
 		}
 		break;
@@ -331,6 +332,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 				{
 				ninja->setState(11);
 				block[i]->Animate();
+				ninja->curAnim->sprite.SetPosition(block[i]->curAnim->sprite.GetPosition().x, block[i]->curAnim->sprite.GetPosition().y);
 			}
 		}
 		break;
@@ -341,6 +343,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				ninja->setState(11);
 				block[i]->Animate();
+				ninja->curAnim->sprite.SetPosition(block[i]->curAnim->sprite.GetPosition().x, block[i]->curAnim->sprite.GetPosition().y);
 			}
 		}
 		break;
@@ -351,6 +354,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 				{
 				ninja->setState(11);
 				block[i]->Animate();
+				ninja->curAnim->sprite.SetPosition(block[i]->curAnim->sprite.GetPosition().x, block[i]->curAnim->sprite.GetPosition().y);
 			}
 		}
 		break;
@@ -361,6 +365,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 				{
 				ninja->setState(11);
 				block[i]->Animate();
+				ninja->curAnim->sprite.SetPosition(block[i]->curAnim->sprite.GetPosition().x, block[i]->curAnim->sprite.GetPosition().y);
 			}
 		}
 		break;
@@ -371,6 +376,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 				{
 				ninja->setState(11);
 				block[i]->Animate();
+				ninja->curAnim->sprite.SetPosition(block[i]->curAnim->sprite.GetPosition().x, block[i]->curAnim->sprite.GetPosition().y);
 			}
 		}
 		break;
@@ -381,6 +387,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				ninja->setState(11);
 				block[i]->Animate();
+				ninja->curAnim->sprite.SetPosition(block[i]->curAnim->sprite.GetPosition().x, block[i]->curAnim->sprite.GetPosition().y);
 			}
 		}
 		break;
@@ -391,6 +398,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				ninja->setState(11);
 				block[i]->Animate();
+				ninja->curAnim->sprite.SetPosition(block[i]->curAnim->sprite.GetPosition().x, block[i]->curAnim->sprite.GetPosition().y);
 			}
 		}
 		break;
@@ -401,6 +409,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 			{
 				ninja->setState(11);
 				block[i]->Animate();
+				ninja->curAnim->sprite.SetPosition(block[i]->curAnim->sprite.GetPosition().x, block[i]->curAnim->sprite.GetPosition().y);
 			}
 		}
 		break;
@@ -409,16 +418,6 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 		for(int i=0; i<nBlocks && collides==false;i++)
 		{
 			this->collides=true;
-		/*
-			if(ninja->curAnim->sprite.GetPosition().x + ninja->curAnim->sprite.GetSize().x/2 <= block[i]->curAnim->sprite.GetPosition().x - block[i]->curAnim->sprite.GetSize().x/2)//Ninjan är till vänster om blocket
-				collides=false;
-			if(ninja->curAnim->sprite.GetPosition().x - ninja->curAnim->sprite.GetSize().x/2 >= block[i]->curAnim->sprite.GetPosition().x + block[i]->curAnim->sprite.GetSize().x/2)//Ninjan är till höger om blocket
-				collides=false;
-			if(ninja->curAnim->sprite.GetPosition().y + ninja->curAnim->sprite.GetSize().y/2 <= block[i]->curAnim->sprite.GetPosition().y - block[i]->curAnim->sprite.GetSize().y/2)//Ninjan är ovanför blocket
-				collides=false;
-			if(ninja->curAnim->sprite.GetPosition().y - ninja->curAnim->sprite.GetSize().y/2 >= block[i]->curAnim->sprite.GetPosition().y + block[i]->curAnim->sprite.GetSize().y/2)//Ninjan är nedanför blocket
-				collides=false;
-			*/
 
 			if(ninja->curAnim->sprite.GetPosition().x <= block[i]->curAnim->sprite.GetPosition().x - block[i]->curAnim->sprite.GetSize().x/2)//Ninjan är till vänster om blocket
 				collides=false;
@@ -440,6 +439,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 		{
 			ninja->setState(11);
 			block[animerarN]->Animate();
+			ninja->curAnim->sprite.SetPosition(block[animerarN]->curAnim->sprite.GetPosition().x, block[animerarN]->curAnim->sprite.GetPosition().y);
 		}
 		break;
 	default:
@@ -603,6 +603,8 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 
 	//3. Har blocket under fötterna försvunnit?
 	//cout<<"State before check: "<<ninja->getState()<<endl;
+	if(!ninja->getDead())
+	{
 	airborne=true;
 	switch(ninja->getState())
 	{
@@ -702,6 +704,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 	else if(!airborne && ninja->getState()==9 && ninja->getDrawn() == true)
 	{
 		this->ninjaHitsHead(ninja);
+	}
 	}
 	
 	//cout<<"State after check: "<<ninja->getState()<<endl;
@@ -877,6 +880,7 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 		default:
 			break;
 		}
+	}
 	}
 	}
 }
