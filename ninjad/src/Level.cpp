@@ -256,7 +256,6 @@ int Level::addBlock(int type, int posX, int posY, int rot,Player* player, NinjaH
 
 						if(tempBlock->curAnim->sprite.GetPosition()==block[i]->curAnim->sprite.GetPosition()) //ifall redan finns block där du klickar och om det är av samma typ
 						{																					// som det du försöker sätta ut, ta bort det blocket
-							//if(typeid(*tempBlock)==typeid(*block[i]))
 							if(typeid(*block[i])==typeid(PlayerBlock))
 							{
 									block[i]=block[nBlocks-1];

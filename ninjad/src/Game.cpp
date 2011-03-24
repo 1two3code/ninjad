@@ -235,7 +235,7 @@ bool Game::eventHandler(Event e)
 	}
 
 		sf::Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
-		float angle;	//kan användas om vi ska ha en sprite som pekar där du siktar med musen
+		float angle;
 		angle = 57.3065f * atan2(mousePos.y - player->curAnim->sprite.GetPosition().y, mousePos.x - player->curAnim->sprite.GetPosition().x);
 		player->getHand()->SetRotation(360-angle);
 
