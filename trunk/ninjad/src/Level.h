@@ -7,6 +7,7 @@
 #include "JumpBlock.h"
 #include "SpringBlock.h"
 #include "FallBlock.h"
+#include "TrapBlock.h"
 
 #include "Player.h"
 using namespace sf;

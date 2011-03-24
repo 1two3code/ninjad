@@ -307,7 +307,7 @@ void Game::showLevelComplete()
 	{
 		while (mainWnd->GetEvent(e))
 		{
-			if((e.Type == Event::MouseButtonReleased || e.Type == Event::KeyReleased) && ticks > 15)
+			if((e.Type == Event::MouseButtonReleased || e.Type == Event::KeyReleased) && ticks > 30)
 				stop = true;
 
 			ticks++;
