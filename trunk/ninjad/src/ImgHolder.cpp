@@ -33,6 +33,10 @@ ImgHolder::ImgHolder()
 	blkFallAct->LoadFromFile("./data/sprites/game/blk_fall.png");
 	blkFallAct->SetSmooth(false);
 
+	blkFallAct = new Image();
+	blkFallAct->LoadFromFile("./data/sprites/game/blk_trap.png");
+	blkFallAct->SetSmooth(false);
+
 	ninRun = new Image();
 	ninRun->LoadFromFile("./data/sprites/game/nin_run.png");
 	ninRun->SetSmooth(false);
@@ -149,8 +153,10 @@ ImgHolder::~ImgHolder()
 	delete background;
 	delete hud;
 	delete buttons;
+	delete arrows;
 	delete blocks;
 	delete blkSpringAct;
+	delete blkFallAct;
 	delete ninRun;
 	delete ninSlide;
 	delete ninFall;
@@ -159,16 +165,18 @@ ImgHolder::~ImgHolder()
 	delete colorCode;
 	delete plyRun;
 	delete plyIdle;
+	delete plyJump;
 	delete hand;
 	delete pauseScreen;
 	delete icon;
+	delete blockFrame;
 	delete howToPlay;
 	delete levelComplete;
-	delete blockFrame;
 
 	//delete menuBackground;
 	delete creditScreen;
 	delete splashScreen;
+	delete pressAnyKey;
 	delete menuButton;
 	delete menuNumbers;
 	delete locked;

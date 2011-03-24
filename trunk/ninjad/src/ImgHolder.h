@@ -19,25 +19,28 @@ public:
 	Image* blocks;
 	Image* blkSpringAct;
 	Image* blkFallAct;
+	Image* blkTrapIdle;
 	Image* ninRun;
-	Image** maps;
-	Image* colorCode;
-	Image* plyRun;
-	Image* plyIdle;
-	Image* plyJump;
-	Image* pauseScreen;
-	Image* icon;
 	Image* ninSlide;
 	Image* ninFall;
 	Image* ninClimb;
 	Image* ninArm;
+	Image* colorCode;
+	Image* plyRun;
+	Image* plyIdle;
+	Image* plyJump;
+	Image* hand;
+	Image** maps;
+	Image* pauseScreen;
+	Image* icon;
 	Image* blockFrame;
+	Image* howToPlay;
+	Image* levelComplete;
 
 	Image* title;
 	Image* mousePtr;
 
-	Image* howToPlay;
-	Image* levelComplete;
+	
 
 	//Image* menuBackground;
 	Image* creditScreen;
@@ -47,7 +50,7 @@ public:
 	Image* menuNumbers;
 	Image* locked;
 	Image* menuhud;
-	Image* hand;
+
 	~ImgHolder();
 	static ImgHolder* getInst();
 
