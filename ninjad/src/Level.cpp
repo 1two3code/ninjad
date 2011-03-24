@@ -158,6 +158,7 @@ Block* Level::createBlock(int type, int rot)
 	case 8:
 		rtn = new TrapBlock();
 		rtn->SetRotation(rot);
+
 		break;
 	case 9:
 		rtn = NULL;

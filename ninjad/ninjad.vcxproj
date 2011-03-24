@@ -99,6 +99,7 @@
     <ClCompile Include="src\SpringBlock.cpp" />
     <ClCompile Include="src\StdBlock.cpp" />
     <ClCompile Include="src\StdNinja.cpp" />
+    <ClCompile Include="src\TrapBlock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Animation.h" />
@@ -122,6 +123,7 @@
     <ClInclude Include="src\SpringBlock.h" />
     <ClInclude Include="src\StdBlock.h" />
     <ClInclude Include="src\StdNinja.h" />
+    <ClInclude Include="src\TrapBlock.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\README.txt" />

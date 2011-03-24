@@ -33,9 +33,9 @@ ImgHolder::ImgHolder()
 	blkFallAct->LoadFromFile("./data/sprites/game/blk_fall.png");
 	blkFallAct->SetSmooth(false);
 
-	blkFallAct = new Image();
-	blkFallAct->LoadFromFile("./data/sprites/game/blk_trap.png");
-	blkFallAct->SetSmooth(false);
+	blkTrapIdle = new Image();
+	blkTrapIdle->LoadFromFile("./data/sprites/game/blk_trap.png");
+	blkTrapIdle->SetSmooth(false);
 
 	ninRun = new Image();
 	ninRun->LoadFromFile("./data/sprites/game/nin_run.png");
