@@ -28,6 +28,7 @@ private:
 	unsigned short nJBlocks;
 	unsigned short nSBlocks;
 	unsigned short nFBlocks;
+	unsigned short nNinjReq;
 
 	Vector2i startPos;
 
@@ -52,6 +53,7 @@ public:
 	unsigned short getNJBlocks();
 	unsigned short getNSBlocks();
 	unsigned short getNFBlocks();
+	unsigned short getNNinjReq();
 
 	Vector2i getStartPos();
 };
