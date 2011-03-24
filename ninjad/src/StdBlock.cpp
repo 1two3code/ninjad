@@ -33,5 +33,5 @@ void StdBlock::Animate()
 
 StdBlock::~StdBlock()
 {
-
+	
 }

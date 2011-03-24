@@ -10,6 +10,7 @@ NinjaIF::~NinjaIF()
 	if(fallAnim) delete fallAnim;
 	if(climbAnim) delete climbAnim;
 	if(armAnim) delete armAnim;
+	if(deathAnim) delete deathAnim;
 }
 
 void NinjaIF::setActive(bool bl)

@@ -39,5 +39,5 @@ void SpringBlock::Animate()
 
 SpringBlock::~SpringBlock()
 {
-
+	
 }

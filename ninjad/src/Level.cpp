@@ -25,7 +25,9 @@ Level::~Level()
 	{
 		delete block[i];
 	}
-	delete block;
+	delete []block;
+//	delete entryDoor;
+//	delete exitDoor;
 }
 
 void Level::render(RenderWindow* rnd)
@@ -81,7 +83,7 @@ void Level::generateBlocks(int j)
 		}
 	}
 
-
+	delete tempBlock;
 	nNinjas = map->GetPixel(0, 18).r;
 	nPBlocks = map->GetPixel(1, 18).r;
 	nJBlocks = map->GetPixel(2, 18).r;
@@ -89,6 +91,7 @@ void Level::generateBlocks(int j)
 	nFBlocks = map->GetPixel(4, 18).r;
 	nNinjReq = map->GetPixel(5, 18).r;
 	startPos = Vector2i(map->GetPixel(17,18).r*32, map->GetPixel(17,18).g*32);
+	
 }
 
 int Level::findType(Color col)

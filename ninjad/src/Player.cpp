@@ -45,6 +45,10 @@ Player::Player(Vector2i pos)
 
 Player::~Player()
 {
+	delete hand;
+	delete runAnim;
+	delete idleAnim;
+	delete jumpAnim;
 }
 
 void Player::update(RenderWindow* wnd)
