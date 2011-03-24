@@ -93,7 +93,7 @@ int Level::findType(Color col)
 {
 	Image* code = ImgHolder::getInst()->colorCode;	
 
-	for(int i = 0; i < (int)code->GetWidth(); i++)
+	for(int i = 0; i < 12; i++)
 	{
 		if(col.r == code->GetPixel(i, 0).r && col.g == code->GetPixel(i, 0).g && col.b == code->GetPixel(i, 0).b)
 		{
@@ -156,7 +156,8 @@ Block* Level::createBlock(int type, int rot)
 		rtn->SetRotation(rot);
 		break;
 	case 8:
-		rtn = NULL;
+		rtn = new TrapBlock();
+		rtn->SetRotation(rot);
 		break;
 	case 9:
 		rtn = NULL;
