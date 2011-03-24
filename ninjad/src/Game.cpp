@@ -302,12 +302,15 @@ void Game::showLevelComplete()
 	bool stop = false;
 	mainWnd->Draw(*completeScreen);
 	mainWnd->Display(); 
+	unsigned short ticks = 0;
 	while(!stop)
 	{
 		while (mainWnd->GetEvent(e))
 		{
-			if(e.Type == Event::MouseButtonReleased || e.Type == Event::KeyReleased)
+			if((e.Type == Event::MouseButtonReleased || e.Type == Event::KeyReleased) && ticks > 15)
 				stop = true;
+
+			ticks++;
 		}
 	}
 	
