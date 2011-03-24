@@ -259,6 +259,7 @@ void HUDisplay::render(RenderWindow* rndwnd)
 	rndwnd->Draw(*pauseButton);
 	rndwnd->Draw(*soundButton);
 	rndwnd->Draw(*speedUpButton);
+
 	rndwnd->Draw(*speedDownButton);
 
 	rndwnd->Draw(*levelText);

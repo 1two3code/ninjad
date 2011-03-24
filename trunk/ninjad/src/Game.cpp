@@ -27,6 +27,8 @@ Game::Game()
 	reset = false;
 	levelComplete = false;
 
+	SndHolder::getInst()->sndWdupNinja.Play();
+
 }
 
 Game::~Game()
@@ -182,6 +184,7 @@ bool Game::eventHandler(Event e)
 			&& InputHandler::getInstance().getMousePosY(mainWnd) > 160 && InputHandler::getInstance().getMousePosY(mainWnd) < 672))	
 		{
 			int lvl;
+
 			switch(hud->HUDReleased(mainWnd))
 			{
 			case 0:
@@ -195,9 +198,15 @@ bool Game::eventHandler(Event e)
 				break;
 			case 3:
 				if(paused)
+				{
+					SndHolder::getInst()->sndOn(true);
 					paused = false;
+				}
 				else
+				{
+					SndHolder::getInst()->sndOn(false);
 					paused = true;
+				}
 				break;
 			case 4:				
 				SndHolder::getInst()->onoff();				
@@ -298,6 +307,8 @@ bool Game::isNextLevel()
 
 void Game::showLevelComplete()
 {
+	SndHolder::getInst()->sndSexyNinja.Play();
+
 	Event e;
 	bool stop = false;
 	mainWnd->Draw(*completeScreen);

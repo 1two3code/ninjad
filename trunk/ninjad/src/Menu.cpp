@@ -11,13 +11,6 @@ Menu::Menu()
 	background = new Sprite();
 	background->SetImage(*ImgHolder::getInst()->background);
 
-	mapPreview = new Sprite();
-
-	mapPreview->SetImage(*ImgHolder::getInst()->maps[0]);
-	mapPreview->SetSubRect(IntRect(1,1,17,17));
-	mapPreview->SetScale(32,32);
-	mapPreview->SetPosition(84, 148);
-
 	btnFrame.x = 640;
 	btnFrame.y = 170;
 
@@ -99,6 +92,10 @@ Menu::Menu()
 	mptr->SetCenter(0,0);
 	mptr->SetPosition(0,0);
 
+	locked = new Sprite();
+	locked->SetImage(*ImgHolder::getInst()->locked);
+	locked->SetPosition(64+32, 128+32);
+
 
 	levelButtons = new Sprite*[25];
 	Sprite* temp;
@@ -118,13 +115,20 @@ Menu::Menu()
 	buttonPointed = -1;
 	buttonClicked = -1;
 	unlocked = 10;
+
+	previewArray =  new Sprite*[324];
+	for(int i = 0; i < 324; i++)
+	{
+		previewArray[i] = NULL;
+	}
+
+	isLocked = true;
 }
 
 Menu::~Menu()
 {
 	delete menuWnd;
 	delete background;
-	delete mapPreview;
 	delete numbers;
 	delete quitButton;
 	delete htpButton;
@@ -140,11 +144,19 @@ Menu::~Menu()
 	delete mptr;
 	delete font;
 	delete nNinjReq;
+	delete locked;
 
 	for(int i = 0; i < 25; i++)
 		delete levelButtons[i];
 
 	delete [] levelButtons;
+
+	for(int i = 0; i < 324; i++)
+	{
+		if(previewArray[i] != NULL)
+			delete previewArray[i];
+	}
+	delete [] previewArray;
 }
 
 
@@ -180,7 +192,7 @@ void Menu::render()
 	menuWnd->Clear(Color(0,0,0));
 	
 	menuWnd->Draw(*background);	
-	menuWnd->Draw(*mapPreview);
+
 	menuWnd->Draw(*menuHUD);
 	menuWnd->Draw(*nNinjas);
 	menuWnd->Draw(*nStd);
@@ -191,6 +203,20 @@ void Menu::render()
 
 	for(int i = 0; i < 25; i ++)
 		menuWnd->Draw(*levelButtons[i]);
+
+	for(int i = 0; i < 324; i++)
+	{
+		if(previewArray != NULL)
+		{
+			if(previewArray[i] != NULL)
+				menuWnd->Draw(*previewArray[i]);
+		}
+	}
+
+	if(isLocked)
+		menuWnd->Draw(*locked);
+
+
 
 	menuWnd->Draw(*numbers);
 	menuWnd->Draw(*quitButton);
@@ -234,17 +260,16 @@ int Menu::eventHandler(Event e)
 				levelButtons[btn]->SetSubRect(IntRect(0,72,72,144));
 			else
 				levelButtons[btn]->SetSubRect(IntRect(0, 144, 72, 216));
-			if(btn < unlocked)
-			{
-				map = ImgHolder::getInst()->maps[btn];
-				mapPreview->SetImage(*map);
-				changeText(true);
-			}
+
+			if(btn >= unlocked)
+				isLocked = true;
+
 			else
-			{
-				mapPreview->SetImage(*ImgHolder::getInst()->locked);
-				changeText(false);
-			}
+				isLocked = false;
+			map = ImgHolder::getInst()->maps[btn];
+			changePreview(btn);
+			changeText(true);
+
 		}
 
 	}
@@ -463,4 +488,102 @@ void Menu::changeText(bool preview)
 void Menu::setUnlockedLevels(unsigned short levels)
 {
 	unlocked = levels;
+}
+
+
+int Menu::findType(Color col)
+{
+	Image* code = ImgHolder::getInst()->colorCode;	
+
+	for(int i = 0; i < 12; i++)
+	{
+		if(col.r == code->GetPixel(i, 0).r && col.g == code->GetPixel(i, 0).g && col.b == code->GetPixel(i, 0).b)
+		{
+			return i;
+		}
+	}
+
+	return 0;
+}
+
+Sprite* Menu::createSprite(int type)
+{
+	Sprite* rtn = NULL;
+	if(type > 0)
+	{
+		rtn = new Sprite();
+		rtn->SetImage(*ImgHolder::getInst()->blocks);
+		switch(type)
+		{
+		case 1:
+			rtn->SetSubRect(IntRect(7*32, 0, 7*32+32, 32));
+			break;
+		case 2:
+			rtn->SetSubRect(IntRect(type*32, 0, type*32+32, 32));
+			break;
+		case 3:
+			rtn->SetSubRect(IntRect(type*32, 0, type*32+32, 32));
+			break;
+		case 4:
+			rtn->SetSubRect(IntRect(6*32, 0, 6*32+32, 32));
+			break;
+		case 5:
+			rtn->SetSubRect(IntRect(type*32, 0, type*32+32, 32));
+			break;
+		case 6:
+			rtn->SetSubRect(IntRect(4*32, 0, 4*32+32, 32));
+			break;
+		case 7:
+			rtn->SetSubRect(IntRect(1*32, 0, 1*32+32, 32));
+			break;
+		case 8:
+			rtn->SetSubRect(IntRect(type*32, 0, type*32+32, 32));
+			break;
+
+		}
+	}	
+
+	return rtn;
+}
+
+void Menu::changePreview(unsigned short u)
+{
+	for(int i = 0; i < 324; i++)
+	{
+		if(previewArray != NULL)
+		{
+			if(previewArray[i] != NULL)
+			{
+				delete previewArray[i];
+				previewArray[i] = NULL;
+			}
+		}
+	}
+
+	int w = map->GetWidth();
+	int h = map->GetHeight()-1;
+	int type = 0;
+	int n = 0;
+	Sprite* temp = NULL;
+
+	for(int i = 1; i < w-1; i++)
+	{
+		for(int j = 1; j < h-1; j++)
+		{
+
+			type =  findType(map->GetPixel(i,j));
+			temp = createSprite(type);
+			if(temp != NULL)
+			{
+
+				previewArray[n] = temp;
+				previewArray[n]->SetPosition(64+i*32.0f, 128+j*32.0f);
+				n++;
+				temp = NULL;
+			}
+
+		}
+
+	}
+
 }
