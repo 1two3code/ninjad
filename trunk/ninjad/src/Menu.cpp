@@ -432,7 +432,7 @@ void Menu::splashScreen()
 		menuWnd->Display();
 		while(menuWnd->GetEvent(e))
 		{
-			if(e.Type == Event::KeyPressed /*&& introDone*/ )
+			if(e.Type == Event::KeyPressed && introDone)
 				splash = false;
 		}
 	}
