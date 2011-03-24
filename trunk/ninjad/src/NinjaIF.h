@@ -20,6 +20,7 @@ protected:
 	int count;
 	bool underground;
 	bool dead;
+	int savedstate;
 
 public:
 	Animation *curAnim, *runAnim, *slideAnim, *fallAnim, *climbAnim, *armAnim;
@@ -55,6 +56,9 @@ public:
 
 	void setDead(bool dead);
 	bool getDead();
+
+	void setSavedState(int savedstate);
+	int getSavedState();
 
 	virtual void update() = 0;
 	virtual void updateSprite() = 0;

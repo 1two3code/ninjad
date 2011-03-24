@@ -13,6 +13,7 @@ StdNinja::StdNinja(int s)
 		count=0;
 		underground=false;
 		setDead(false);
+		setSavedState(0);
 
         //SetSubRect(IntRect(0,0,16,16));
         //SetPosition(208,112);

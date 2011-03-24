@@ -101,3 +101,13 @@ void NinjaIF::setDead(bool dead)
 {
 	this->dead=dead;
 }
+
+int NinjaIF::getSavedState()
+{
+	return savedstate;
+}
+
+void NinjaIF::setSavedState(int savedstate)
+{
+	this->savedstate=savedstate;
+}

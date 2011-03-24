@@ -15,7 +15,6 @@ private:
 	bool collides;
 	bool foothold;
 	bool airborne;
-	int savedstate;
 	bool firstTime;
 	int savedSpeed;
 	int f;
