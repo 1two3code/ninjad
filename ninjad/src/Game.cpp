@@ -218,7 +218,7 @@ bool Game::eventHandler(Event e)
 				break;
 			}	
 		}
-		else
+		else if(!input->isPressJump(mainWnd))
 		{			
 
 			Vector2f mousePos(input->getMousePosX(mainWnd), input->getMousePosY(mainWnd));
