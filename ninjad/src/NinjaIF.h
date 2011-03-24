@@ -19,6 +19,7 @@ protected:
 	int speedY;
 	int count;
 	bool underground;
+	bool dead;
 
 public:
 	Animation *curAnim, *runAnim, *slideAnim, *fallAnim, *climbAnim, *armAnim;
@@ -51,6 +52,9 @@ public:
 
 	void setSpeedY(int sy);
 	int getSpeedY();
+
+	void setDead(bool dead);
+	bool getDead();
 
 	virtual void update() = 0;
 	virtual void updateSprite() = 0;

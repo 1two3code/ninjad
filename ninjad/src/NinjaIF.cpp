@@ -91,3 +91,13 @@ int NinjaIF::getSpeedY()
 {
 	return this->speedY;
 }
+
+bool NinjaIF::getDead()
+{
+	return this->dead;
+}
+
+void NinjaIF::setDead(bool dead)
+{
+	this->dead=dead;
+}

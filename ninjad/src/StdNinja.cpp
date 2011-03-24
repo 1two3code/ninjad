@@ -181,5 +181,9 @@ void StdNinja::updateSprite()
 				setSpeed(8);
 				setSpeedY(-6);
                 break;
+		case 11:
+			this->setActive(false);
+			this->setDead(true);
+			break;
 		}
 }
