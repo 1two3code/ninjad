@@ -2,6 +2,7 @@
 #define NINJAIF_H
 #include <SFML/Graphics.hpp>
 #include "Animation.h"
+#include "SndHolder.h"
 
 using namespace sf;
 class NinjaIF

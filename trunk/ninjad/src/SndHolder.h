@@ -13,6 +13,8 @@ private:
 public:
 	SoundBuffer click;
 	SoundBuffer yay;
+	SoundBuffer scream;
+	SoundBuffer suction;
 	SoundBuffer spring;
 	SoundBuffer drumroll;
 	SoundBuffer theme;
@@ -20,6 +22,8 @@ public:
 
 	Sound sndClick;
 	Sound sndYay;
+	Sound sndScream;
+	Sound sndSuction;
 	Sound sndSpring;
 	Sound musDrumroll;
 	Sound musTheme;

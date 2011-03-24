@@ -23,11 +23,13 @@ StdNinja::StdNinja(int s)
 		this->slideAnim = new Animation(ImgHolder::getInst()->ninSlide, 1, 16, 16, 1, true, true);
 		this->fallAnim = new Animation(ImgHolder::getInst()->ninFall, 8, 16, 16, 2, true, true);
 		this->climbAnim = new Animation(ImgHolder::getInst()->ninClimb, 4, 16, 16, 2, true, true);
+		this->deathAnim = new Animation(ImgHolder::getInst()->ninDeath, 14, 16, 16, 2, false, true);
 		this->armAnim = new Animation(ImgHolder::getInst()->ninArm, 4, 16, 16, 2, true, true);
 		this->runAnim->sprite.SetCenter(8,8);
 		this->slideAnim->sprite.SetCenter(8,8);
 		this->fallAnim->sprite.SetCenter(8,8);
 		this->climbAnim->sprite.SetCenter(8,8);
+		this->deathAnim->sprite.SetCenter(8,8);
 		this->armAnim->sprite.SetCenter(8,8);
 		//this->curAnim = this->runAnim;
         //this->SetRotation(90);
@@ -184,7 +186,13 @@ void StdNinja::updateSprite()
 				setSpeedY(-6);
                 break;
 		case 11:
-			//this->setDrawn(false);
+			if(this->curAnim)this->deathAnim->sprite.SetPosition(this->curAnim->sprite.GetPosition().x, this->curAnim->sprite.GetPosition().y);
+				this->curAnim = this->deathAnim;
+				if(SndHolder::getInst()->sndScream.GetStatus() == Sound::Status::Stopped)
+				{
+				SndHolder::getInst()->sndSuction.Play();
+				SndHolder::getInst()->sndScream.Play();
+				}
 			this->setDead(true);
 			this->setDirX(0);
 			this->setDirY(0);

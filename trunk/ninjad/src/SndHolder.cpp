@@ -11,6 +11,12 @@ SndHolder::SndHolder()
 	sndYay.SetBuffer(yay);
 	sndYay.SetPitch(2.0f);
 
+	scream.LoadFromFile("./data/audio/wscream.ogg");
+	sndScream.SetBuffer(scream);
+
+	suction.LoadFromFile("./data/audio/suction.ogg");
+	sndSuction.SetBuffer(suction);
+
 	spring.LoadFromFile("./data/audio/spring.ogg");
 	sndSpring.SetBuffer(spring);
 
@@ -44,6 +50,8 @@ void SndHolder::sndOn(bool on)		//bool elgiganten ftw
 		sndYay.SetVolume(30.0f);
 		sndClick.SetVolume(30.0f);
 		sndSpring.SetVolume(30.0f);
+		sndSuction.SetVolume(60.0f);
+		sndScream.SetVolume(15.0f);
 		musDrumroll.SetVolume(40.0f);
 		musTheme.SetVolume(15.0f);
 		musIntro.SetVolume(15.0f);
@@ -53,6 +61,8 @@ void SndHolder::sndOn(bool on)		//bool elgiganten ftw
 		sndYay.SetVolume(0.0f);
 		sndClick.SetVolume(0.0f);
 		sndSpring.SetVolume(0.0f);
+		sndSuction.SetVolume(0.0f);
+		sndScream.SetVolume(0.0f);
 		musDrumroll.SetVolume(0.0f);
 		musTheme.SetVolume(0.0f);
 		musIntro.SetVolume(0.0f);

@@ -173,31 +173,37 @@ int HUDisplay::HUDReleased(RenderWindow* rndwnd)
 	if(mpx > quitButton->GetPosition().x && mpx < quitButton->GetPosition().x+quitButton->GetSize().y
 		&& mpy > quitButton->GetPosition().y && mpy < quitButton->GetPosition().y+quitButton->GetSize().y)
 	{
+		SndHolder::getInst()->sndClick.Play();
 		return 1;
 	}
 	else if(mpx > resetButton->GetPosition().x && mpx < resetButton->GetPosition().x+resetButton->GetSize().y
 		&& mpy > resetButton->GetPosition().y && mpy < resetButton->GetPosition().y+resetButton->GetSize().y)
 	{
+		SndHolder::getInst()->sndClick.Play();
 		return 2;
 	}
 	else if(mpx > pauseButton->GetPosition().x && mpx < pauseButton->GetPosition().x+pauseButton->GetSize().y
 		&& mpy > pauseButton->GetPosition().y && mpy < pauseButton->GetPosition().y+pauseButton->GetSize().y)
-	{		
+	{	
+		SndHolder::getInst()->sndClick.Play();
 		return 3;
 	}
 	else if(mpx > soundButton->GetPosition().x && mpx < soundButton->GetPosition().x+soundButton->GetSize().y
 		&& mpy > soundButton->GetPosition().y && mpy < soundButton->GetPosition().y+soundButton->GetSize().y)
 	{
+		SndHolder::getInst()->sndClick.Play();
 		return 4;
 	}
 	else if(mpx > speedUpButton->GetPosition().x && mpx < speedUpButton->GetPosition().x+speedUpButton->GetSize().y
 		&& mpy > speedUpButton->GetPosition().y && mpy < speedUpButton->GetPosition().y+speedUpButton->GetSize().y)
 	{
+		SndHolder::getInst()->sndClick.Play();
 		return 5;
 	}
 	else if(mpx > speedDownButton->GetPosition().x && mpx < speedDownButton->GetPosition().x+speedDownButton->GetSize().y
 		&& mpy > speedDownButton->GetPosition().y && mpy < speedDownButton->GetPosition().y+speedDownButton->GetSize().y)
 	{
+		SndHolder::getInst()->sndClick.Play();
 		return 6;
 	}
 
