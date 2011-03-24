@@ -602,7 +602,6 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 	}
 
 	//3. Har blocket under fötterna försvunnit?
-	//cout<<"State before check: "<<ninja->getState()<<endl;
 	if(!ninja->getDead())
 	{
 	airborne=true;
@@ -707,7 +706,6 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 	}
 	}
 	
-	//cout<<"State after check: "<<ninja->getState()<<endl;
 
 	//4. Krock med vägg
 	if(ninja->getState() != 8 && ninja->getState() != 9 && ninja->getState() != 10)
@@ -992,7 +990,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 	f++;
 	this->firstTime=true;
 	this->savedSpeed=0;
-	//cout<<"X: "<<player->getPosX()<<" Y: "<<player->getPosY()<<" Sx: "<<player->getSpeedX()<<" Sy: "<<player->getSpeedY()<<endl;
+
 	//Golv/tak-test
 	bool wallcollide=false;
 	int knuffarN=0;
@@ -1187,8 +1185,7 @@ void Collision::player(Block** block, Player* player, int nBlocks, RenderWindow*
 		player->setHitRight(false);
 	}
 
-	//cout<<"X: "<<player->getPosX()<<" Y: "<<player->getPosY()<<" Sx: "<<player->getSpeedX()<<" Sy: "<<player->getSpeedY()<<endl;
-	//cout<<rightwall<<" "<<leftwall<<" "<<f<<endl;
+	
 
 }
 
