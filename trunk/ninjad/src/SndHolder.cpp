@@ -59,10 +59,10 @@ void SndHolder::sndOn(bool on)
 		sndSuction.SetVolume(60.0f);
 		sndScream.SetVolume(15.0f);
 		musDrumroll.SetVolume(40.0f);
-		musTheme.SetVolume(15.0f);
-		musIntro.SetVolume(15.0f);
-		sndWdupNinja.SetVolume(30.0f);
-		sndSexyNinja.SetVolume(30.0f);
+		musTheme.SetVolume(10.0f);
+		musIntro.SetVolume(10.0f);
+		sndWdupNinja.SetVolume(40.0f);
+		sndSexyNinja.SetVolume(40.0f);
 	}
 	else
 	{

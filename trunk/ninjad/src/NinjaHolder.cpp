@@ -77,7 +77,7 @@ NinjaHolder::~NinjaHolder()
 	{
 		delete ninjas[i];
 	}
-	delete ninjas;
+	delete []ninjas;
 }
 
 void NinjaHolder::setNr(int nr)

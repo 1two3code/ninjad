@@ -76,8 +76,6 @@ int main()
 	
 	delete ImgHolder::getInst();
 	delete SndHolder::getInst();
-	if(newGame)
-		delete newGame;
     return EXIT_SUCCESS;
 }
 

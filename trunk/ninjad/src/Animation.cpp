@@ -31,7 +31,7 @@ Animation::Animation(sf::Image* img, int frames, int sizeX, int sizeY, int frame
 
 Animation::~Animation()
 {
-
+	
 }
 
 void Animation::Update()

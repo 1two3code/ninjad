@@ -12,7 +12,9 @@ Block::Block()
 
 Block::~Block()
 {
-
+	//delete curAnim;
+	//delete idleAnim;
+	delete activeAnim;
 }
 
 void Block::SetRotation(int rot)

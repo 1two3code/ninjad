@@ -164,6 +164,7 @@ ImgHolder::~ImgHolder()
 	delete ninRun;
 	delete ninSlide;
 	delete ninFall;
+	delete ninDeath;
 	delete ninClimb;
 	delete ninArm;
 	delete colorCode;
@@ -177,6 +178,9 @@ ImgHolder::~ImgHolder()
 	delete howToPlay;
 	delete levelComplete;
 
+		delete title;
+	delete mousePtr;
+
 	//delete menuBackground;
 	delete creditScreen;
 	delete splashScreen;
@@ -189,7 +193,7 @@ ImgHolder::~ImgHolder()
 	for(int i = 0; i < nMaps; i++)
 		delete maps[i];
 	
-	delete maps;
+	delete []maps;
 }
 
 ImgHolder* ImgHolder::getInst()

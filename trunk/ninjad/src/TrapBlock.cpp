@@ -30,5 +30,4 @@ void TrapBlock::Animate()
 TrapBlock::~TrapBlock()
 {
 
-
 }

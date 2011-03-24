@@ -27,5 +27,4 @@ void ExitDoor::Animate()
 }
 ExitDoor::~ExitDoor()
 {
-
 }
