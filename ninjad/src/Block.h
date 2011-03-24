@@ -28,7 +28,7 @@ public:
 	virtual void Animate() = 0;
 	virtual Vector2i getVecHead();
 	virtual Vector2i getVecFace();
-	//Kollisionsfunktioner osvosv 
+
 
 };
 
