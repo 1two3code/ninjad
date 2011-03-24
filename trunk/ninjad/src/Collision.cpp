@@ -7,6 +7,7 @@ Collision::Collision()
 	airborne=true;
 	savedstate=0;
 	f=0;
+	animerarN=0;
 }
 
 Collision::~Collision()
@@ -15,7 +16,7 @@ Collision::~Collision()
 void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 {
 	//1. Passerar ninjan intro-dörren?
-	if(!ninja->getComplete())
+	if(!ninja->getComplete() && !ninja->getDead())
 	{
 		switch(ninja->getState())
 		{
@@ -294,6 +295,151 @@ void Collision::ninja(Block** block, NinjaIF* ninja, int nBlocks)
 				ninja->setState(9);
 				block[i]->Animate();
 			}
+		}
+		break;
+	default:
+		break;
+	}
+
+	//Ska ninjan den döda dödens dödaste döda död dö?
+	switch(ninja->getState())
+	{
+	case 0:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().x == block[i]->curAnim->sprite.GetPosition().x && ninja->curAnim->sprite.GetPosition().y + (ninja->curAnim->sprite.GetSize().y/2 - block[i]->curAnim->sprite.GetSize().y/2) == block[i]->curAnim->sprite.GetPosition().y && typeid(*block[i]) == typeid(TrapBlock) && block[i]->curAnim->sprite.GetRotation()==0)
+			{
+				ninja->setState(11);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 1:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().y == block[i]->curAnim->sprite.GetPosition().y && ninja->curAnim->sprite.GetPosition().x + (ninja->curAnim->sprite.GetSize().x/2 - block[i]->curAnim->sprite.GetSize().x/2) == block[i]->curAnim->sprite.GetPosition().x && typeid(*block[i]) == typeid(TrapBlock) && block[i]->curAnim->sprite.GetRotation()==90)
+				{
+				ninja->setState(11);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 2:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().x == block[i]->curAnim->sprite.GetPosition().x && ninja->curAnim->sprite.GetPosition().y - (ninja->curAnim->sprite.GetSize().y/2 - block[i]->curAnim->sprite.GetSize().y/2) == block[i]->curAnim->sprite.GetPosition().y && typeid(*block[i]) == typeid(TrapBlock) && block[i]->curAnim->sprite.GetRotation()==180)
+				{
+				ninja->setState(11);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 3:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().y == block[i]->curAnim->sprite.GetPosition().y && ninja->curAnim->sprite.GetPosition().x - (ninja->curAnim->sprite.GetSize().x/2 - block[i]->curAnim->sprite.GetSize().x/2) == block[i]->curAnim->sprite.GetPosition().x && typeid(*block[i]) == typeid(TrapBlock) && block[i]->curAnim->sprite.GetRotation()==-90)
+			{
+				ninja->setState(11);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 6:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().x == block[i]->curAnim->sprite.GetPosition().x && ninja->curAnim->sprite.GetPosition().y + (ninja->curAnim->sprite.GetSize().y/2 - block[i]->curAnim->sprite.GetSize().y/2) == block[i]->curAnim->sprite.GetPosition().y && typeid(*block[i]) == typeid(TrapBlock) && block[i]->curAnim->sprite.GetRotation()==0)
+				{
+				ninja->setState(11);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 7:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().y == block[i]->curAnim->sprite.GetPosition().y && ninja->curAnim->sprite.GetPosition().x + (ninja->curAnim->sprite.GetSize().x/2 - block[i]->curAnim->sprite.GetSize().x/2) == block[i]->curAnim->sprite.GetPosition().x && typeid(*block[i]) == typeid(TrapBlock) && block[i]->curAnim->sprite.GetRotation()==90)
+				{
+				ninja->setState(11);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 4:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().x == block[i]->curAnim->sprite.GetPosition().x && ninja->curAnim->sprite.GetPosition().y - (ninja->curAnim->sprite.GetSize().y/2 - block[i]->curAnim->sprite.GetSize().y/2) == block[i]->curAnim->sprite.GetPosition().y && typeid(*block[i]) == typeid(TrapBlock) && block[i]->curAnim->sprite.GetRotation()==180)
+				{
+				ninja->setState(11);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 5:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().y == block[i]->curAnim->sprite.GetPosition().y && ninja->curAnim->sprite.GetPosition().x - (ninja->curAnim->sprite.GetSize().x/2 - block[i]->curAnim->sprite.GetSize().x/2) == block[i]->curAnim->sprite.GetPosition().x && typeid(*block[i]) == typeid(TrapBlock) && block[i]->curAnim->sprite.GetRotation()==-90)
+			{
+				ninja->setState(11);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 8:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().x == block[i]->curAnim->sprite.GetPosition().x && ninja->curAnim->sprite.GetPosition().y + (ninja->curAnim->sprite.GetSize().y/2 - block[i]->curAnim->sprite.GetSize().y/2) == block[i]->curAnim->sprite.GetPosition().y && typeid(*block[i]) == typeid(TrapBlock) && block[i]->curAnim->sprite.GetRotation()==0)
+			{
+				ninja->setState(11);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 9:
+		for(int i=0; i<nBlocks; i++)
+		{
+			if(ninja->curAnim->sprite.GetPosition().x == block[i]->curAnim->sprite.GetPosition().x && ninja->curAnim->sprite.GetPosition().y + (ninja->curAnim->sprite.GetSize().y/2 - block[i]->curAnim->sprite.GetSize().y/2) == block[i]->curAnim->sprite.GetPosition().y && typeid(*block[i]) == typeid(TrapBlock) && block[i]->curAnim->sprite.GetRotation()==0)
+			{
+				ninja->setState(11);
+				block[i]->Animate();
+			}
+		}
+		break;
+	case 10:
+		this->collides=false;
+		for(int i=0; i<nBlocks && collides==false;i++)
+		{
+			this->collides=true;
+		/*
+			if(ninja->curAnim->sprite.GetPosition().x + ninja->curAnim->sprite.GetSize().x/2 <= block[i]->curAnim->sprite.GetPosition().x - block[i]->curAnim->sprite.GetSize().x/2)//Ninjan är till vänster om blocket
+				collides=false;
+			if(ninja->curAnim->sprite.GetPosition().x - ninja->curAnim->sprite.GetSize().x/2 >= block[i]->curAnim->sprite.GetPosition().x + block[i]->curAnim->sprite.GetSize().x/2)//Ninjan är till höger om blocket
+				collides=false;
+			if(ninja->curAnim->sprite.GetPosition().y + ninja->curAnim->sprite.GetSize().y/2 <= block[i]->curAnim->sprite.GetPosition().y - block[i]->curAnim->sprite.GetSize().y/2)//Ninjan är ovanför blocket
+				collides=false;
+			if(ninja->curAnim->sprite.GetPosition().y - ninja->curAnim->sprite.GetSize().y/2 >= block[i]->curAnim->sprite.GetPosition().y + block[i]->curAnim->sprite.GetSize().y/2)//Ninjan är nedanför blocket
+				collides=false;
+			*/
+
+			if(ninja->curAnim->sprite.GetPosition().x <= block[i]->curAnim->sprite.GetPosition().x - block[i]->curAnim->sprite.GetSize().x/2)//Ninjan är till vänster om blocket
+				collides=false;
+			if(ninja->curAnim->sprite.GetPosition().x >= block[i]->curAnim->sprite.GetPosition().x + block[i]->curAnim->sprite.GetSize().x/2)//Ninjan är till höger om blocket
+				collides=false;
+			if(ninja->curAnim->sprite.GetPosition().y <= block[i]->curAnim->sprite.GetPosition().y - block[i]->curAnim->sprite.GetSize().y/2)//Ninjan är ovanför blocket
+				collides=false;
+			if(ninja->curAnim->sprite.GetPosition().y >= block[i]->curAnim->sprite.GetPosition().y + block[i]->curAnim->sprite.GetSize().y/2)//Ninjan är nedanför blocket
+				collides=false;
+			if((typeid(*block[i]) != typeid(TrapBlock))|| !ninja->getDrawn())
+				collides=false;
+
+			if(collides)
+			{
+				animerarN=i;
+			}
+		}
+		if(collides)
+		{
+			ninja->setState(11);
+			block[animerarN]->Animate();
 		}
 		break;
 	default:

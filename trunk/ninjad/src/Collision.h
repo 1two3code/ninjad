@@ -19,6 +19,7 @@ private:
 	bool firstTime;
 	int savedSpeed;
 	int f;
+	int animerarN;
 public:
 	Collision();
 	~Collision();
