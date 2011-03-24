@@ -16,14 +16,16 @@ private:
 	RenderWindow* menuWnd;
 	Sprite* background;
 
+	Sprite** previewArray;
+
 	Sprite** levelButtons;
-	Sprite* mapPreview;
 	Sprite* numbers;
 	Sprite* quitButton;
 	Sprite* htpButton;		//How to play knapp
 	Sprite* credButton;
 	Sprite* credScreen;
 	Sprite* howToPlayScreen;
+	Sprite* locked;
 	
 	Sprite* mptr;
 
@@ -40,6 +42,7 @@ private:
 
 	bool howToPlay;
 	bool credits;
+	bool isLocked;
 
 	int buttonPointed;
 	int buttonClicked;
@@ -51,6 +54,10 @@ private:
 	
 	bool switchBool(bool tf);
 	void changeText(bool preview);
+
+	void changePreview(unsigned short u);
+	int findType(Color col);
+	Sprite* createSprite(int type);
 
 protected:
 public:

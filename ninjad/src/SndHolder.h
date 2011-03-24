@@ -19,6 +19,8 @@ public:
 	SoundBuffer drumroll;
 	SoundBuffer theme;
 	SoundBuffer intro;
+	SoundBuffer wdupNinja;
+	SoundBuffer sexyNinja;
 
 	Sound sndClick;
 	Sound sndYay;
@@ -28,6 +30,8 @@ public:
 	Sound musDrumroll;
 	Sound musTheme;
 	Sound musIntro;
+	Sound sndWdupNinja;
+	Sound sndSexyNinja;
 	bool soundOn;
 
 	void onoff();

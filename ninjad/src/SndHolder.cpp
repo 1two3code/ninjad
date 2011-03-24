@@ -29,6 +29,12 @@ SndHolder::SndHolder()
 	intro.LoadFromFile("./data/audio/gp_intro.ogg");
 	musIntro.SetBuffer(intro);
 
+	wdupNinja.LoadFromFile("./data/audio/whatup.ogg");
+	sndWdupNinja.SetBuffer(wdupNinja);
+
+	sexyNinja.LoadFromFile("./data/audio/sexyninja.ogg");
+	sndSexyNinja.SetBuffer(sexyNinja);
+
 	soundOn = true;
 	sndOn(soundOn);
 }
@@ -43,7 +49,7 @@ void SndHolder::onoff()
 	sndOn(soundOn);
 }
 
-void SndHolder::sndOn(bool on)		//bool elgiganten ftw
+void SndHolder::sndOn(bool on)
 {
 	if(on)
 	{
@@ -55,6 +61,8 @@ void SndHolder::sndOn(bool on)		//bool elgiganten ftw
 		musDrumroll.SetVolume(40.0f);
 		musTheme.SetVolume(15.0f);
 		musIntro.SetVolume(15.0f);
+		sndWdupNinja.SetVolume(30.0f);
+		sndSexyNinja.SetVolume(30.0f);
 	}
 	else
 	{
@@ -66,6 +74,8 @@ void SndHolder::sndOn(bool on)		//bool elgiganten ftw
 		musDrumroll.SetVolume(0.0f);
 		musTheme.SetVolume(0.0f);
 		musIntro.SetVolume(0.0f);
+		sndWdupNinja.SetVolume(0.0f);
+		sndSexyNinja.SetVolume(0.0f);
 	}
 }
 

@@ -30,29 +30,6 @@ NinjaHolder::NinjaHolder(int nr, int type, int state, Block* entryDoor)
 			ninjas[i] = new StdNinja(startState);
 	}
 
-	/*
-		Har påbörjat att försöka placera ut Ninjorna efter blockets(dörrens) rotationsvektorer VecFace och VecHead
-		Ninjorna ska placeras med jämt mellanrum i rad motsatt VecFace och vandra i VecFace-riktning
-		Ninjorna måste också flyttas i förhållande till VecHead så de hamnar på marken i korrekt höjd oavsett vilken vägg de står på
-		Skickar med entryDoor som pekare till konstruktorn istället för att leta upp dörren med Block** block och nrOfBlocks.
-	*/
-	//int edvfx = entryDoor->getVecFace().x;
-	//int edvfy = entryDoor->getVecFace().y;
-
-	//int edvhx = entryDoor->getVecHead().x;
-	//int edvhy = entryDoor->getVecHead().y;
-
-	//for(int i = 0; i < nrOfNinjas; i++)
-	//{
-	//	ninjas[i]->SetPosition(entryDoor->curAnim->sprite.GetPosition().x-16*i*edvfx, entryDoor->curAnim->sprite.GetPosition().y + -1*edvhy*(entryDoor->curAnim->sprite.GetSize().y/2 - ninjas[i]->GetSize().y/2));
-
-	//	std::cout << entryDoor->getVecFace().x << endl << entryDoor->getVecFace().y << endl;
-	//	std::cout << entryDoor->curAnim->sprite.GetSize().x << endl << entryDoor->curAnim->sprite.GetSize().y << endl;
-	//	std::cout << entryDoor->curAnim->sprite.GetPosition().x<< endl << entryDoor->curAnim->sprite.GetPosition().y << endl << endl;
-	//	//ninjas[i]->SetPosition(entryDoor->curAnim->sprite.GetPosition().x + entryDoor->getVecFace().x*i*16 ,entryDoor->curAnim->sprite.GetPosition().y + entryDoor->getVecFace().y*i*16);
-	//}
-	////entryDoor->
-
 
 	for(int i = 0; i < nrOfNinjas; i++)
 	{
