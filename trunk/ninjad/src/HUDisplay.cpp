@@ -245,6 +245,8 @@ void HUDisplay::update(Level* lvl, Player* ply, unsigned short nIn, unsigned sho
 
 void HUDisplay::render(RenderWindow* rndwnd)
 {
+
+	rndwnd->Draw(*blockFrame);
 	rndwnd->Draw(*HUDbg);
 	rndwnd->Draw(*quitButton);
 	rndwnd->Draw(*resetButton);
@@ -260,9 +262,7 @@ void HUDisplay::render(RenderWindow* rndwnd)
 	rndwnd->Draw(*playerBlockText);
 	rndwnd->Draw(*springBlockText);
 	rndwnd->Draw(*fallBlockText);
-	rndwnd->Draw(*jumpBlockText);
-
-	rndwnd->Draw(*blockFrame);
+	rndwnd->Draw(*jumpBlockText);	
 }
 
 

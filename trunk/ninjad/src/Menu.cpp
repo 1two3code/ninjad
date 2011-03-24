@@ -51,8 +51,14 @@ Menu::Menu()
 	nNinjas  = new String();
 	nNinjas->SetFont(*font);
 	nNinjas->SetColor(Color(0,0,0));
-	nNinjas->SetSize(43);
-	nNinjas->SetPosition(180,680);
+	nNinjas->SetSize(22);
+	nNinjas->SetPosition(190,680);
+
+	nNinjReq  = new String();
+	nNinjReq->SetFont(*font);
+	nNinjReq->SetColor(Color(0,0,0));
+	nNinjReq->SetSize(22);
+	nNinjReq->SetPosition(220,695);
 
 	nStd = new String();
 	nStd->SetPosition(290,682);
@@ -132,6 +138,8 @@ Menu::~Menu()
 	delete nSpring;
 	delete nJump;
 	delete mptr;
+	delete font;
+	delete nNinjReq;
 
 	for(int i = 0; i < 25; i++)
 		delete levelButtons[i];
@@ -179,6 +187,7 @@ void Menu::render()
 	menuWnd->Draw(*nFall);
 	menuWnd->Draw(*nJump);
 	menuWnd->Draw(*nSpring);
+	menuWnd->Draw(*nNinjReq);
 
 	for(int i = 0; i < 25; i ++)
 		menuWnd->Draw(*levelButtons[i]);
@@ -434,6 +443,10 @@ void Menu::changeText(bool preview)
 
 		itoa(map->GetPixel(4,18).r, temp, 10);	
 		nSpring->SetText(temp);
+
+		itoa(map->GetPixel(5,18).r, temp, 10);	
+		nNinjReq->SetText(temp);
+
 	}
 	else
 	{
@@ -442,6 +455,7 @@ void Menu::changeText(bool preview)
 		nFall->SetText("");
 		nJump->SetText("");
 		nSpring->SetText("");
+		nNinjReq->SetText("");
 	}
 
 }

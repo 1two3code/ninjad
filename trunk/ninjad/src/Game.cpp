@@ -287,7 +287,7 @@ bool Game::isNextLevel()
 
 	ninjasIn = getCompleteNinjas();
 
-	if(ninjasIn == mainLvl->getNNinjas() && collision->isPlayerAtExit(player, mainLvl->getExitDoor()))
+	if(ninjasIn >= mainLvl->getNNinjReq() && collision->isPlayerAtExit(player, mainLvl->getExitDoor()))
 	{
 		levelComplete = true;
 		return true;

@@ -33,6 +33,7 @@ private:
 	String* nFall;
 	String* nJump;
 	String* nSpring;
+	String* nNinjReq;
 	Image* map;
 
 	Font* font;
