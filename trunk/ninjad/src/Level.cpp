@@ -240,7 +240,8 @@ int Level::addBlock(int type, int posX, int posY, int rot,Player* player, NinjaH
 					entryDoor = tempBlock;
 				block[nBlocks] = tempBlock;
 				block[nBlocks]->curAnim->sprite.SetPosition(16+x*32.0f, 16+y*32.0f); //lägger till nytt block
-				if(player->getAccel()<=0)
+		
+				if(player->getGrounded())
 				{
 				
 				
