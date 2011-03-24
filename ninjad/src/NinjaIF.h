@@ -23,7 +23,7 @@ protected:
 	int savedstate;
 
 public:
-	Animation *curAnim, *runAnim, *slideAnim, *fallAnim, *climbAnim, *armAnim;
+	Animation *curAnim, *runAnim, *slideAnim, *fallAnim, *climbAnim, *armAnim, *deathAnim;
 	NinjaIF();
 	virtual ~NinjaIF() = 0;
 

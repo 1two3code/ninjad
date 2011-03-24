@@ -4,7 +4,13 @@ NinjaIF::NinjaIF()
 {}
 
 NinjaIF::~NinjaIF()
-{}
+{
+	if(runAnim) delete runAnim;
+	if(slideAnim) delete slideAnim;
+	if(fallAnim) delete fallAnim;
+	if(climbAnim) delete climbAnim;
+	if(armAnim) delete armAnim;
+}
 
 void NinjaIF::setActive(bool bl)
 {

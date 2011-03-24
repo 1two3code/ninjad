@@ -53,6 +53,10 @@ ImgHolder::ImgHolder()
 	ninClimb->LoadFromFile("./data/sprites/game/nin_climb.png");
 	ninClimb->SetSmooth(false);
 
+	ninDeath = new Image();
+	ninDeath->LoadFromFile("./data/sprites/game/nin_death.png");
+	ninDeath->SetSmooth(false);
+
 	ninArm = new Image();
 	ninArm->LoadFromFile("./data/sprites/game/nin_arm.png");
 	ninArm->SetSmooth(false);
