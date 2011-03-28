@@ -121,7 +121,7 @@ Menu::Menu()
 	{
 		previewArray[i] = NULL;
 	}
-	delete temp;
+	//delete temp;
 	isLocked = true;
 }
 
@@ -394,16 +394,11 @@ void Menu::splashScreen()
 	bool introDone = false;
 
 	splashScreen.SetImage(*ImgHolder::getInst()->splashScreen);
-	String str;
-	str.SetText("Press any key to continue");
-	
-	str.SetColor(Color(0,0,0));
-	str.SetPosition(450, 420);
 
 	SndHolder::getInst()->musIntro.Play();
-	//SndHolder::getInst()->musTheme.SetPlayingOffset(2);
+
 	SndHolder::getInst()->musTheme.SetLoop(true);
-	//SndHolder::getInst()->musTheme.Play();
+
 	
 	while(splash)
 	{
@@ -426,19 +421,18 @@ void Menu::splashScreen()
 			introDone = true;
 		}
 		menuWnd->Draw(splashScreen);
-		//menuWnd->Draw(str);
+
 		if(introDone) menuWnd->Draw(pressAnyKey->sprite);
 		menuWnd->Draw(title);
 		menuWnd->Display();
 		while(menuWnd->GetEvent(e))
 		{
-			if(e.Type == Event::KeyPressed )//&& introDone)
+			if(e.Type == Event::KeyPressed && introDone)
 				splash = false;
 		}
 	}
 		delete pressAnyKey;
-	//SndHolder::getInst()->musDrumroll.Stop();
-	//
+
 }
 
 
